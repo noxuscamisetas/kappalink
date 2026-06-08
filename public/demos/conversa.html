@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Adriana | Consulta</title>
+  <link rel="stylesheet" href="../assets/global.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe, #ddd6fe);
+      animation: none;
+      color: #162033;
+    }
+
+    footer {
+      color: rgba(22,32,51,.5);
+    }
+
+    .client-top {
+      background: linear-gradient(135deg, #ffffff, #f5f3ff);
+      border-bottom-color: #c4b5fd;
+    }
+
+    .chip.active {
+      background: #ede9fe;
+      border-color: #7c3aed;
+      color: #5b21b6;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #7c3aed, #5b21b6);
+      box-shadow: 0 12px 30px rgba(124,58,237,.28);
+    }
+
+    .demo-textarea:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124,58,237,.12);
+    }
+
+    .conv-shell {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .conv-header {
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(124,58,237,.18);
+    }
+
+    .conv-aviso {
+      background: white;
+      padding: 14px 22px;
+      margin: 0;
+      font-size: 14px;
+      color: #667085;
+      line-height: 1.45;
+    }
+
+    .conv-card {
+      background: white;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(124,58,237,.08), 0 2px 8px rgba(124,58,237,.06);
+    }
+
+    .conv-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px;
+      min-height: 120px;
+    }
+
+    .conv-bubble {
+      max-width: 80%;
+      padding: 14px 18px;
+      border-radius: 18px;
+      line-height: 1.5;
+      animation: bubbleIn .3s ease;
+    }
+
+    .conv-left {
+      background: #f0f2f5;
+      color: #162033;
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .conv-right {
+      background: #ede9fe;
+      color: #5b21b6;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+      font-weight: 700;
+    }
+
+    .conv-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+
+    @keyframes bubbleIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .conv-envio {
+      display: none;
+      padding: 0 20px 20px;
+    }
+
+    .conv-textarea {
+      width: 100%;
+    }
+
+    .conv-btn-email {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid #7c3aed;
+      background: #ede9fe;
+      color: #5b21b6;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .conv-btn-email:hover {
+      background: #ddd6fe;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="conv-shell">
+
+      <div class="conv-header">
+        <div class="client-top">
+          <div class="client-logo" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">A</div>
+          <div>
+            <h1 class="client-name">Dra. Adriana</h1>
+            <p class="client-desc">Psicóloga • Atendimento online e presencial</p>
+          </div>
+        </div>
+        <p class="conv-aviso">Olá! Vou te fazer algumas perguntas para entender como posso te ajudar.</p>
+      </div>
+
+      <div class="conv-card">
+        <div class="conv-wrap" id="convWrap"></div>
+        <div class="conv-envio" id="convEnvio">
+          <pre id="resumo" class="summary-box"></pre>
+          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+          <button class="conv-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
+        </div>
+      </div>
+
+    </div>
+    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+  </main>
+
+  <script>
+    const telefoneWhatsApp = "5500000000000";
+    const emailContato = "exemplo@email.com";
+
+    const steps = [
+      {
+        key: "ajuda",
+        pergunta: "Como posso te ajudar?",
+        options: ["Primeira consulta", "Continuar acompanhamento", "Só quero entender melhor"]
+      },
+      {
+        key: "atendimento",
+        pergunta: "Como prefere o atendimento?",
+        options: ["Online", "Presencial", "Sem preferência"]
+      },
+      {
+        key: "disponibilidade",
+        pergunta: "Qual a sua disponibilidade?",
+        options: ["Manhã", "Tarde", "Noite", "Flexível"]
+      },
+      {
+        key: "primeira",
+        pergunta: "É a primeira vez que busca acompanhamento psicológico?",
+        options: ["Sim", "Não", "Prefiro não dizer"]
+      },
+      {
+        key: "mensagem",
+        pergunta: "Quer deixar alguma mensagem?",
+        type: "textarea"
+      }
+    ];
+
+    const respostas = { ajuda: "", atendimento: "", disponibilidade: "", primeira: "", mensagem: "" };
+    let stepAtual = 0;
+
+    function adicionarBubble(texto, lado) {
+      const wrap = document.getElementById("convWrap");
+      const el = document.createElement("div");
+      el.className = `conv-bubble conv-${lado}`;
+      el.textContent = texto;
+      wrap.appendChild(el);
+      wrap.scrollTop = wrap.scrollHeight;
+    }
+
+    function mostrarPergunta(idx) {
+      if (idx >= steps.length) {
+        document.getElementById("convEnvio").style.display = "block";
+        atualizarResumo();
+        return;
+      }
+
+      const step = steps[idx];
+      const wrap = document.getElementById("convWrap");
+
+      adicionarBubble(step.pergunta, "left");
+
+      if (step.type === "textarea") {
+        const taDiv = document.createElement("div");
+        taDiv.className = "conv-chips conv-textarea";
+        taDiv.style.cssText = "align-self:stretch; width:100%;";
+
+        const ta = document.createElement("textarea");
+        ta.className = "demo-textarea";
+        ta.id = "convMensagem";
+        ta.placeholder = "Escreva sua mensagem...";
+        ta.addEventListener("input", () => {
+          respostas.mensagem = ta.value.trim();
+          atualizarResumo();
+        });
+
+        taDiv.appendChild(ta);
+        wrap.appendChild(taDiv);
+
+        document.getElementById("convEnvio").style.display = "block";
+        atualizarResumo();
+      } else {
+        const chipsDiv = document.createElement("div");
+        chipsDiv.className = "conv-chips";
+
+        step.options.forEach(opt => {
+          const btn = document.createElement("button");
+          btn.className = "chip";
+          btn.textContent = opt;
+          btn.addEventListener("click", () => {
+            respostas[step.key] = opt;
+            chipsDiv.remove();
+            adicionarBubble(opt, "right");
+            stepAtual++;
+            setTimeout(() => mostrarPergunta(stepAtual), 300);
+          });
+          chipsDiv.appendChild(btn);
+        });
+
+        wrap.appendChild(chipsDiv);
+      }
+
+      wrap.scrollTop = wrap.scrollHeight;
+    }
+
+    function montarMensagem() {
+      const mensagem = document.getElementById("convMensagem")?.value?.trim() || "";
+
+      return `Olá, Dra. Adriana! Vim pelo formulário.
+
+Como posso ajudar: ${respostas.ajuda || "Não informado"}
+Atendimento: ${respostas.atendimento || "Não informado"}
+Disponibilidade: ${respostas.disponibilidade || "Não informado"}
+Primeira vez: ${respostas.primeira || "Não informado"}
+
+Mensagem:
+${mensagem || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarWhatsApp() {
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+    }
+
+    function enviarEmail() {
+      const subject = encodeURIComponent("Consulta — Dra. Adriana");
+      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => mostrarPergunta(0));
+  </script>
+</body>
+</html>

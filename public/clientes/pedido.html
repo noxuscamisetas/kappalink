@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peça sua página | KappaLink</title>
+  <link rel="stylesheet" href="../assets/global.css" />
+  <style>
+    .pedido-shell {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .pedido-header {
+      background: linear-gradient(135deg, #ffffff, #dcecff);
+      border-radius: 26px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.18);
+    }
+
+    .pedido-header-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .pedido-logo {
+      height: 40px;
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    .pedido-brand strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .pedido-brand small {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .pedido-aviso {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+      background: #eef5ff;
+      border: 1px solid #cfe3ff;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin: 0;
+    }
+
+    .pedido-group {
+      background: white;
+      border-radius: 26px;
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow:
+        0 10px 26px rgba(16,24,40,.08),
+        0 2px 8px rgba(58,136,237,.07);
+    }
+
+    .pedido-group-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #162033;
+      letter-spacing: -0.04em;
+      margin: 0 0 20px;
+    }
+
+    .pedido-divider {
+      border: none;
+      border-top: 1px solid #e4e9f2;
+      margin: 20px 0;
+    }
+
+    .pedido-label {
+      display: block;
+      font-weight: 800;
+      font-size: 15px;
+      color: #162033;
+      margin-bottom: 10px;
+    }
+
+    .pedido-hint {
+      display: block;
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 10px;
+    }
+
+    .pedido-group .chip.active {
+      background: #e8f1ff;
+      border-color: #3a88ed;
+      color: #1e3a8a;
+    }
+
+    .pedido-field {
+      margin-top: 14px;
+    }
+
+    .pedido-field.hidden {
+      display: none;
+    }
+
+    .pedido-input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d0d7e2;
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+    }
+
+    .pedido-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(58,136,237,.12);
+    }
+
+    .pedido-logo-aviso {
+      background: #eef5ff;
+      border: 1px solid #cfe3ff;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    .pedido-group .btn-light {
+      color: var(--blue-dark);
+      background: #eef5ff;
+      border: 1px solid #cfe3ff;
+      backdrop-filter: none;
+      width: 100%;
+      margin-top: 10px;
+      justify-content: center;
+    }
+
+    .pedido-demo-links {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    .pedido-demo-links span {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .pedido-demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pedido-demo-row a {
+      color: #3a88ed;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #cfe3ff;
+      background: #eef5ff;
+      transition: .2s ease;
+    }
+
+    .pedido-demo-row a:hover {
+      background: #3a88ed;
+      color: white;
+      border-color: #3a88ed;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+
+<body>
+  <main class="page">
+    <div class="pedido-shell">
+
+      <div class="pedido-header">
+        <div class="pedido-header-top">
+          <img src="../assets/logos/kappalink-logo.png" alt="KappaLink" class="pedido-logo" />
+          <div class="pedido-brand">
+            <strong>KappaLink</strong>
+            <small>by MindKappa</small>
+          </div>
+        </div>
+        <p class="pedido-aviso">Preencha as informações abaixo e receba sua página em breve.</p>
+      </div>
+
+      <!-- Grupo 1: Sobre o negócio -->
+      <div class="pedido-group">
+        <p class="pedido-group-title">📋 Sobre o negócio</p>
+
+        <div>
+          <span class="pedido-label">Nome do negócio</span>
+          <input
+            class="pedido-input"
+            id="nomeNegocio"
+            placeholder="Ex: Mariano Pratas, Studio Bella, Dr. Ana Lima..."
+          />
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div data-single="segmento">
+          <span class="pedido-label">Segmento</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Ourives / Joias">Ourives / Joias</button>
+            <button class="chip" data-value="Saúde / Estética">Saúde / Estética</button>
+            <button class="chip" data-value="Personal Trainer">Personal Trainer</button>
+            <button class="chip" data-value="Psicólogo / Terapeuta">Psicólogo / Terapeuta</button>
+            <button class="chip" data-value="Serviço Local">Serviço Local</button>
+            <button class="chip" data-value="Outro" data-trigger="segmentoOutro">Outro</button>
+          </div>
+          <div id="segmentoOutro" class="pedido-field hidden">
+            <input class="pedido-input" id="segmentoTexto" placeholder="Qual segmento?" />
+          </div>
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div data-single="objetivo">
+          <span class="pedido-label">Objetivo da página</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Receber pedidos">Receber pedidos</button>
+            <button class="chip" data-value="Orçamento">Orçamento</button>
+            <button class="chip" data-value="Agendamento">Agendamento</button>
+            <button class="chip" data-value="Pré-atendimento">Pré-atendimento</button>
+            <button class="chip" data-value="Venda simples">Venda simples</button>
+            <button class="chip" data-value="Outro" data-trigger="objetivoOutro">Outro</button>
+          </div>
+          <div id="objetivoOutro" class="pedido-field hidden">
+            <input class="pedido-input" id="objetivoTexto" placeholder="Qual objetivo?" />
+          </div>
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div data-single="estilo">
+          <span class="pedido-label">Estilo da página</span>
+          <span class="pedido-hint">Escolha o estilo do formulário que seus clientes vão usar.</span>
+
+          <div class="chip-row option-row" data-question="estilo">
+            <button class="chip" data-value="Chips">Chips</button>
+            <button class="chip" data-value="Conversa">Conversa</button>
+            <button class="chip" data-value="Misto">Misto</button>
+            <button class="chip" data-value="Lista">Lista</button>
+            <button class="chip" data-value="Rápido">Rápido</button>
+          </div>
+
+          <div class="pedido-demo-links">
+            <span>💡 Experimente antes de escolher:</span>
+            <div class="pedido-demo-row">
+              <a href="../demos/chips.html" target="_blank">Chips</a>
+              <a href="../demos/conversa.html" target="_blank">Conversa</a>
+              <a href="../demos/misto.html" target="_blank">Misto</a>
+              <a href="../demos/lista.html" target="_blank">Lista</a>
+              <a href="../demos/rapido.html" target="_blank">Rápido</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grupo 2: Sobre o atendimento -->
+      <div class="pedido-group">
+        <p class="pedido-group-title">🎨 Sobre o atendimento</p>
+
+        <div data-multi="perguntas">
+          <span class="pedido-label">Perguntas que quer fazer ao cliente</span>
+          <span class="pedido-hint">Pode marcar mais de uma.</span>
+          <div class="chip-row">
+            <button class="chip" data-value="O que você precisa?">O que você precisa?</button>
+            <button class="chip" data-value="Qual a urgência?">Qual a urgência?</button>
+            <button class="chip" data-value="Qual o material?">Qual o material?</button>
+            <button class="chip" data-value="Tem referência?">Tem referência?</button>
+            <button class="chip" data-value="Qual o tamanho/medida?">Qual o tamanho/medida?</button>
+            <button class="chip" data-value="Outra pergunta" data-trigger="perguntaOutro">Outra pergunta</button>
+          </div>
+          <div id="perguntaOutro" class="pedido-field hidden">
+            <input class="pedido-input" id="perguntaTexto" placeholder="Escreva a pergunta" />
+          </div>
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div data-single="logo">
+          <span class="pedido-label">Tem logo?</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Sim, tenho PNG sem fundo" data-trigger="logoAviso">Sim, tenho PNG sem fundo</button>
+            <button class="chip" data-value="Tenho mas preciso ajustar">Tenho mas preciso ajustar</button>
+            <button class="chip" data-value="Não tenho ainda">Não tenho ainda</button>
+          </div>
+          <div id="logoAviso" class="pedido-field hidden">
+            <div class="pedido-logo-aviso">Ótimo! Envie o arquivo por e-mail após o envio do pedido.</div>
+          </div>
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div data-multi="redes">
+          <span class="pedido-label">Redes sociais</span>
+          <span class="pedido-hint">Pode marcar mais de uma.</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Instagram">Instagram</button>
+            <button class="chip" data-value="WhatsApp">WhatsApp</button>
+            <button class="chip" data-value="Facebook">Facebook</button>
+            <button class="chip" data-value="Site">Site</button>
+            <button class="chip" data-value="Nenhuma por enquanto">Nenhuma por enquanto</button>
+          </div>
+          <div class="pedido-field">
+            <input class="pedido-input" id="redesTexto" placeholder="Cole os links ou @ das suas redes" />
+          </div>
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div data-single="urgencia">
+          <span class="pedido-label">Urgência</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Sem pressa">Sem pressa</button>
+            <button class="chip" data-value="Essa semana">Essa semana</button>
+            <button class="chip" data-value="Urgente">Urgente</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grupo 3: Contato e envio -->
+      <div class="pedido-group">
+        <p class="pedido-group-title">📬 Contato e envio</p>
+
+        <div>
+          <span class="pedido-label">E-mail de contato</span>
+          <input
+            class="pedido-input"
+            id="emailContato"
+            type="email"
+            placeholder="seuemail@exemplo.com"
+          />
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div>
+          <span class="pedido-label">Seu nome</span>
+          <input
+            class="pedido-input"
+            id="nomeContato"
+            placeholder="Como posso te chamar?"
+          />
+        </div>
+
+        <hr class="pedido-divider" />
+
+        <div>
+          <span class="pedido-label">Resumo do pedido</span>
+          <pre id="resumo" class="summary-box">Preencha as informações acima para montar o resumo...</pre>
+          <button class="send-btn" onclick="enviarPedido()">Enviar pedido</button>
+          <button class="btn btn-light" onclick="copiarResumo()">Copiar resumo</button>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <span>KappaLink — páginas simples para organizar pedidos antes da conversa.</span>
+      <small>by MindKappa</small>
+    </footer>
+  </main>
+
+  <script>
+    const respostas = {
+      segmento: "",
+      objetivo: "",
+      estilo: "",
+      logo: "",
+      urgencia: ""
+    };
+
+    const respostasMulti = {
+      perguntas: [],
+      redes: []
+    };
+
+    // Single-select
+    document.querySelectorAll("[data-single]").forEach(block => {
+      const key = block.dataset.single;
+
+      block.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          block.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          respostas[key] = btn.dataset.value;
+
+          block.querySelectorAll(".chip[data-trigger]").forEach(b => {
+            const el = document.getElementById(b.dataset.trigger);
+            if (el) el.classList.add("hidden");
+          });
+
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) el.classList.remove("hidden");
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    // Multi-select
+    document.querySelectorAll("[data-multi]").forEach(block => {
+      const key = block.dataset.multi;
+
+      block.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("active");
+
+          const value = btn.dataset.value;
+          const idx = respostasMulti[key].indexOf(value);
+
+          if (idx === -1) {
+            respostasMulti[key].push(value);
+          } else {
+            respostasMulti[key].splice(idx, 1);
+          }
+
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) {
+              if (btn.classList.contains("active")) {
+                el.classList.remove("hidden");
+              } else {
+                el.classList.add("hidden");
+                const input = el.querySelector("input");
+                if (input) input.value = "";
+              }
+            }
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    ["nomeNegocio", "segmentoTexto", "objetivoTexto", "perguntaTexto", "redesTexto", "emailContato", "nomeContato"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", atualizarResumo);
+    });
+
+    function montarMensagem() {
+      const nomeNegocio   = document.getElementById("nomeNegocio").value.trim();
+      const segmentoTexto = document.getElementById("segmentoTexto").value.trim();
+      const objetivoTexto = document.getElementById("objetivoTexto").value.trim();
+      const perguntaTexto = document.getElementById("perguntaTexto").value.trim();
+      const redesTexto    = document.getElementById("redesTexto").value.trim();
+      const emailContato  = document.getElementById("emailContato").value.trim();
+      const nomeContato   = document.getElementById("nomeContato").value.trim();
+
+      const segmentoFinal = (respostas.segmento === "Outro" && segmentoTexto)
+        ? segmentoTexto : respostas.segmento;
+
+      const objetivoFinal = (respostas.objetivo === "Outro" && objetivoTexto)
+        ? objetivoTexto : respostas.objetivo;
+
+      const perguntasList = [...respostasMulti.perguntas];
+      const perguntasIdx = perguntasList.indexOf("Outra pergunta");
+      if (perguntasIdx !== -1 && perguntaTexto) {
+        perguntasList[perguntasIdx] = perguntaTexto;
+      }
+
+      const redesFinal = respostasMulti.redes.length
+        ? respostasMulti.redes.join(", ")
+        : "Não informado";
+
+      const redesLinks = redesTexto ? `\nLinks / @: ${redesTexto}` : "";
+
+      return `Novo pedido KappaLink
+
+Nome do negócio: ${nomeNegocio || "Não informado"}
+Segmento: ${segmentoFinal || "Não informado"}
+Objetivo: ${objetivoFinal || "Não informado"}
+Estilo escolhido: ${respostas.estilo || "Não informado"}
+
+Perguntas desejadas: ${perguntasList.length ? perguntasList.join(", ") : "Não informado"}
+Logo: ${respostas.logo || "Não informado"}
+Redes sociais: ${redesFinal}${redesLinks}
+Urgência: ${respostas.urgencia || "Não informado"}
+
+E-mail de contato: ${emailContato || "Não informado"}
+Nome: ${nomeContato || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarPedido() {
+      const subject = encodeURIComponent("Novo pedido KappaLink");
+      const body    = encodeURIComponent(montarMensagem());
+      window.location.href = `mailto:kappalink01@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    function copiarResumo() {
+      navigator.clipboard.writeText(montarMensagem()).then(() => {
+        alert("Resumo copiado.");
+      });
+    }
+
+    atualizarResumo();
+  </script>
+</body>
+</html>

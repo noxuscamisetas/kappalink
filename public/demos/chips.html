@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariano Pratas | Pedido</title>
+  <link rel="stylesheet" href="../assets/global.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7, #fde68a);
+      animation: none;
+      color: #162033;
+    }
+
+    footer {
+      color: rgba(22,32,51,.5);
+    }
+
+    .client-top {
+      background: linear-gradient(135deg, #ffffff, #fdf8ee);
+      border-bottom-color: #f0d070;
+    }
+
+    .question-card {
+      box-shadow: 0 10px 26px rgba(184,134,11,.08), 0 2px 8px rgba(184,134,11,.06);
+    }
+
+    .chip.active {
+      background: #fef3c7;
+      border-color: #b8860b;
+      color: #78450a;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #b8860b, #78450a);
+      box-shadow: 0 12px 30px rgba(184,134,11,.28);
+    }
+
+    .demo-textarea:focus {
+      border-color: #b8860b;
+      box-shadow: 0 0 0 3px rgba(184,134,11,.12);
+    }
+
+    .result-panel {
+      background: linear-gradient(135deg, #ffffff, #fdf8ee);
+      border-color: #f0d070;
+    }
+
+    .chips-shell {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .chips-header {
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(184,134,11,.18);
+    }
+
+    .chips-notice {
+      background: white;
+      padding: 16px 22px;
+      font-size: 14px;
+      color: #667085;
+      line-height: 1.45;
+    }
+
+    .chips-hidden {
+      display: none;
+    }
+
+    .chips-input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d0d7e2;
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #162033;
+      outline: none;
+      margin-top: 12px;
+    }
+
+    .chips-input:focus {
+      border-color: #b8860b;
+      box-shadow: 0 0 0 3px rgba(184,134,11,.12);
+    }
+
+    .chips-btn-email {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid #b8860b;
+      background: #fef3c7;
+      color: #78450a;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .chips-btn-email:hover {
+      background: #fde68a;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="chips-shell">
+
+      <div class="chips-header">
+        <div class="client-top">
+          <div class="client-logo" style="background: linear-gradient(135deg, #b8860b, #78450a);">M</div>
+          <div>
+            <h1 class="client-name">Mariano Pratas</h1>
+            <p class="client-desc">Joias feitas à mão • Prata • Ouro • Reparos</p>
+          </div>
+        </div>
+        <div class="chips-notice">
+          Me mande seu pedido por aqui para eu ver tudo de uma vez e responder melhor pelo WhatsApp.
+        </div>
+      </div>
+
+      <section class="question-card" data-single="tipo">
+        <h3>O que você precisa?</h3>
+        <div class="chip-row">
+          <button class="chip" data-value="Reparo">Reparo</button>
+          <button class="chip" data-value="Aliança">Aliança</button>
+          <button class="chip" data-value="Peça personalizada">Peça personalizada</button>
+          <button class="chip" data-value="Comprar peça">Comprar peça</button>
+        </div>
+      </section>
+
+      <section class="question-card" data-single="material">
+        <h3>Qual o material?</h3>
+        <div class="chip-row">
+          <button class="chip" data-value="Prata">Prata</button>
+          <button class="chip" data-value="Ouro 18k">Ouro 18k</button>
+          <button class="chip" data-value="Banho / folheado">Banho / folheado</button>
+          <button class="chip" data-value="Não sei">Não sei</button>
+        </div>
+      </section>
+
+      <section class="question-card" data-single="medida">
+        <h3>Você tem medida?</h3>
+        <div class="chip-row">
+          <button class="chip" data-value="Sim" data-trigger="medidaCampo">Sim</button>
+          <button class="chip" data-value="Não sei">Não sei</button>
+          <button class="chip" data-value="Preciso de ajuda">Preciso de ajuda</button>
+          <button class="chip" data-value="Presencial">Presencial</button>
+        </div>
+        <div id="medidaCampo" class="chips-hidden">
+          <input class="chips-input" id="medidaTexto" placeholder="Ex: aro 18, 17mm..." />
+        </div>
+      </section>
+
+      <section class="question-card" data-single="referencia">
+        <h3>Tem referência?</h3>
+        <div class="chip-row">
+          <button class="chip" data-value="Tenho foto">Tenho foto</button>
+          <button class="chip" data-value="Vou descrever">Vou descrever</button>
+          <button class="chip" data-value="Vi no Instagram">Vi no Instagram</button>
+          <button class="chip" data-value="Ainda não">Ainda não</button>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <h3>Conte um detalhe</h3>
+        <textarea
+          class="demo-textarea"
+          id="detalhes"
+          placeholder="Ex: quero ajustar uma aliança, tenho foto e medida aproximada..."
+        ></textarea>
+      </section>
+
+      <section class="question-card result-panel">
+        <h3>Resumo do pedido</h3>
+        <pre id="resumo" class="summary-box">Escolha as opções acima para montar o resumo...</pre>
+        <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+        <button class="chips-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
+      </section>
+
+    </div>
+    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+  </main>
+
+  <script>
+    const telefoneWhatsApp = "5500000000000";
+    const emailContato = "exemplo@email.com";
+
+    const respostas = { tipo: "", material: "", medida: "", referencia: "" };
+
+    document.querySelectorAll("[data-single]").forEach(card => {
+      const key = card.dataset.single;
+      card.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          card.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          respostas[key] = btn.dataset.value;
+
+          card.querySelectorAll(".chip[data-trigger]").forEach(b => {
+            const el = document.getElementById(b.dataset.trigger);
+            if (el) el.classList.add("chips-hidden");
+          });
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) el.classList.remove("chips-hidden");
+          }
+          atualizarResumo();
+        });
+      });
+    });
+
+    ["detalhes", "medidaTexto"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", atualizarResumo);
+    });
+
+    function montarMensagem() {
+      const detalhes = document.getElementById("detalhes").value.trim();
+      const medidaTexto = document.getElementById("medidaTexto").value.trim();
+      const medidaFinal = (respostas.medida === "Sim" && medidaTexto)
+        ? `Sim (${medidaTexto})` : respostas.medida;
+
+      return `Olá, Mariano! Vim pelo formulário.
+
+Pedido: ${respostas.tipo || "Não informado"}
+Material: ${respostas.material || "Não informado"}
+Medida: ${medidaFinal || "Não informado"}
+Referência: ${respostas.referencia || "Não informado"}
+Detalhes: ${detalhes || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarWhatsApp() {
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+    }
+
+    function enviarEmail() {
+      const subject = encodeURIComponent("Novo pedido — Mariano Pratas");
+      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+    }
+
+    atualizarResumo();
+  </script>
+</body>
+</html>

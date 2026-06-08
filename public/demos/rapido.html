@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chef Marcos | Pedido</title>
+  <link rel="stylesheet" href="../assets/global.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff7ed, #ffedd5, #fed7aa);
+      animation: none;
+      color: #162033;
+    }
+
+    footer {
+      color: rgba(22,32,51,.5);
+    }
+
+    .client-top {
+      background: linear-gradient(135deg, #ffffff, #fff7ed);
+      border-bottom-color: #fdba74;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #ea580c, #9a3412);
+      box-shadow: 0 12px 30px rgba(234,88,12,.28);
+    }
+
+    .rapido-shell {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .rapido-header {
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(234,88,12,.18);
+    }
+
+    .rapido-notice {
+      background: white;
+      padding: 16px 22px;
+      font-size: 14px;
+      color: #667085;
+      line-height: 1.45;
+    }
+
+    .rapido-card {
+      background: white;
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 10px 26px rgba(234,88,12,.08), 0 2px 8px rgba(234,88,12,.06);
+    }
+
+    .rapido-label {
+      display: block;
+      font-weight: 800;
+      font-size: 15px;
+      color: #162033;
+      margin-bottom: 12px;
+    }
+
+    .rapido-hint {
+      display: block;
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 10px;
+    }
+
+    .rapido-divider {
+      border: none;
+      border-top: 1px solid #e4e9f2;
+      margin: 20px 0;
+    }
+
+    .rapido-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .rapido-chip {
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 900;
+      border-radius: 999px;
+      border: 2px solid #d0d7e2;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: .2s ease;
+      color: #162033;
+    }
+
+    .rapido-chip:hover {
+      border-color: #ea580c;
+      background: #fff7ed;
+    }
+
+    .rapido-chip.active {
+      background: #ffedd5;
+      border-color: #ea580c;
+      color: #9a3412;
+    }
+
+    .rapido-hidden {
+      display: none;
+    }
+
+    .rapido-input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d0d7e2;
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #162033;
+      outline: none;
+      margin-top: 12px;
+    }
+
+    .rapido-input:focus {
+      border-color: #ea580c;
+      box-shadow: 0 0 0 3px rgba(234,88,12,.12);
+    }
+
+    .rapido-btn-email {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid #ea580c;
+      background: #ffedd5;
+      color: #9a3412;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .rapido-btn-email:hover {
+      background: #fed7aa;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="rapido-shell">
+
+      <div class="rapido-header">
+        <div class="client-top">
+          <div class="client-logo" style="background: linear-gradient(135deg, #ea580c, #9a3412);">C</div>
+          <div>
+            <h1 class="client-name">Chef Marcos</h1>
+            <p class="client-desc">Marmitas • Encomendas • Entrega</p>
+          </div>
+        </div>
+        <div class="rapido-notice">Pedido rápido — menos de 1 minuto.</div>
+      </div>
+
+      <div class="rapido-card">
+
+        <!-- O que você quer? (single) -->
+        <div data-rapido-single="pedido">
+          <span class="rapido-label">O que você quer?</span>
+          <div class="rapido-chip-row">
+            <button class="rapido-chip" data-value="Marmita do dia">Marmita do dia</button>
+            <button class="rapido-chip" data-value="Marmita fit">Marmita fit</button>
+            <button class="rapido-chip" data-value="Encomenda especial">Encomenda especial</button>
+            <button class="rapido-chip" data-value="Cardápio da semana">Cardápio da semana</button>
+          </div>
+        </div>
+
+        <hr class="rapido-divider" />
+
+        <!-- Para quantas pessoas? (single) -->
+        <div data-rapido-single="quantidade">
+          <span class="rapido-label">Para quantas pessoas?</span>
+          <div class="rapido-chip-row">
+            <button class="rapido-chip" data-value="1">1</button>
+            <button class="rapido-chip" data-value="2">2</button>
+            <button class="rapido-chip" data-value="3 a 5">3 a 5</button>
+            <button class="rapido-chip" data-value="6 ou mais">6 ou mais</button>
+          </div>
+        </div>
+
+        <hr class="rapido-divider" />
+
+        <!-- Restrição alimentar (multi) -->
+        <div data-rapido-multi="restricoes">
+          <span class="rapido-label">Restrição alimentar?</span>
+          <span class="rapido-hint">Pode marcar mais de uma.</span>
+          <div class="rapido-chip-row">
+            <button class="rapido-chip" data-value="Nenhuma">Nenhuma</button>
+            <button class="rapido-chip" data-value="Sem glúten">Sem glúten</button>
+            <button class="rapido-chip" data-value="Sem lactose">Sem lactose</button>
+            <button class="rapido-chip" data-value="Vegetariano">Vegetariano</button>
+            <button class="rapido-chip" data-value="Vegano">Vegano</button>
+          </div>
+        </div>
+
+        <hr class="rapido-divider" />
+
+        <!-- Quando precisa? (single + condicional) -->
+        <div data-rapido-single="quando">
+          <span class="rapido-label">Quando precisa?</span>
+          <div class="rapido-chip-row">
+            <button class="rapido-chip" data-value="Hoje">Hoje</button>
+            <button class="rapido-chip" data-value="Amanhã">Amanhã</button>
+            <button class="rapido-chip" data-value="Essa semana">Essa semana</button>
+            <button class="rapido-chip" data-value="Agendar data" data-trigger="quandoCampo">Agendar data</button>
+          </div>
+          <div id="quandoCampo" class="rapido-hidden">
+            <input class="rapido-input" id="quandoData" placeholder="Qual data?" />
+          </div>
+        </div>
+
+        <hr class="rapido-divider" />
+
+        <!-- Observações -->
+        <div>
+          <span class="rapido-label">Observações</span>
+          <input
+            class="rapido-input"
+            id="observacoes"
+            placeholder="Algum detalhe extra?"
+            style="margin-top:0;"
+          />
+        </div>
+
+        <hr class="rapido-divider" />
+
+        <!-- Resumo e envio -->
+        <div>
+          <span class="rapido-label">Resumo do pedido</span>
+          <pre id="resumo" class="summary-box">Escolha as opções acima para montar o resumo...</pre>
+          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+          <button class="rapido-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
+        </div>
+
+      </div>
+    </div>
+    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+  </main>
+
+  <script>
+    const telefoneWhatsApp = "5500000000000";
+    const emailContato = "exemplo@email.com";
+
+    const respostas = { pedido: "", quantidade: "", quando: "" };
+    const restricoesSelecionadas = [];
+
+    document.querySelectorAll("[data-rapido-single]").forEach(block => {
+      const key = block.dataset.rapidoSingle;
+
+      block.querySelectorAll(".rapido-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          block.querySelectorAll(".rapido-chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          respostas[key] = btn.dataset.value;
+
+          block.querySelectorAll(".rapido-chip[data-trigger]").forEach(b => {
+            const el = document.getElementById(b.dataset.trigger);
+            if (el) el.classList.add("rapido-hidden");
+          });
+
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) el.classList.remove("rapido-hidden");
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    document.querySelectorAll("[data-rapido-multi]").forEach(block => {
+      block.querySelectorAll(".rapido-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("active");
+
+          const value = btn.dataset.value;
+          const idx = restricoesSelecionadas.indexOf(value);
+          if (idx === -1) restricoesSelecionadas.push(value);
+          else restricoesSelecionadas.splice(idx, 1);
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    ["quandoData", "observacoes"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", atualizarResumo);
+    });
+
+    function montarMensagem() {
+      const quandoData = document.getElementById("quandoData").value.trim();
+      const observacoes = document.getElementById("observacoes").value.trim();
+
+      const quandoFinal = (respostas.quando === "Agendar data" && quandoData)
+        ? `Agendar data (${quandoData})` : respostas.quando;
+
+      return `Olá, Chef Marcos! Vim pelo formulário.
+
+Pedido: ${respostas.pedido || "Não informado"}
+Quantidade: ${respostas.quantidade || "Não informado"}
+Restrições: ${restricoesSelecionadas.length ? restricoesSelecionadas.join(", ") : "Não informado"}
+Quando: ${quandoFinal || "Não informado"}
+
+Observações: ${observacoes || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarWhatsApp() {
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+    }
+
+    function enviarEmail() {
+      const subject = encodeURIComponent("Pedido — Chef Marcos");
+      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+    }
+
+    atualizarResumo();
+  </script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KappaLink</title>
+  <meta name="description" content="KappaLink cria páginas simples para organizar pedidos antes da conversa." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Arabic:wght@800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./assets/global.css" />
+  <style>
+    .header-logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 12px;
+    }
+
+    .brand strong {
+      font-family: 'Montserrat Arabic', Arial, sans-serif;
+    }
+
+    .screen {
+      transition: opacity .4s ease;
+    }
+
+    .mock-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .mock-arrow {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.22);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: .2s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .mock-arrow:hover {
+      background: rgba(255,255,255,.25);
+      transform: scale(1.08);
+    }
+
+    .mock-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .mock-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      cursor: pointer;
+      transition: .3s ease;
+    }
+
+    .mock-dot.active {
+      width: 22px;
+      border-radius: 999px;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="site-header">
+      <div class="brand">
+        <img src="./assets/logos/kappalink-logo.png" alt="KappaLink" class="header-logo-img" />
+
+        <div>
+          <strong>KappaLink</strong>
+          <small>by MindKappa</small>
+        </div>
+      </div>
+
+      <div class="nav-note">
+        páginas simples para vender e atender melhor
+      </div>
+    </header>
+
+    <section class="hero">
+
+      <div class="hero-copy">
+        <div class="badge">
+          ⚡ rápido • simples • feito para celular
+        </div>
+
+        <h1>
+          Sua página pronta para receber pedidos.
+        </h1>
+
+        <p class="sub">
+          O KappaLink cria uma página simples para seu cliente entender, escolher e enviar as informações antes da conversa.
+          Menos mensagens confusas, mais clareza para responder, orçar ou vender.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="./clientes/pedido.html">
+            Quero pedir minha página
+          </a>
+
+          <button class="btn btn-light" onclick="scrollToDemo()">
+            Ver demonstração
+          </button>
+        </div>
+      </div>
+
+      <div class="mock-wrap">
+        <div class="phone">
+          <div class="screen" id="mockScreen">
+
+            <div class="client-top" id="mockClientTop" style="background:linear-gradient(135deg,#ffffff,#fef3c7);border-bottom-color:#b8860b;">
+              <div class="client-logo" id="mockLogo" style="background:linear-gradient(135deg,#b8860b,#78450a);">M</div>
+              <div>
+                <h2 class="client-name" id="mockName">Mariano Pratas</h2>
+                <p class="client-desc" id="mockDesc">Descreva o que você precisa e receba um atendimento mais rápido.</p>
+              </div>
+            </div>
+
+            <div class="form-preview">
+
+              <div class="question-card">
+                <h3 id="mockQ1Title">O que você precisa?</h3>
+                <div class="chip-row" id="mockQ1Chips">
+                  <div class="chip active" style="background:#fef3c7;border-color:#b8860b;color:#78450a;">Reparo</div>
+                  <div class="chip">Aliança</div>
+                  <div class="chip">Peça personalizada</div>
+                  <div class="chip">Comprar produto</div>
+                </div>
+              </div>
+
+              <div class="question-card">
+                <h3 id="mockQ2Title">Qual o material?</h3>
+                <div class="chip-row" id="mockQ2Chips">
+                  <div class="chip active" style="background:#fef3c7;border-color:#b8860b;color:#78450a;">Prata</div>
+                  <div class="chip">Ouro 18k</div>
+                  <div class="chip">Banho/folheado</div>
+                  <div class="chip">Não sei</div>
+                </div>
+              </div>
+
+              <button class="send-btn" id="mockSendBtn" style="background:linear-gradient(135deg,#b8860b,#78450a);">Enviar pedido</button>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="mock-controls">
+          <button class="mock-arrow" id="mockPrev">&#8249;</button>
+          <div class="mock-dots" id="mockDots">
+            <div class="mock-dot active" style="background:#b8860b;"></div>
+            <div class="mock-dot"></div>
+            <div class="mock-dot"></div>
+            <div class="mock-dot"></div>
+            <div class="mock-dot"></div>
+          </div>
+          <button class="mock-arrow" id="mockNext">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="como-funciona">
+      <h2>
+        Menos conversa. Mais ação.
+      </h2>
+
+      <p>
+        O KappaLink organiza o pedido antes da conversa.
+        A pessoa entende o que fazer, responde com calma e você recebe informações mais claras.
+      </p>
+
+      <div class="grid-3">
+
+        <div class="mini-card">
+          <strong>1. Cliente acessa</strong>
+          <span>
+            Você envia o link ou coloca na bio.
+          </span>
+        </div>
+
+        <div class="mini-card">
+          <strong>2. Responde em cliques</strong>
+          <span>
+            Perguntas simples, botões grandes e pouco esforço no celular.
+          </span>
+        </div>
+
+        <div class="mini-card">
+          <strong>3. Você recebe claro</strong>
+          <span>
+            Pedido pronto para orçamento, resposta ou preparação da página.
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo-flow">
+      <div class="demo-heading">
+        <span class="demo-label">Demonstração</span>
+
+        <h2>
+          Veja como seu cliente usaria.
+        </h2>
+
+        <p>
+          Imagine que alguém ouviu falar do seu serviço, entrou no seu KappaLink
+          e começou a organizar o pedido antes de chamar você.
+        </p>
+      </div>
+
+      <div class="demo-grid">
+
+        <div class="demo-panel">
+          <h3>1. O cliente escolhe o que precisa</h3>
+
+          <div class="chip-row demo-clicks">
+            <button class="chip" onclick="selectChip('tipo', 'Reparo de joia', this)">
+              Reparo
+            </button>
+
+            <button class="chip" onclick="selectChip('tipo', 'Aliança personalizada', this)">
+              Aliança
+            </button>
+
+            <button class="chip" onclick="selectChip('tipo', 'Peça personalizada', this)">
+              Peça personalizada
+            </button>
+
+            <button class="chip" onclick="selectChip('tipo', 'Comprar produto pronto', this)">
+              Comprar produto
+            </button>
+          </div>
+
+          <p class="helper-text">
+            Em vez de começar com “oi, quanto fica?”, a pessoa já indica o tipo de atendimento.
+          </p>
+        </div>
+
+        <div class="demo-panel">
+          <h3>2. Ele informa a urgência</h3>
+
+          <div class="chip-row demo-clicks">
+            <button class="chip" onclick="selectChip('urgencia', 'Sem pressa', this)">
+              Sem pressa
+            </button>
+
+            <button class="chip" onclick="selectChip('urgencia', 'Essa semana', this)">
+              Essa semana
+            </button>
+
+            <button class="chip" onclick="selectChip('urgencia', 'Urgente', this)">
+              Urgente
+            </button>
+          </div>
+
+          <p class="helper-text">
+            Isso ajuda você a entender a prioridade antes de responder.
+          </p>
+        </div>
+
+        <div class="demo-panel">
+          <h3>3. Ele escreve um detalhe</h3>
+
+          <textarea
+            class="demo-textarea"
+            placeholder="Ex: quero ajustar uma aliança, tenho foto e medida aproximada..."
+            oninput="updateDetail(this.value)"
+          ></textarea>
+
+          <p class="helper-text">
+            A resposta vira parte do resumo final.
+          </p>
+        </div>
+
+        <div class="demo-panel result-panel">
+          <h3>Resumo que você recebe</h3>
+
+          <pre id="demoSummary" class="summary-box"></pre>
+
+          <a class="send-btn send-link" href="./clientes/pedido.html">
+            Quero pedir minha página
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>
+        Serve para vários tipos de atendimento.
+      </h2>
+
+      <p>
+        A página pode ser adaptada para pedido, orçamento, pré-atendimento, agendamento ou venda simples.
+      </p>
+
+      <div class="examples">
+        <div class="example">Ourives</div>
+        <div class="example">Psicólogos</div>
+        <div class="example">Nutricionistas</div>
+        <div class="example">Estética</div>
+        <div class="example">Personal trainer</div>
+        <div class="example">Serviços locais</div>
+      </div>
+    </section>
+
+    <section class="section cta-final" id="cta-final">
+      <h2>
+        Quer uma página simples para seu atendimento?
+      </h2>
+
+      <p>
+        Você me envia as informações principais e eu preparo uma página com sua marca, seu objetivo e um caminho claro para o cliente entrar em contato ou fazer o pedido.
+      </p>
+
+      <div class="actions cta-actions">
+        <a class="btn btn-primary" href="./clientes/pedido.html">
+          Quero pedir minha página
+        </a>
+
+        <button class="btn btn-light" onclick="scrollToDemo()">
+          Ver demonstração de novo
+        </button>
+      </div>
+
+      <p class="cta-note">
+        Primeiro vamos usar o pedido por e-mail. Depois podemos adicionar pagamento direto.
+      </p>
+    </section>
+
+    <footer>
+      <span>KappaLink — páginas simples para organizar pedidos antes da conversa.</span>
+      <small>by MindKappa</small>
+    </footer>
+
+  </main>
+
+  <script src="./js/demo.js"></script>
+  <script src="./js/mockup.js"></script>
+</body>
+</html>

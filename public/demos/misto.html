@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festa & Cia | Orçamento</title>
+  <link rel="stylesheet" href="../assets/global.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #fdf2f8, #fce7f3, #fbcfe8);
+      animation: none;
+      color: #162033;
+    }
+
+    footer {
+      color: rgba(22,32,51,.5);
+    }
+
+    .client-top {
+      background: linear-gradient(135deg, #ffffff, #fdf2f8);
+      border-bottom-color: #f9a8d4;
+    }
+
+    .chip.active {
+      background: #fce7f3;
+      border-color: #db2777;
+      color: #9d174d;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #db2777, #9d174d);
+      box-shadow: 0 12px 30px rgba(219,39,119,.28);
+    }
+
+    .demo-textarea:focus {
+      border-color: #db2777;
+      box-shadow: 0 0 0 3px rgba(219,39,119,.12);
+    }
+
+    .misto-shell {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .misto-header {
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(219,39,119,.18);
+    }
+
+    .misto-notice {
+      background: white;
+      padding: 16px 22px;
+      font-size: 14px;
+      color: #667085;
+      line-height: 1.45;
+    }
+
+    .misto-card {
+      background: white;
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 10px 26px rgba(219,39,119,.08), 0 2px 8px rgba(219,39,119,.06);
+    }
+
+    .misto-label {
+      display: block;
+      font-weight: 800;
+      font-size: 15px;
+      color: #162033;
+      margin-bottom: 10px;
+    }
+
+    .misto-hint {
+      display: block;
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 10px;
+    }
+
+    .misto-divider {
+      border: none;
+      border-top: 1px solid #e4e9f2;
+      margin: 20px 0;
+    }
+
+    .misto-hidden {
+      display: none;
+    }
+
+    .misto-input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d0d7e2;
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #162033;
+      outline: none;
+      margin-top: 12px;
+    }
+
+    .misto-input:focus {
+      border-color: #db2777;
+      box-shadow: 0 0 0 3px rgba(219,39,119,.12);
+    }
+
+    .misto-btn-email {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid #db2777;
+      background: #fce7f3;
+      color: #9d174d;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .misto-btn-email:hover {
+      background: #fbcfe8;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="misto-shell">
+
+      <div class="misto-header">
+        <div class="client-top">
+          <div class="client-logo" style="background: linear-gradient(135deg, #db2777, #9d174d);">F</div>
+          <div>
+            <h1 class="client-name">Festa & Cia</h1>
+            <p class="client-desc">Personalizados para festas e eventos</p>
+          </div>
+        </div>
+        <div class="misto-notice">
+          Preencha os detalhes do seu evento para receber um orçamento personalizado.
+        </div>
+      </div>
+
+      <div class="misto-card">
+
+        <!-- Tipo de produto (multi) -->
+        <div data-multi="produtos">
+          <span class="misto-label">Que tipo de produto?</span>
+          <span class="misto-hint">Pode marcar mais de um.</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Lembranças">Lembranças</button>
+            <button class="chip" data-value="Topos de bolo">Topos de bolo</button>
+            <button class="chip" data-value="Convites">Convites</button>
+            <button class="chip" data-value="Kit completo">Kit completo</button>
+            <button class="chip" data-value="Outro" data-trigger="produtoOutro">Outro</button>
+          </div>
+          <div id="produtoOutro" class="misto-hidden">
+            <input class="misto-input" id="produtoOutroTexto" placeholder="Qual produto?" />
+          </div>
+        </div>
+
+        <hr class="misto-divider" />
+
+        <!-- Ocasião (single) -->
+        <div data-single="ocasiao">
+          <span class="misto-label">Qual a ocasião?</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Aniversário">Aniversário</button>
+            <button class="chip" data-value="Casamento">Casamento</button>
+            <button class="chip" data-value="Chá de bebê">Chá de bebê</button>
+            <button class="chip" data-value="Formatura">Formatura</button>
+            <button class="chip" data-value="Outro" data-trigger="ocasiaoOutro">Outro</button>
+          </div>
+          <div id="ocasiaoOutro" class="misto-hidden">
+            <input class="misto-input" id="ocasiaoOutroTexto" placeholder="Qual ocasião?" />
+          </div>
+        </div>
+
+        <hr class="misto-divider" />
+
+        <!-- Convidados (single) -->
+        <div data-single="convidados">
+          <span class="misto-label">Quantos convidados?</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Até 30">Até 30</button>
+            <button class="chip" data-value="30 a 100">30 a 100</button>
+            <button class="chip" data-value="100 a 200">100 a 200</button>
+            <button class="chip" data-value="Mais de 200">Mais de 200</button>
+          </div>
+        </div>
+
+        <hr class="misto-divider" />
+
+        <!-- Referência (single) -->
+        <div data-single="referencia">
+          <span class="misto-label">Tem referência ou tema?</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Tenho foto">Tenho foto</button>
+            <button class="chip" data-value="Tenho ideia">Tenho ideia</button>
+            <button class="chip" data-value="Quero sugestão">Quero sugestão</button>
+          </div>
+        </div>
+
+        <hr class="misto-divider" />
+
+        <!-- Data do evento (texto) -->
+        <div>
+          <span class="misto-label">Data do evento</span>
+          <input
+            class="misto-input"
+            id="dataEvento"
+            placeholder="Ex: 15 de agosto, mês que vem..."
+            style="margin-top:0;"
+          />
+        </div>
+
+        <hr class="misto-divider" />
+
+        <!-- Detalhes (textarea) -->
+        <div>
+          <span class="misto-label">Conte mais detalhes</span>
+          <textarea
+            class="demo-textarea"
+            id="detalhes"
+            placeholder="Tema, cores, referências, quantidade estimada..."
+            style="margin-top:10px;"
+          ></textarea>
+        </div>
+
+        <hr class="misto-divider" />
+
+        <!-- Resumo e envio -->
+        <div>
+          <span class="misto-label">Resumo do pedido</span>
+          <pre id="resumo" class="summary-box">Preencha as opções acima para montar o resumo...</pre>
+          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+          <button class="misto-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
+        </div>
+
+      </div>
+    </div>
+    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+  </main>
+
+  <script>
+    const telefoneWhatsApp = "5500000000000";
+    const emailContato = "exemplo@email.com";
+
+    const respostas = { ocasiao: "", convidados: "", referencia: "" };
+    const produtosSelecionados = [];
+
+    document.querySelectorAll("[data-single]").forEach(block => {
+      const key = block.dataset.single;
+
+      block.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          block.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          respostas[key] = btn.dataset.value;
+
+          block.querySelectorAll(".chip[data-trigger]").forEach(b => {
+            const el = document.getElementById(b.dataset.trigger);
+            if (el) el.classList.add("misto-hidden");
+          });
+
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) el.classList.remove("misto-hidden");
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    document.querySelectorAll("[data-multi]").forEach(block => {
+      block.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("active");
+
+          const value = btn.dataset.value;
+          const idx = produtosSelecionados.indexOf(value);
+          if (idx === -1) produtosSelecionados.push(value);
+          else produtosSelecionados.splice(idx, 1);
+
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) {
+              if (btn.classList.contains("active")) {
+                el.classList.remove("misto-hidden");
+              } else {
+                el.classList.add("misto-hidden");
+                const input = el.querySelector("input");
+                if (input) input.value = "";
+              }
+            }
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    ["produtoOutroTexto", "ocasiaoOutroTexto", "dataEvento", "detalhes"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", atualizarResumo);
+    });
+
+    function montarMensagem() {
+      const produtoOutroTexto = document.getElementById("produtoOutroTexto").value.trim();
+      const ocasiaoOutroTexto = document.getElementById("ocasiaoOutroTexto").value.trim();
+      const dataEvento = document.getElementById("dataEvento").value.trim();
+      const detalhes = document.getElementById("detalhes").value.trim();
+
+      const produtosList = [...produtosSelecionados];
+      const produtoIdx = produtosList.indexOf("Outro");
+      if (produtoIdx !== -1 && produtoOutroTexto) produtosList[produtoIdx] = produtoOutroTexto;
+
+      const ocasiaoFinal = (respostas.ocasiao === "Outro" && ocasiaoOutroTexto)
+        ? ocasiaoOutroTexto : respostas.ocasiao;
+
+      return `Olá! Vim pelo formulário da Festa & Cia.
+
+Produtos: ${produtosList.length ? produtosList.join(", ") : "Não informado"}
+Ocasião: ${ocasiaoFinal || "Não informado"}
+Convidados: ${respostas.convidados || "Não informado"}
+Referência: ${respostas.referencia || "Não informado"}
+Data: ${dataEvento || "Não informado"}
+
+Detalhes:
+${detalhes || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarWhatsApp() {
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+    }
+
+    function enviarEmail() {
+      const subject = encodeURIComponent("Orçamento — Festa & Cia");
+      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+    }
+
+    atualizarResumo();
+  </script>
+</body>
+</html>

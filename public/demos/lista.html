@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Bella | Agendamento</title>
+  <link rel="stylesheet" href="../assets/global.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7, #bbf7d0);
+      animation: none;
+      color: #162033;
+    }
+
+    footer {
+      color: rgba(22,32,51,.5);
+    }
+
+    .client-top {
+      background: linear-gradient(135deg, #ffffff, #f0fdf4);
+      border-bottom-color: #6ee7b7;
+    }
+
+    .chip.active {
+      background: #d1fae5;
+      border-color: #059669;
+      color: #065f46;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #059669, #065f46);
+      box-shadow: 0 12px 30px rgba(5,150,105,.28);
+    }
+
+    .demo-textarea:focus {
+      border-color: #059669;
+      box-shadow: 0 0 0 3px rgba(5,150,105,.12);
+    }
+
+    .lista-shell {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .lista-header {
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(5,150,105,.18);
+    }
+
+    .lista-notice {
+      background: white;
+      padding: 16px 22px;
+      font-size: 14px;
+      color: #667085;
+      line-height: 1.45;
+    }
+
+    .lista-card {
+      background: white;
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 10px 26px rgba(5,150,105,.08), 0 2px 8px rgba(5,150,105,.06);
+    }
+
+    .lista-label {
+      display: block;
+      font-weight: 800;
+      font-size: 15px;
+      color: #162033;
+      margin-bottom: 12px;
+    }
+
+    .lista-divider {
+      border: none;
+      border-top: 1px solid #e4e9f2;
+      margin: 20px 0;
+    }
+
+    .lista-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #e4e9f2;
+      background: #f8fafc;
+      cursor: pointer;
+      transition: .2s ease;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #162033;
+      width: 100%;
+      text-align: left;
+    }
+
+    .lista-option:hover {
+      border-color: #059669;
+      background: #f0fdf4;
+    }
+
+    .lista-option.active {
+      border-color: #059669;
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .lista-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #d0d7e2;
+      flex: 0 0 auto;
+      transition: .2s ease;
+    }
+
+    .lista-option.active .lista-radio {
+      border-color: #059669;
+      background: #059669;
+      box-shadow: inset 0 0 0 4px white;
+    }
+
+    .lista-hidden {
+      display: none;
+    }
+
+    .lista-input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d0d7e2;
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #162033;
+      outline: none;
+      margin-top: 12px;
+    }
+
+    .lista-input:focus {
+      border-color: #059669;
+      box-shadow: 0 0 0 3px rgba(5,150,105,.12);
+    }
+
+    .lista-hint {
+      display: block;
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 12px;
+    }
+
+    .lista-btn-email {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid #059669;
+      background: #d1fae5;
+      color: #065f46;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .lista-btn-email:hover {
+      background: #a7f3d0;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="lista-shell">
+
+      <div class="lista-header">
+        <div class="client-top">
+          <div class="client-logo" style="background: linear-gradient(135deg, #059669, #065f46);">B</div>
+          <div>
+            <h1 class="client-name">Studio Bella</h1>
+            <p class="client-desc">Estética • Sobrancelha • Skincare</p>
+          </div>
+        </div>
+        <div class="lista-notice">
+          Escolha o serviço e nos conte um pouco mais para agendarmos seu horário.
+        </div>
+      </div>
+
+      <div class="lista-card">
+
+        <!-- Serviço -->
+        <div data-lista="servico">
+          <span class="lista-label">Qual serviço você procura?</span>
+
+          <button class="lista-option" data-value="Design de sobrancelha">
+            <span class="lista-radio"></span>
+            Design de sobrancelha
+          </button>
+          <button class="lista-option" data-value="Limpeza de pele">
+            <span class="lista-radio"></span>
+            Limpeza de pele
+          </button>
+          <button class="lista-option" data-value="Skincare personalizado">
+            <span class="lista-radio"></span>
+            Skincare personalizado
+          </button>
+          <button class="lista-option" data-value="Remoção de pelos">
+            <span class="lista-radio"></span>
+            Remoção de pelos
+          </button>
+          <button class="lista-option" data-value="Outro" data-trigger="servicoOutro">
+            <span class="lista-radio"></span>
+            Outro
+          </button>
+
+          <div id="servicoOutro" class="lista-hidden">
+            <input class="lista-input" id="servicoOutroTexto" placeholder="Qual serviço?" />
+          </div>
+        </div>
+
+        <hr class="lista-divider" />
+
+        <!-- Primeira vez -->
+        <div data-lista="primeira">
+          <span class="lista-label">É sua primeira vez aqui?</span>
+
+          <button class="lista-option" data-value="Sim, primeira vez">
+            <span class="lista-radio"></span>
+            Sim, primeira vez
+          </button>
+          <button class="lista-option" data-value="Já fui cliente">
+            <span class="lista-radio"></span>
+            Já fui cliente
+          </button>
+        </div>
+
+        <hr class="lista-divider" />
+
+        <!-- Restrição -->
+        <div data-lista="restricao">
+          <span class="lista-label">Tem alguma restrição ou alergia?</span>
+
+          <button class="lista-option" data-value="Não tenho">
+            <span class="lista-radio"></span>
+            Não tenho
+          </button>
+          <button class="lista-option" data-value="Sim, tenho" data-trigger="restricaoOutro">
+            <span class="lista-radio"></span>
+            Sim, tenho
+          </button>
+
+          <div id="restricaoOutro" class="lista-hidden">
+            <input class="lista-input" id="restricaoTexto" placeholder="Qual?" />
+          </div>
+        </div>
+
+        <hr class="lista-divider" />
+
+        <!-- Disponibilidade — chips em linha -->
+        <div data-single="disponibilidade">
+          <span class="lista-label">Qual a sua disponibilidade?</span>
+          <span class="lista-hint">Escolha um turno de preferência.</span>
+          <div class="chip-row">
+            <button class="chip" data-value="Manhã">Manhã</button>
+            <button class="chip" data-value="Tarde">Tarde</button>
+            <button class="chip" data-value="Sábado">Sábado</button>
+          </div>
+        </div>
+
+        <hr class="lista-divider" />
+
+        <!-- Observações -->
+        <div>
+          <span class="lista-label">Observações</span>
+          <textarea
+            class="demo-textarea"
+            id="observacoes"
+            placeholder="Algum detalhe que queira nos informar antes do agendamento?"
+            style="margin-top:10px;"
+          ></textarea>
+        </div>
+
+        <hr class="lista-divider" />
+
+        <!-- Resumo e envio -->
+        <div>
+          <span class="lista-label">Resumo do agendamento</span>
+          <pre id="resumo" class="summary-box">Escolha as opções acima para montar o resumo...</pre>
+          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+          <button class="lista-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
+        </div>
+
+      </div>
+    </div>
+    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+  </main>
+
+  <script>
+    const telefoneWhatsApp = "5500000000000";
+    const emailContato = "exemplo@email.com";
+
+    const respostas = { servico: "", primeira: "", restricao: "", disponibilidade: "" };
+
+    document.querySelectorAll("[data-lista]").forEach(block => {
+      const key = block.dataset.lista;
+
+      block.querySelectorAll(".lista-option").forEach(opt => {
+        opt.addEventListener("click", () => {
+          block.querySelectorAll(".lista-option").forEach(o => o.classList.remove("active"));
+          opt.classList.add("active");
+          respostas[key] = opt.dataset.value;
+
+          block.querySelectorAll(".lista-option[data-trigger]").forEach(o => {
+            const el = document.getElementById(o.dataset.trigger);
+            if (el) el.classList.add("lista-hidden");
+          });
+
+          if (opt.dataset.trigger) {
+            const el = document.getElementById(opt.dataset.trigger);
+            if (el) el.classList.remove("lista-hidden");
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    document.querySelectorAll("[data-single]").forEach(block => {
+      const key = block.dataset.single;
+
+      block.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          block.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          respostas[key] = btn.dataset.value;
+          atualizarResumo();
+        });
+      });
+    });
+
+    ["servicoOutroTexto", "restricaoTexto", "observacoes"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", atualizarResumo);
+    });
+
+    function montarMensagem() {
+      const servicoOutroTexto = document.getElementById("servicoOutroTexto").value.trim();
+      const restricaoTexto = document.getElementById("restricaoTexto").value.trim();
+      const observacoes = document.getElementById("observacoes").value.trim();
+
+      const servicoFinal = (respostas.servico === "Outro" && servicoOutroTexto)
+        ? servicoOutroTexto : respostas.servico;
+
+      const restricaoFinal = (respostas.restricao === "Sim, tenho" && restricaoTexto)
+        ? `Sim (${restricaoTexto})` : respostas.restricao;
+
+      return `Olá, Studio Bella! Vim pelo formulário.
+
+Serviço: ${servicoFinal || "Não informado"}
+Primeira vez: ${respostas.primeira || "Não informado"}
+Restrições: ${restricaoFinal || "Não informado"}
+Disponibilidade: ${respostas.disponibilidade || "Não informado"}
+
+Observações:
+${observacoes || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarWhatsApp() {
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+    }
+
+    function enviarEmail() {
+      const subject = encodeURIComponent("Agendamento — Studio Bella");
+      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+    }
+
+    atualizarResumo();
+  </script>
+</body>
+</html>
