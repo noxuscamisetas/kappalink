@@ -4,104 +4,112 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dra. Adriana | Consulta</title>
-  <link rel="stylesheet" href="../assets/global.css" />
   <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-light: #f5f3ff;
+      --primary-soft: #ede9fe;
+      --bg: #faf9ff;
+      --card: #ffffff;
+      --text: #1e1b2e;
+      --muted: #8b8599;
+      --line: #e9e4f5;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: linear-gradient(135deg, #f5f3ff, #ede9fe, #ddd6fe);
-      animation: none;
-      color: #162033;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
     }
 
-    footer {
-      color: rgba(22,32,51,.5);
-    }
+    .wrap { max-width: 480px; margin: 0 auto; }
 
-    .client-top {
-      background: linear-gradient(135deg, #ffffff, #f5f3ff);
-      border-bottom-color: #c4b5fd;
-    }
-
-    .chip.active {
-      background: #ede9fe;
-      border-color: #7c3aed;
-      color: #5b21b6;
-    }
-
-    .send-btn {
-      background: linear-gradient(135deg, #7c3aed, #5b21b6);
-      box-shadow: 0 12px 30px rgba(124,58,237,.28);
-    }
-
-    .demo-textarea:focus {
-      border-color: #7c3aed;
-      box-shadow: 0 0 0 3px rgba(124,58,237,.12);
-    }
-
-    .conv-shell {
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .conv-header {
-      border-radius: 26px;
+    /* HEADER */
+    .header-card {
+      background: var(--card);
+      border-radius: var(--radius);
       overflow: hidden;
       margin-bottom: 16px;
-      box-shadow: 0 24px 60px rgba(124,58,237,.18);
+      box-shadow: 0 4px 20px rgba(124,58,237,.08);
     }
 
-    .conv-aviso {
-      background: white;
-      padding: 14px 22px;
-      margin: 0;
-      font-size: 14px;
-      color: #667085;
-      line-height: 1.45;
+    .header-bg {
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), #a855f7);
     }
 
-    .conv-card {
-      background: white;
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: 0 10px 26px rgba(124,58,237,.08), 0 2px 8px rgba(124,58,237,.06);
+    .header-content {
+      padding: 0 20px 20px;
+      margin-top: -32px;
     }
 
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #a855f7);
+      border: 3px solid white;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      font-size: 22px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(124,58,237,.25);
+    }
+
+    .header-content h1 {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .header-content p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* CONVERSA */
     .conv-wrap {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
+      background: var(--card);
+      border-radius: var(--radius);
       padding: 20px;
-      min-height: 120px;
+      box-shadow: 0 4px 20px rgba(124,58,237,.06);
+      min-height: 280px;
+      overflow-y: auto;
     }
 
     .conv-bubble {
-      max-width: 80%;
+      max-width: 85%;
       padding: 14px 18px;
       border-radius: 18px;
       line-height: 1.5;
-      animation: bubbleIn .3s ease;
+      font-size: 14px;
+      animation: bubbleIn .35s ease;
     }
 
     .conv-left {
-      background: #f0f2f5;
-      color: #162033;
+      background: var(--primary-light);
+      color: var(--text);
       border-bottom-left-radius: 4px;
       align-self: flex-start;
-    }
-
-    .conv-right {
-      background: #ede9fe;
-      color: #5b21b6;
-      border-bottom-right-radius: 4px;
-      align-self: flex-end;
       font-weight: 700;
     }
 
-    .conv-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-      align-self: flex-start;
+    .conv-right {
+      background: linear-gradient(135deg, var(--primary), #a855f7);
+      color: white;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+      font-weight: 700;
     }
 
     @keyframes bubbleIn {
@@ -109,197 +117,181 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .conv-envio {
-      display: none;
-      padding: 0 20px 20px;
-    }
-
-    .conv-textarea {
-      width: 100%;
-    }
-
-    .conv-btn-email {
-      width: 100%;
-      margin-top: 10px;
-      padding: 16px;
+    /* TYPING */
+    .typing {
+      display: flex;
+      gap: 4px;
+      align-self: flex-start;
+      background: var(--primary-light);
+      padding: 14px 18px;
       border-radius: 18px;
-      border: 1px solid #7c3aed;
-      background: #ede9fe;
-      color: #5b21b6;
-      font-weight: 900;
-      font-size: 16px;
+      border-bottom-left-radius: 4px;
+    }
+
+    .typing span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: .4;
+      animation: typingBounce 1.2s infinite ease;
+    }
+
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    /* CHIPS */
+    .conv-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      align-self: flex-start;
+      max-width: 85%;
+    }
+
+    .conv-chip {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 2px solid var(--primary-soft);
+      background: white;
       cursor: pointer;
       transition: .2s ease;
+      color: var(--text);
     }
 
-    .conv-btn-email:hover {
-      background: #ddd6fe;
+    .conv-chip:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .conv-chip.selected {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* FOOTER */
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 14px;
+      opacity: .6;
     }
   </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-038DM4PDTG');
-  </script>
 </head>
 <body>
-  <main class="page">
-    <div class="conv-shell">
+  <div class="wrap">
 
-      <div class="conv-header">
-        <div class="client-top">
-          <div class="client-logo" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);">A</div>
-          <div>
-            <h1 class="client-name">Dra. Adriana</h1>
-            <p class="client-desc">Psicóloga • Atendimento online e presencial</p>
-          </div>
-        </div>
-        <p class="conv-aviso">Olá! Vou te fazer algumas perguntas para entender como posso te ajudar.</p>
+    <div class="header-card">
+      <div class="header-bg"></div>
+      <div class="header-content">
+        <div class="avatar">A</div>
+        <h1>Dra. Adriana</h1>
+        <p>Psicóloga • Atendimento online e presencial</p>
       </div>
-
-      <div class="conv-card">
-        <div class="conv-wrap" id="convWrap"></div>
-        <div class="conv-envio" id="convEnvio">
-          <pre id="resumo" class="summary-box"></pre>
-          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
-          <button class="conv-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
-        </div>
-      </div>
-
     </div>
-    <footer><span>feito com KappaLink · by MindKappa</span></footer>
-  </main>
+
+    <div class="conv-wrap" id="convWrap"></div>
+
+    <p class="footer-note">feito com KappaLink</p>
+
+  </div>
 
   <script>
-    const telefoneWhatsApp = "5500000000000";
-    const emailContato = "exemplo@email.com";
-
-    const steps = [
+    const perguntas = [
       {
-        key: "ajuda",
-        pergunta: "Como posso te ajudar?",
-        options: ["Primeira consulta", "Continuar acompanhamento", "Só quero entender melhor"]
+        texto: "Como posso te ajudar?",
+        opcoes: ["Primeira consulta", "Continuar acompanhamento", "Só quero entender melhor"]
       },
       {
-        key: "atendimento",
-        pergunta: "Como prefere o atendimento?",
-        options: ["Online", "Presencial", "Sem preferência"]
+        texto: "Como prefere o atendimento?",
+        opcoes: ["Online", "Presencial", "Sem preferência"]
       },
       {
-        key: "disponibilidade",
-        pergunta: "Qual a sua disponibilidade?",
-        options: ["Manhã", "Tarde", "Noite", "Flexível"]
+        texto: "Qual sua disponibilidade?",
+        opcoes: ["Manhã", "Tarde", "Noite", "Flexível"]
       },
       {
-        key: "primeira",
-        pergunta: "É a primeira vez que busca acompanhamento psicológico?",
-        options: ["Sim", "Não", "Prefiro não dizer"]
-      },
-      {
-        key: "mensagem",
-        pergunta: "Quer deixar alguma mensagem?",
-        type: "textarea"
+        texto: "É a primeira vez que busca acompanhamento?",
+        opcoes: ["Sim", "Não", "Prefiro não dizer"]
       }
     ];
 
-    const respostas = { ajuda: "", atendimento: "", disponibilidade: "", primeira: "", mensagem: "" };
-    let stepAtual = 0;
+    const wrap = document.getElementById("convWrap");
+    let etapa = 0;
 
-    function adicionarBubble(texto, lado) {
-      const wrap = document.getElementById("convWrap");
-      const el = document.createElement("div");
-      el.className = `conv-bubble conv-${lado}`;
-      el.textContent = texto;
-      wrap.appendChild(el);
+    function mostrarTyping(callback) {
+      const typing = document.createElement("div");
+      typing.className = "typing";
+      typing.innerHTML = "<span></span><span></span><span></span>";
+      wrap.appendChild(typing);
       wrap.scrollTop = wrap.scrollHeight;
+      setTimeout(() => {
+        typing.remove();
+        callback();
+      }, 700);
     }
 
-    function mostrarPergunta(idx) {
-      if (idx >= steps.length) {
-        document.getElementById("convEnvio").style.display = "block";
-        atualizarResumo();
+    function mostrarPergunta() {
+      if (etapa >= perguntas.length) {
+        mostrarTyping(() => {
+          const fim = document.createElement("div");
+          fim.className = "conv-bubble conv-left";
+          fim.textContent = "Perfeito! Em breve entro em contato. Obrigada! 💜";
+          wrap.appendChild(fim);
+          wrap.scrollTop = wrap.scrollHeight;
+        });
         return;
       }
 
-      const step = steps[idx];
-      const wrap = document.getElementById("convWrap");
+      mostrarTyping(() => {
+        const p = perguntas[etapa];
 
-      adicionarBubble(step.pergunta, "left");
+        const bubble = document.createElement("div");
+        bubble.className = "conv-bubble conv-left";
+        bubble.textContent = p.texto;
+        wrap.appendChild(bubble);
 
-      if (step.type === "textarea") {
-        const taDiv = document.createElement("div");
-        taDiv.className = "conv-chips conv-textarea";
-        taDiv.style.cssText = "align-self:stretch; width:100%;";
-
-        const ta = document.createElement("textarea");
-        ta.className = "demo-textarea";
-        ta.id = "convMensagem";
-        ta.placeholder = "Escreva sua mensagem...";
-        ta.addEventListener("input", () => {
-          respostas.mensagem = ta.value.trim();
-          atualizarResumo();
+        const chips = document.createElement("div");
+        chips.className = "conv-chips";
+        p.opcoes.forEach(op => {
+          const chip = document.createElement("button");
+          chip.className = "conv-chip";
+          chip.textContent = op;
+          chip.onclick = () => selecionar(op, chips);
+          chips.appendChild(chip);
         });
+        wrap.appendChild(chips);
+        wrap.scrollTop = wrap.scrollHeight;
+      });
+    }
 
-        taDiv.appendChild(ta);
-        wrap.appendChild(taDiv);
+    function selecionar(valor, chipsEl) {
+      chipsEl.querySelectorAll(".conv-chip").forEach(c => {
+        c.disabled = true;
+        c.classList.toggle("selected", c.textContent === valor);
+      });
 
-        document.getElementById("convEnvio").style.display = "block";
-        atualizarResumo();
-      } else {
-        const chipsDiv = document.createElement("div");
-        chipsDiv.className = "conv-chips";
-
-        step.options.forEach(opt => {
-          const btn = document.createElement("button");
-          btn.className = "chip";
-          btn.textContent = opt;
-          btn.addEventListener("click", () => {
-            respostas[step.key] = opt;
-            chipsDiv.remove();
-            adicionarBubble(opt, "right");
-            stepAtual++;
-            setTimeout(() => mostrarPergunta(stepAtual), 300);
-          });
-          chipsDiv.appendChild(btn);
-        });
-
-        wrap.appendChild(chipsDiv);
-      }
-
+      const resposta = document.createElement("div");
+      resposta.className = "conv-bubble conv-right";
+      resposta.textContent = valor;
+      wrap.appendChild(resposta);
       wrap.scrollTop = wrap.scrollHeight;
+
+      etapa++;
+      setTimeout(mostrarPergunta, 400);
     }
 
-    function montarMensagem() {
-      const mensagem = document.getElementById("convMensagem")?.value?.trim() || "";
-
-      return `Olá, Dra. Adriana! Vim pelo formulário.
-
-Como posso ajudar: ${respostas.ajuda || "Não informado"}
-Atendimento: ${respostas.atendimento || "Não informado"}
-Disponibilidade: ${respostas.disponibilidade || "Não informado"}
-Primeira vez: ${respostas.primeira || "Não informado"}
-
-Mensagem:
-${mensagem || "Não informado"}`;
-    }
-
-    function atualizarResumo() {
-      document.getElementById("resumo").textContent = montarMensagem();
-    }
-
-    function enviarWhatsApp() {
-      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
-    }
-
-    function enviarEmail() {
-      const subject = encodeURIComponent("Consulta — Dra. Adriana");
-      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
-    }
-
-    document.addEventListener("DOMContentLoaded", () => mostrarPergunta(0));
+    mostrarPergunta();
   </script>
 </body>
 </html>

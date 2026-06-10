@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espaço Exemplo | Pedido</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --primary: #3a88ed;
+      --primary-light: #eef5ff;
+      --text: #162033;
+      --muted: #667085;
+      --line: #e4e9f2;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; }
+
+    /* PROGRESSO */
+    .progress-bar {
+      height: 4px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width .4s ease;
+      width: 25%;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 16px;
+    }
+
+    /* STEPS */
+    .step { display: none; animation: fadeIn .35s ease; }
+    .step.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(16,24,40,.04);
+    }
+
+    .step-titulo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .step-titulo span { color: var(--primary); }
+
+    .step-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .step-label {
+      display: block;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin: 16px 0 10px;
+    }
+
+    .step-label:first-of-type { margin-top: 0; }
+
+    /* CHIPS */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 2px solid var(--line);
+      background: var(--bg);
+      cursor: pointer;
+      transition: .2s ease;
+      color: var(--text);
+    }
+
+    .chip:hover { border-color: var(--primary); }
+
+    .chip.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* BOTÕES */
+    .step-actions { display: flex; gap: 10px; margin-top: 24px; }
+
+    .btn-next {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary), #1e3a8a);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-next:hover { transform: translateY(-2px); }
+
+    .btn-back {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-back:hover { border-color: var(--primary); color: var(--text); }
+
+    /* INPUT */
+    .input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      margin-top: 10px;
+      outline: none;
+      transition: .2s ease;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .input:focus { border-color: var(--primary); }
+    .input::placeholder { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#1e3a8a);margin:0 auto 12px;display:grid;place-items:center;color:white;font-weight:900;font-size:20px;">E</div>
+      <h1 style="font-size:20px;font-weight:900;letter-spacing:-0.03em;">Espaço Exemplo</h1>
+    </div>
+
+    <!-- Progresso -->
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="progress-label">Etapa 1 de 4</div>
+
+    <!-- ETAPA 1 -->
+    <div class="step active" id="step-1">
+      <div class="step-card">
+        <h2 class="step-titulo">O que você <span>precisa?</span></h2>
+        <p class="step-sub">Escolha uma opção para começar.</p>
+        <div class="chip-row" data-group="tipo">
+          <button class="chip" data-value="Atendimento">Atendimento</button>
+          <button class="chip" data-value="Orçamento">Orçamento</button>
+          <button class="chip" data-value="Agendamento">Agendamento</button>
+        </div>
+        <div class="step-actions">
+          <button class="btn-next" onclick="avancar(2)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 2 -->
+    <div class="step" id="step-2">
+      <div class="step-card">
+        <h2 class="step-titulo">Mais <span>detalhes</span></h2>
+        <span class="step-label">Qual a urgência?</span>
+        <div class="chip-row" data-group="urgencia">
+          <button class="chip" data-value="Sem pressa">Sem pressa</button>
+          <button class="chip" data-value="Essa semana">Essa semana</button>
+          <button class="chip" data-value="Urgente">Urgente</button>
+        </div>
+        <span class="step-label">Descreva sua necessidade</span>
+        <textarea class="input" id="detalhes" rows="3" placeholder="Escreva aqui..." style="resize:vertical;"></textarea>
+        <div class="step-actions">
+          <button class="btn-back" onclick="voltar(1)">← Voltar</button>
+          <button class="btn-next" onclick="avancar(3)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 3 -->
+    <div class="step" id="step-3">
+      <div class="step-card">
+        <h2 class="step-titulo">Seus <span>dados</span></h2>
+        <span class="step-label">Seu nome</span>
+        <input class="input" id="nome" placeholder="Como podemos te chamar?" />
+        <span class="step-label">Contato</span>
+        <input class="input" id="contato" placeholder="WhatsApp ou e-mail" />
+        <div class="step-actions">
+          <button class="btn-back" onclick="voltar(2)">← Voltar</button>
+          <button class="btn-next" onclick="avancar(4)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 4 -->
+    <div class="step" id="step-4">
+      <div class="step-card">
+        <h2 class="step-titulo">Quase <span>lá!</span></h2>
+        <p class="step-sub">Confira o resumo do seu pedido.</p>
+        <pre id="resumo" style="white-space:pre-wrap;font-family:inherit;font-size:13px;color:var(--muted);line-height:1.6;background:var(--bg);border-radius:12px;padding:14px;margin-bottom:16px;"></pre>
+        <button class="btn-next" style="width:100%;">Enviar pedido</button>
+        <div class="step-actions">
+          <button class="btn-back" style="width:100%;text-align:center;" onclick="voltar(3)">← Voltar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    var respostas = { tipo: "", urgencia: "", detalhes: "", nome: "", contato: "" };
+    var total = 4;
+
+    function atualizarProgress(step) {
+      document.querySelector(".progress-fill").style.width = ((step - 1) / (total - 1)) * 100 + "%";
+      document.querySelector(".progress-label").textContent = "Etapa " + step + " de " + total;
+    }
+
+    function avancar(step) {
+      document.querySelectorAll(".step").forEach(function(s) { s.classList.remove("active"); });
+      document.getElementById("step-" + step).classList.add("active");
+      atualizarProgress(step);
+      if (step === 4) atualizarResumo();
+    }
+
+    function voltar(step) { avancar(step); }
+
+    document.querySelectorAll("[data-group]").forEach(function(el) {
+      el.addEventListener("click", function() {
+        var group = el.dataset.group;
+        document.querySelectorAll('[data-group="' + group + '"]').forEach(function(o) {
+          o.classList.remove("active");
+        });
+        el.classList.add("active");
+        respostas[group] = el.dataset.value;
+      });
+    });
+
+    document.getElementById("detalhes").addEventListener("input", function(e) { respostas.detalhes = e.target.value; });
+    document.getElementById("nome").addEventListener("input", function(e) { respostas.nome = e.target.value; });
+    document.getElementById("contato").addEventListener("input", function(e) { respostas.contato = e.target.value; });
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent =
+        "Tipo: " + (respostas.tipo || "—") + "\n" +
+        "Urgência: " + (respostas.urgencia || "—") + "\n\n" +
+        "Detalhes:\n" + (respostas.detalhes || "—") + "\n\n" +
+        "Nome: " + (respostas.nome || "—") + "\n" +
+        "Contato: " + (respostas.contato || "—");
+    }
+
+    atualizarProgress(1);
+  </script>
+</body>
+</html>

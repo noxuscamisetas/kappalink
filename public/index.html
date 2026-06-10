@@ -16,6 +16,15 @@
     gtag('config', 'G-038DM4PDTG');
   </script>
   <style>
+    /* LOGO IMG */
+    .logo-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,212,255,.2);
+    }
+
     /* HERO */
     .hero {
       display: grid;
@@ -141,7 +150,7 @@
     /* ESTILOS */
     .estilos-grid {
       display: grid;
-      grid-template-columns: repeat(5,1fr);
+      grid-template-columns: repeat(3,1fr);
       gap: 12px;
       margin-top: 24px;
     }
@@ -153,14 +162,17 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      text-decoration: none;
-      transition: .25s ease;
       cursor: pointer;
+      transition: .25s ease;
     }
     .estilo-card:hover {
       background: rgba(255,255,255,.06);
       border-color: rgba(255,255,255,.15);
       transform: translateY(-3px);
+    }
+    .estilo-card.active {
+      border-color: var(--ciano);
+      background: rgba(0,212,255,.06);
     }
     .estilo-dot {
       width: 32px;
@@ -169,6 +181,57 @@
     }
     .estilo-card strong { font-size: 15px; font-weight: 900; color: white; }
     .estilo-card span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    .demo-frame-wrap {
+      margin-top: 20px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      animation: fadeIn .35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .demo-frame-header {
+      background: rgba(255,255,255,.04);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .demo-frame-close {
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--line);
+      color: white;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .demo-frame-close:hover {
+      background: rgba(255,255,255,.15);
+    }
+
+    .demo-frame {
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .demo-frame { height: 600px; }
+    }
 
     /* CLIENTES */
     .clientes-grid {
@@ -232,7 +295,7 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="brand">
-      <div class="logo">K</div>
+      <img src="./assets/logos/kappalink-logo.png" alt="KappaLink" class="logo-img" />
       <div class="brand-text">
         <strong>KappaLink</strong>
         <small>páginas que vendem</small>
@@ -296,34 +359,33 @@
 
   <!-- ESCOLHA SEU ESTILO -->
   <section class="section">
-    <h2>Escolha seu <span style="color:var(--ciano)">estilo</span></h2>
-    <p>Cada página tem sua própria identidade. Experimente antes de escolher.</p>
-    <div class="estilos-grid">
-      <a class="estilo-card" href="./demos/chips.html" target="_blank">
-        <div class="estilo-dot" style="background:#b8860b"></div>
-        <strong>Chips</strong>
-        <span>Direto e objetivo</span>
-      </a>
-      <a class="estilo-card" href="./demos/conversa.html" target="_blank">
+    <h2>Escolha o estilo do seu <span style="color:var(--ciano)">formulário</span></h2>
+    <p>Cada estilo muda como seu cliente preenche o pedido. Clique para experimentar.</p>
+
+    <div class="estilos-grid" id="estilosGrid">
+      <div class="estilo-card" data-demo="./demos/lista-rapida.html" data-cor="#3a88ed">
+        <div class="estilo-dot" style="background:#3a88ed"></div>
+        <strong>Lista Rápida</strong>
+        <span>Organizado e direto</span>
+      </div>
+      <div class="estilo-card" data-demo="./demos/conversa.html" data-cor="#7c3aed">
         <div class="estilo-dot" style="background:#7c3aed"></div>
         <strong>Conversa</strong>
         <span>Acolhedor e sequencial</span>
-      </a>
-      <a class="estilo-card" href="./demos/misto.html" target="_blank">
-        <div class="estilo-dot" style="background:#db2777"></div>
-        <strong>Misto</strong>
-        <span>Detalhado e completo</span>
-      </a>
-      <a class="estilo-card" href="./demos/lista.html" target="_blank">
-        <div class="estilo-dot" style="background:#059669"></div>
-        <strong>Lista</strong>
-        <span>Clean e elegante</span>
-      </a>
-      <a class="estilo-card" href="./demos/rapido.html" target="_blank">
-        <div class="estilo-dot" style="background:#ea580c"></div>
-        <strong>Rápido</strong>
-        <span>Veloz e impactante</span>
-      </a>
+      </div>
+      <div class="estilo-card" data-demo="./demos/etapas.html" data-cor="#00d4ff">
+        <div class="estilo-dot" style="background:#00d4ff"></div>
+        <strong>Por Etapas</strong>
+        <span>Passo a passo guiado</span>
+      </div>
+    </div>
+
+    <div id="demoFrame" class="demo-frame-wrap" style="display:none;">
+      <div class="demo-frame-header">
+        <span id="demoFrameTitulo">Demo</span>
+        <button class="demo-frame-close" onclick="fecharDemo()">✕ Fechar</button>
+      </div>
+      <iframe id="demoIframe" class="demo-frame" src=""></iframe>
     </div>
   </section>
 
@@ -374,12 +436,15 @@
   var clientes = [
     {
       nome: "Noxus Camisetas",
-      segmento: "Moda • Gamer • Geek",
-      cor: "#e11d48",
-      cor2: "#ff4d6d",
-      bg: "#0a0a0a",
-      inicial: "N",
+      segmento: "Homepage • Moda Gamer",
+      tipo: "noxus-home",
       link: "https://noxuscamisetas.kappalink.com"
+    },
+    {
+      nome: "Noxus Camisetas",
+      segmento: "Pedido • Por Etapas",
+      tipo: "noxus-pedido",
+      link: "https://noxuscamisetas.kappalink.com/pedido.html"
     },
     {
       nome: "Dra. Adriana",
@@ -421,6 +486,65 @@
 
   function renderMock(i) {
     var c = clientes[i];
+
+    if (c.tipo === "noxus-home") {
+      document.getElementById("mockupScreen").innerHTML =
+        '<div style="background:#0a0a0a;height:100%;overflow:hidden;font-family:Arial,sans-serif;display:flex;flex-direction:column;color:white;">' +
+          '<div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;">' +
+            '<div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#e11d48,#ff4d6d);"></div>' +
+            '<div style="background:#e11d48;color:white;font-size:9px;font-weight:900;padding:6px 12px;border-radius:999px;">Fazer pedido</div>' +
+          '</div>' +
+          '<div style="padding:24px 16px;text-align:center;">' +
+            '<div style="display:inline-block;font-size:9px;font-weight:900;color:#ff4d6d;background:rgba(225,29,72,.1);border:1px solid rgba(225,29,72,.3);padding:4px 10px;border-radius:999px;margin-bottom:12px;letter-spacing:.05em;">GAMER • GEEK</div>' +
+            '<h2 style="font-size:22px;font-weight:900;line-height:1;letter-spacing:-0.04em;margin-bottom:8px;">ESTAMPAS QUE <span style="color:#e11d48;text-shadow:0 0 20px rgba(225,29,72,.5);">FALAM</span><br>A SUA LÍNGUA</h2>' +
+            '<div style="display:inline-block;background:#e11d48;color:white;font-size:11px;font-weight:900;padding:10px 20px;border-radius:999px;margin-top:8px;box-shadow:0 0 16px rgba(225,29,72,.3);">Fazer pedido</div>' +
+          '</div>' +
+          '<div style="padding:0 16px;flex:1;">' +
+            '<div style="font-size:11px;font-weight:900;margin-bottom:10px;">Modelos em <span style="color:#e11d48;">destaque</span></div>' +
+            '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">' +
+              '<div style="aspect-ratio:1;background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:8px;"></div>' +
+              '<div style="aspect-ratio:1;background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:8px;"></div>' +
+              '<div style="aspect-ratio:1;background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:8px;"></div>' +
+              '<div style="aspect-ratio:1;background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:8px;"></div>' +
+              '<div style="aspect-ratio:1;background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:8px;"></div>' +
+              '<div style="aspect-ratio:1;background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:8px;"></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      var link = document.querySelector(".mock-link");
+      link.href = c.link;
+      link.style.display = "inline-flex";
+      return;
+    }
+
+    if (c.tipo === "noxus-pedido") {
+      document.getElementById("mockupScreen").innerHTML =
+        '<div style="background:#0a0a0a;height:100%;overflow:hidden;font-family:Arial,sans-serif;display:flex;flex-direction:column;color:white;">' +
+          '<div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;">' +
+            '<div style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#e11d48,#ff4d6d);"></div>' +
+            '<span style="font-size:10px;color:rgba(255,255,255,.5);font-weight:700;">← Voltar</span>' +
+          '</div>' +
+          '<div style="padding:16px;">' +
+            '<div style="height:3px;background:rgba(255,255,255,.1);border-radius:999px;overflow:hidden;margin-bottom:6px;">' +
+              '<div style="height:100%;width:25%;background:#e11d48;box-shadow:0 0 8px rgba(225,29,72,.5);"></div>' +
+            '</div>' +
+            '<div style="font-size:9px;color:rgba(255,255,255,.4);font-weight:900;letter-spacing:.05em;text-transform:uppercase;margin-bottom:20px;">Etapa 1 de 4</div>' +
+            '<div style="background:#161616;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;">' +
+              '<h2 style="font-size:20px;font-weight:900;letter-spacing:-0.03em;margin-bottom:16px;">O que você <span style="color:#e11d48;">quer?</span></h2>' +
+              '<div style="display:flex;flex-direction:column;gap:8px;">' +
+                '<div style="border:2px solid #e11d48;background:#e11d48;color:white;border-radius:999px;padding:12px 18px;font-size:13px;font-weight:900;text-align:center;box-shadow:0 0 16px rgba(225,29,72,.3);">Item da loja</div>' +
+                '<div style="border:2px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);border-radius:999px;padding:12px 18px;font-size:13px;font-weight:900;text-align:center;">Camiseta personalizada</div>' +
+              '</div>' +
+              '<div style="margin-top:20px;background:#e11d48;color:white;border-radius:999px;padding:14px;text-align:center;font-size:13px;font-weight:900;box-shadow:0 0 16px rgba(225,29,72,.18);">Continuar →</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      var link = document.querySelector(".mock-link");
+      link.href = c.link;
+      link.style.display = "inline-flex";
+      return;
+    }
+
     var isDark = c.bg === "#0a0a0a";
     var textColor = isDark ? "#ffffff" : "#162033";
     var mutedColor = isDark ? "rgba(255,255,255,.6)" : "#667085";
@@ -508,6 +632,38 @@
 
   timer = setInterval(function() { irPara((atual + 1) % clientes.length); }, 3000);
   renderMock(0);
+
+  document.querySelectorAll('.estilo-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var demo = card.dataset.demo;
+      var titulo = card.querySelector('strong').textContent;
+      var frameWrap = document.getElementById('demoFrame');
+      var iframe = document.getElementById('demoIframe');
+      var tituloEl = document.getElementById('demoFrameTitulo');
+
+      var jaAtivo = card.classList.contains('active');
+
+      document.querySelectorAll('.estilo-card').forEach(function(c) { c.classList.remove('active'); });
+
+      if (jaAtivo) {
+        frameWrap.style.display = 'none';
+        iframe.src = '';
+        return;
+      }
+
+      card.classList.add('active');
+      tituloEl.textContent = 'Demo — ' + titulo;
+      iframe.src = demo;
+      frameWrap.style.display = 'block';
+      frameWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  function fecharDemo() {
+    document.getElementById('demoFrame').style.display = 'none';
+    document.getElementById('demoIframe').src = '';
+    document.querySelectorAll('.estilo-card').forEach(function(c) { c.classList.remove('active'); });
+  }
 </script>
 
 </body>

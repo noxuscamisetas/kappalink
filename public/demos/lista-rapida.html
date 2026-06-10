@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Exemplo | Pedido</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --primary: #3a88ed;
+      --primary-light: #eef5ff;
+      --text: #162033;
+      --muted: #667085;
+      --line: #e4e9f2;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(16,24,40,.04);
+    }
+
+    .label {
+      display: block;
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    /* Lista vertical */
+    .lista-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      cursor: pointer;
+      transition: .2s ease;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .lista-option:last-of-type { margin-bottom: 0; }
+
+    .lista-option:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .lista-option.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: #1e3a8a;
+    }
+
+    .lista-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      flex: 0 0 auto;
+      transition: .2s ease;
+    }
+
+    .lista-option.active .lista-radio {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: inset 0 0 0 4px white;
+    }
+
+    /* Chips */
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 2px solid var(--line);
+      background: var(--bg);
+      cursor: pointer;
+      transition: .2s ease;
+      color: var(--text);
+    }
+
+    .chip:hover { border-color: var(--primary); }
+
+    .chip.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Textarea */
+    .campo-texto {
+      width: 100%;
+      min-height: 80px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+      color: var(--text);
+      background: var(--bg);
+      transition: .2s ease;
+    }
+
+    .campo-texto:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(58,136,237,.1);
+    }
+
+    .campo-texto::placeholder { color: var(--muted); }
+
+    /* Resumo */
+    .resumo-pre {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .btn-enviar {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary), #1e3a8a);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-enviar:hover { opacity: .92; transform: translateY(-1px); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:24px;">
+      <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#1e3a8a);margin:0 auto 12px;display:grid;place-items:center;color:white;font-weight:900;font-size:20px;">S</div>
+      <h1 style="font-size:20px;font-weight:900;letter-spacing:-0.03em;">Studio Exemplo</h1>
+      <p style="color:var(--muted);font-size:13px;margin-top:4px;">Preencha rapidinho para receber seu atendimento</p>
+    </div>
+
+    <!-- Card 1 — Lista vertical -->
+    <div class="card">
+      <span class="label">O que você precisa?</span>
+      <div class="lista-option" data-group="servico" data-value="Atendimento padrão">
+        <div class="lista-radio"></div> Atendimento padrão
+      </div>
+      <div class="lista-option" data-group="servico" data-value="Atendimento premium">
+        <div class="lista-radio"></div> Atendimento premium
+      </div>
+      <div class="lista-option" data-group="servico" data-value="Avaliação gratuita">
+        <div class="lista-radio"></div> Avaliação gratuita
+      </div>
+    </div>
+
+    <!-- Card 2 — Chips urgência -->
+    <div class="card">
+      <span class="label">Quando você precisa?</span>
+      <div class="chip-row" data-group="urgencia">
+        <button class="chip" data-value="Sem pressa">Sem pressa</button>
+        <button class="chip" data-value="Essa semana">Essa semana</button>
+        <button class="chip" data-value="Urgente">Urgente</button>
+      </div>
+    </div>
+
+    <!-- Card 3 — Chips quantidade -->
+    <div class="card">
+      <span class="label">Quantas pessoas?</span>
+      <div class="chip-row" data-group="quantidade">
+        <button class="chip" data-value="1">1</button>
+        <button class="chip" data-value="2">2</button>
+        <button class="chip" data-value="3+">3+</button>
+      </div>
+    </div>
+
+    <!-- Card 4 — Detalhes -->
+    <div class="card">
+      <span class="label">Conte mais detalhes</span>
+      <textarea id="detalhes" class="campo-texto" placeholder="Escreva aqui..."></textarea>
+    </div>
+
+    <!-- Card 5 — Resumo -->
+    <div class="card" style="background:var(--primary-light);border-color:#cfe3ff;">
+      <span class="label">Resumo</span>
+      <pre id="resumo" class="resumo-pre">Escolha as opções acima...</pre>
+      <button class="btn-enviar">Enviar pedido</button>
+    </div>
+
+  </div>
+
+  <script>
+    var respostas = { servico: "", urgencia: "", quantidade: "", detalhes: "" };
+
+    document.querySelectorAll("[data-group]").forEach(function(el) {
+      el.addEventListener("click", function() {
+        var group = el.dataset.group;
+        document.querySelectorAll('[data-group="' + group + '"]').forEach(function(o) {
+          o.classList.remove("active");
+        });
+        el.classList.add("active");
+        respostas[group] = el.dataset.value;
+        atualizarResumo();
+      });
+    });
+
+    document.getElementById("detalhes").addEventListener("input", function(e) {
+      respostas.detalhes = e.target.value;
+      atualizarResumo();
+    });
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent =
+        "Serviço: " + (respostas.servico || "—") + "\n" +
+        "Urgência: " + (respostas.urgencia || "—") + "\n" +
+        "Quantidade: " + (respostas.quantidade || "—") + "\n\n" +
+        "Detalhes:\n" + (respostas.detalhes || "—");
+    }
+  </script>
+</body>
+</html>

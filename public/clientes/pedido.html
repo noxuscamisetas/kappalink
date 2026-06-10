@@ -4,188 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peça sua página | KappaLink</title>
-  <link rel="stylesheet" href="../assets/global.css" />
-  <style>
-    .pedido-shell {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .pedido-header {
-      background: linear-gradient(135deg, #ffffff, #dcecff);
-      border-radius: 26px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 24px 70px rgba(0,0,0,.18);
-    }
-
-    .pedido-header-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .pedido-logo {
-      height: 40px;
-      width: auto;
-      flex-shrink: 0;
-    }
-
-    .pedido-brand strong {
-      display: block;
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      color: var(--text);
-    }
-
-    .pedido-brand small {
-      display: block;
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
-    .pedido-aviso {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.45;
-      background: #eef5ff;
-      border: 1px solid #cfe3ff;
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin: 0;
-    }
-
-    .pedido-group {
-      background: white;
-      border-radius: 26px;
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow:
-        0 10px 26px rgba(16,24,40,.08),
-        0 2px 8px rgba(58,136,237,.07);
-    }
-
-    .pedido-group-title {
-      font-size: 20px;
-      font-weight: 900;
-      color: #162033;
-      letter-spacing: -0.04em;
-      margin: 0 0 20px;
-    }
-
-    .pedido-divider {
-      border: none;
-      border-top: 1px solid #e4e9f2;
-      margin: 20px 0;
-    }
-
-    .pedido-label {
-      display: block;
-      font-weight: 800;
-      font-size: 15px;
-      color: #162033;
-      margin-bottom: 10px;
-    }
-
-    .pedido-hint {
-      display: block;
-      font-size: 13px;
-      color: #667085;
-      margin-bottom: 10px;
-    }
-
-    .pedido-group .chip.active {
-      background: #e8f1ff;
-      border-color: #3a88ed;
-      color: #1e3a8a;
-    }
-
-    .pedido-field {
-      margin-top: 14px;
-    }
-
-    .pedido-field.hidden {
-      display: none;
-    }
-
-    .pedido-input {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid #d0d7e2;
-      background: #f8fafc;
-      padding: 12px 14px;
-      font-family: inherit;
-      font-size: 15px;
-      color: var(--text);
-      outline: none;
-    }
-
-    .pedido-input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(58,136,237,.12);
-    }
-
-    .pedido-logo-aviso {
-      background: #eef5ff;
-      border: 1px solid #cfe3ff;
-      border-radius: 14px;
-      padding: 12px 14px;
-      font-size: 14px;
-      color: #1e3a8a;
-      font-weight: 600;
-    }
-
-    .pedido-group .btn-light {
-      color: var(--blue-dark);
-      background: #eef5ff;
-      border: 1px solid #cfe3ff;
-      backdrop-filter: none;
-      width: 100%;
-      margin-top: 10px;
-      justify-content: center;
-    }
-
-    .pedido-demo-links {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #667085;
-    }
-
-    .pedido-demo-links span {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .pedido-demo-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .pedido-demo-row a {
-      color: #3a88ed;
-      font-weight: 700;
-      font-size: 13px;
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid #cfe3ff;
-      background: #eef5ff;
-      transition: .2s ease;
-    }
-
-    .pedido-demo-row a:hover {
-      background: #3a88ed;
-      color: white;
-      border-color: #3a88ed;
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -193,342 +12,562 @@
     gtag('js', new Date());
     gtag('config', 'G-038DM4PDTG');
   </script>
+  <style>
+    :root {
+      --bg: #080f1e;
+      --card: #111b2e;
+      --azul: #3a88ed;
+      --ciano: #00d4ff;
+      --roxo: #7c3aed;
+      --amarelo: #f59e0b;
+      --branco: #ffffff;
+      --muted: rgba(255,255,255,.58);
+      --line: rgba(255,255,255,.08);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(58,136,237,.15), transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(124,58,237,.12), transparent 50%),
+        #080f1e;
+      color: white;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .wrap { max-width: 600px; margin: 0 auto; }
+    button, input, textarea { font-family: inherit; }
+    a { text-decoration: none; }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .header strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .header span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* PROGRESSO */
+    .progress-bar {
+      height: 4px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--azul), var(--ciano));
+      border-radius: 999px;
+      transition: width .4s ease;
+      width: 25%;
+      box-shadow: 0 0 8px rgba(0,212,255,.5);
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 20px;
+    }
+
+    /* STEPS */
+    .step { display: none; animation: fadeIn .35s ease; }
+    .step.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .step-titulo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .step-titulo span {
+      background: linear-gradient(135deg, var(--azul), var(--ciano));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .step-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .step-label {
+      display: block;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin: 20px 0 10px;
+    }
+
+    .step-label:first-of-type { margin-top: 0; }
+
+    .step-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -4px;
+      margin-bottom: 10px;
+      opacity: .7;
+    }
+
+    /* CHIPS */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      padding: 11px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 2px solid var(--line);
+      background: rgba(255,255,255,.03);
+      cursor: pointer;
+      transition: .2s ease;
+      color: rgba(255,255,255,.75);
+    }
+
+    .chip:hover { border-color: rgba(0,212,255,.3); color: white; }
+
+    .chip.active {
+      border-color: var(--ciano);
+      background: rgba(0,212,255,.12);
+      color: white;
+      box-shadow: 0 0 12px rgba(0,212,255,.2);
+    }
+
+    /* OPCAO CARD */
+    .opcao-card {
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+      margin-bottom: 10px;
+    }
+
+    .opcao-card:hover { border-color: rgba(0,212,255,.3); }
+
+    .opcao-card.active {
+      border-color: var(--ciano);
+      background: rgba(0,212,255,.06);
+      box-shadow: 0 0 12px rgba(0,212,255,.15);
+    }
+
+    .opcao-card strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .opcao-card span {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .opcao-card a {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--ciano);
+      font-weight: 800;
+    }
+
+    .opcao-card a:hover { text-decoration: underline; }
+
+    /* INPUTS */
+    .input {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: white;
+      font-size: 14px;
+      margin-top: 4px;
+      outline: none;
+      transition: .2s ease;
+    }
+
+    .input:focus { border-color: rgba(0,212,255,.4); background: rgba(0,212,255,.03); }
+    .input::placeholder { color: rgba(255,255,255,.3); }
+    .hidden { display: none; }
+    textarea.input { resize: vertical; min-height: 70px; }
+
+    /* BOTÕES */
+    .step-actions { display: flex; gap: 10px; margin-top: 28px; }
+
+    .btn-next {
+      flex: 1;
+      background: linear-gradient(135deg, var(--azul), var(--ciano));
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 15px 24px;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .25s ease;
+      box-shadow: 0 0 16px rgba(0,212,255,.18);
+    }
+
+    .btn-next:hover { transform: translateY(-2px); box-shadow: 0 0 24px rgba(0,212,255,.28); }
+
+    .btn-back {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 15px 22px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-back:hover { color: white; border-color: rgba(255,255,255,.2); }
+
+    /* RESUMO */
+    .resumo-box {
+      white-space: pre-wrap;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 4px;
+      min-height: 180px;
+    }
+
+    /* FOOTER */
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 20px;
+      opacity: .5;
+    }
+  </style>
 </head>
-
 <body>
-  <main class="page">
-    <div class="pedido-shell">
+  <div class="wrap">
 
-      <div class="pedido-header">
-        <div class="pedido-header-top">
-          <img src="../assets/logos/kappalink-logo.png" alt="KappaLink" class="pedido-logo" />
-          <div class="pedido-brand">
-            <strong>KappaLink</strong>
-            <small>by MindKappa</small>
-          </div>
-        </div>
-        <p class="pedido-aviso">Preencha as informações abaixo e receba sua página em breve.</p>
+    <div class="header">
+      <img src="../assets/logos/kappalink-logo.png" alt="KappaLink" class="logo-img" />
+      <div>
+        <strong>KappaLink</strong>
+        <span>Vamos criar sua página</span>
       </div>
-
-      <!-- Grupo 1: Sobre o negócio -->
-      <div class="pedido-group">
-        <p class="pedido-group-title">📋 Sobre o negócio</p>
-
-        <div>
-          <span class="pedido-label">Nome do negócio</span>
-          <input
-            class="pedido-input"
-            id="nomeNegocio"
-            placeholder="Ex: Mariano Pratas, Studio Bella, Dr. Ana Lima..."
-          />
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div data-single="segmento">
-          <span class="pedido-label">Segmento</span>
-          <div class="chip-row">
-            <button class="chip" data-value="Ourives / Joias">Ourives / Joias</button>
-            <button class="chip" data-value="Saúde / Estética">Saúde / Estética</button>
-            <button class="chip" data-value="Personal Trainer">Personal Trainer</button>
-            <button class="chip" data-value="Psicólogo / Terapeuta">Psicólogo / Terapeuta</button>
-            <button class="chip" data-value="Serviço Local">Serviço Local</button>
-            <button class="chip" data-value="Outro" data-trigger="segmentoOutro">Outro</button>
-          </div>
-          <div id="segmentoOutro" class="pedido-field hidden">
-            <input class="pedido-input" id="segmentoTexto" placeholder="Qual segmento?" />
-          </div>
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div data-single="objetivo">
-          <span class="pedido-label">Objetivo da página</span>
-          <div class="chip-row">
-            <button class="chip" data-value="Receber pedidos">Receber pedidos</button>
-            <button class="chip" data-value="Orçamento">Orçamento</button>
-            <button class="chip" data-value="Agendamento">Agendamento</button>
-            <button class="chip" data-value="Pré-atendimento">Pré-atendimento</button>
-            <button class="chip" data-value="Venda simples">Venda simples</button>
-            <button class="chip" data-value="Outro" data-trigger="objetivoOutro">Outro</button>
-          </div>
-          <div id="objetivoOutro" class="pedido-field hidden">
-            <input class="pedido-input" id="objetivoTexto" placeholder="Qual objetivo?" />
-          </div>
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div data-single="estilo">
-          <span class="pedido-label">Estilo da página</span>
-          <span class="pedido-hint">Escolha o estilo do formulário que seus clientes vão usar.</span>
-
-          <div class="chip-row option-row" data-question="estilo">
-            <button class="chip" data-value="Chips">Chips</button>
-            <button class="chip" data-value="Conversa">Conversa</button>
-            <button class="chip" data-value="Misto">Misto</button>
-            <button class="chip" data-value="Lista">Lista</button>
-            <button class="chip" data-value="Rápido">Rápido</button>
-          </div>
-
-          <div class="pedido-demo-links">
-            <span>💡 Experimente antes de escolher:</span>
-            <div class="pedido-demo-row">
-              <a href="../demos/chips.html" target="_blank">Chips</a>
-              <a href="../demos/conversa.html" target="_blank">Conversa</a>
-              <a href="../demos/misto.html" target="_blank">Misto</a>
-              <a href="../demos/lista.html" target="_blank">Lista</a>
-              <a href="../demos/rapido.html" target="_blank">Rápido</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grupo 2: Sobre o atendimento -->
-      <div class="pedido-group">
-        <p class="pedido-group-title">🎨 Sobre o atendimento</p>
-
-        <div data-multi="perguntas">
-          <span class="pedido-label">Perguntas que quer fazer ao cliente</span>
-          <span class="pedido-hint">Pode marcar mais de uma.</span>
-          <div class="chip-row">
-            <button class="chip" data-value="O que você precisa?">O que você precisa?</button>
-            <button class="chip" data-value="Qual a urgência?">Qual a urgência?</button>
-            <button class="chip" data-value="Qual o material?">Qual o material?</button>
-            <button class="chip" data-value="Tem referência?">Tem referência?</button>
-            <button class="chip" data-value="Qual o tamanho/medida?">Qual o tamanho/medida?</button>
-            <button class="chip" data-value="Outra pergunta" data-trigger="perguntaOutro">Outra pergunta</button>
-          </div>
-          <div id="perguntaOutro" class="pedido-field hidden">
-            <input class="pedido-input" id="perguntaTexto" placeholder="Escreva a pergunta" />
-          </div>
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div data-single="logo">
-          <span class="pedido-label">Tem logo?</span>
-          <div class="chip-row">
-            <button class="chip" data-value="Sim, tenho PNG sem fundo" data-trigger="logoAviso">Sim, tenho PNG sem fundo</button>
-            <button class="chip" data-value="Tenho mas preciso ajustar">Tenho mas preciso ajustar</button>
-            <button class="chip" data-value="Não tenho ainda">Não tenho ainda</button>
-          </div>
-          <div id="logoAviso" class="pedido-field hidden">
-            <div class="pedido-logo-aviso">Ótimo! Envie o arquivo por e-mail após o envio do pedido.</div>
-          </div>
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div data-multi="redes">
-          <span class="pedido-label">Redes sociais</span>
-          <span class="pedido-hint">Pode marcar mais de uma.</span>
-          <div class="chip-row">
-            <button class="chip" data-value="Instagram">Instagram</button>
-            <button class="chip" data-value="WhatsApp">WhatsApp</button>
-            <button class="chip" data-value="Facebook">Facebook</button>
-            <button class="chip" data-value="Site">Site</button>
-            <button class="chip" data-value="Nenhuma por enquanto">Nenhuma por enquanto</button>
-          </div>
-          <div class="pedido-field">
-            <input class="pedido-input" id="redesTexto" placeholder="Cole os links ou @ das suas redes" />
-          </div>
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div data-single="urgencia">
-          <span class="pedido-label">Urgência</span>
-          <div class="chip-row">
-            <button class="chip" data-value="Sem pressa">Sem pressa</button>
-            <button class="chip" data-value="Essa semana">Essa semana</button>
-            <button class="chip" data-value="Urgente">Urgente</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grupo 3: Contato e envio -->
-      <div class="pedido-group">
-        <p class="pedido-group-title">📬 Contato e envio</p>
-
-        <div>
-          <span class="pedido-label">E-mail de contato</span>
-          <input
-            class="pedido-input"
-            id="emailContato"
-            type="email"
-            placeholder="seuemail@exemplo.com"
-          />
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div>
-          <span class="pedido-label">Seu nome</span>
-          <input
-            class="pedido-input"
-            id="nomeContato"
-            placeholder="Como posso te chamar?"
-          />
-        </div>
-
-        <hr class="pedido-divider" />
-
-        <div>
-          <span class="pedido-label">Resumo do pedido</span>
-          <pre id="resumo" class="summary-box">Preencha as informações acima para montar o resumo...</pre>
-          <button class="send-btn" onclick="enviarPedido()">Enviar pedido</button>
-          <button class="btn btn-light" onclick="copiarResumo()">Copiar resumo</button>
-        </div>
-      </div>
-
     </div>
 
-    <footer>
-      <span>KappaLink — páginas simples para organizar pedidos antes da conversa.</span>
-      <small>by MindKappa</small>
-    </footer>
-  </main>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="progress-label">Etapa 1 de 4</div>
+
+    <!-- ETAPA 1 -->
+    <div class="step active" id="step-1">
+      <div class="step-card">
+        <h2 class="step-titulo">Sobre o seu <span>negócio</span></h2>
+        <p class="step-sub">Vamos começar com o básico.</p>
+
+        <span class="step-label">Nome do negócio</span>
+        <input class="input" id="nomeNegocio" placeholder="Ex: Mariano Pratas, Studio Bella..." />
+
+        <span class="step-label">Segmento</span>
+        <div class="chip-row" data-group="segmento">
+          <button class="chip" data-value="Moda / Personalizados">Moda / Personalizados</button>
+          <button class="chip" data-value="Saúde / Estética">Saúde / Estética</button>
+          <button class="chip" data-value="Personal Trainer">Personal Trainer</button>
+          <button class="chip" data-value="Psicólogo / Terapeuta">Psicólogo / Terapeuta</button>
+          <button class="chip" data-value="Alimentação">Alimentação</button>
+          <button class="chip" data-value="Serviço Local">Serviço Local</button>
+          <button class="chip" data-value="Outro">Outro</button>
+        </div>
+        <input class="input hidden" id="segmentoOutro" placeholder="Qual segmento?" />
+
+        <span class="step-label">Nicho ou público</span>
+        <p class="step-hint">Quem é seu cliente ideal?</p>
+        <input class="input" id="nicho" placeholder="Ex: gamers, mães, atletas..." />
+
+        <span class="step-label">Frase de impacto</span>
+        <p class="step-hint">Uma frase curta que represente sua marca. Não tem? Deixe em branco que sugerimos.</p>
+        <input class="input" id="frase" placeholder="Ex: Estampas que falam a sua língua" />
+
+        <span class="step-label">Cores da página</span>
+        <div class="chip-row" data-group="cores">
+          <button class="chip" data-value="Seguir minha logo">Seguir minha logo</button>
+          <button class="chip" data-value="Tenho preferência">Tenho preferência</button>
+          <button class="chip" data-value="Pode sugerir">Pode sugerir</button>
+        </div>
+        <input class="input hidden" id="coresTexto" placeholder="Quais cores?" />
+
+        <span class="step-label">Onde seus clientes acessam mais</span>
+        <div class="chip-row" data-group="dispositivo">
+          <button class="chip" data-value="Celular">Celular</button>
+          <button class="chip" data-value="Computador">Computador</button>
+          <button class="chip" data-value="Os dois">Os dois</button>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-next" onclick="avancar(2)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 2 -->
+    <div class="step" id="step-2">
+      <div class="step-card">
+        <h2 class="step-titulo">Estilo da <span>página</span></h2>
+        <p class="step-sub">Escolha o visual que combina com seu negócio.</p>
+
+        <span class="step-label">Estilo da homepage</span>
+        <div class="opcao-card" data-group="homepage" data-value="Bold">
+          <strong>Bold</strong>
+          <span>Escuro, impactante, energia alta. Ideal para moda, games, produtos.</span>
+        </div>
+        <div class="opcao-card" data-group="homepage" data-value="Clean">
+          <strong>Clean</strong>
+          <span>Branco, minimalista, elegante. Ideal para serviços premium.</span>
+        </div>
+        <div class="opcao-card" data-group="homepage" data-value="Suave">
+          <strong>Suave</strong>
+          <span>Claro e acolhedor. Ideal para saúde, beleza, festas.</span>
+        </div>
+
+        <span class="step-label">Estilo do formulário de pedido</span>
+        <div class="opcao-card" data-group="formulario" data-value="Lista Rápida">
+          <strong>Lista Rápida</strong>
+          <span>Organizado e direto ao ponto.</span>
+          <a href="../demos/lista-rapida.html" target="_blank">Experimentar →</a>
+        </div>
+        <div class="opcao-card" data-group="formulario" data-value="Conversa">
+          <strong>Conversa</strong>
+          <span>Acolhedor, estilo chat.</span>
+          <a href="../demos/conversa.html" target="_blank">Experimentar →</a>
+        </div>
+        <div class="opcao-card" data-group="formulario" data-value="Por Etapas">
+          <strong>Por Etapas</strong>
+          <span>Passo a passo guiado, com barra de progresso.</span>
+          <a href="../demos/etapas.html" target="_blank">Experimentar →</a>
+        </div>
+
+        <span class="step-label">Objetivo da página</span>
+        <div class="chip-row" data-group="objetivo">
+          <button class="chip" data-value="Receber pedidos">Receber pedidos</button>
+          <button class="chip" data-value="Orçamento">Orçamento</button>
+          <button class="chip" data-value="Agendamento">Agendamento</button>
+          <button class="chip" data-value="Pré-atendimento">Pré-atendimento</button>
+          <button class="chip" data-value="Venda">Venda</button>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-back" onclick="voltar(1)">← Voltar</button>
+          <button class="btn-next" onclick="avancar(3)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 3 -->
+    <div class="step" id="step-3">
+      <div class="step-card">
+        <h2 class="step-titulo">Perguntas e <span>contato</span></h2>
+        <p class="step-sub">O que você quer perguntar para seu cliente?</p>
+
+        <span class="step-label">Perguntas ao cliente</span>
+        <p class="step-hint">Selecione quantas quiser.</p>
+        <div class="chip-row" data-group="perguntas" data-multi="true">
+          <button class="chip" data-value="O que você precisa?">O que você precisa?</button>
+          <button class="chip" data-value="Qual a urgência?">Qual a urgência?</button>
+          <button class="chip" data-value="Qual o material?">Qual o material?</button>
+          <button class="chip" data-value="Tem referência?">Tem referência?</button>
+          <button class="chip" data-value="Qual o tamanho/medida?">Qual o tamanho/medida?</button>
+          <button class="chip" data-value="Outra pergunta">Outra pergunta</button>
+        </div>
+        <input class="input hidden" id="perguntaOutra" placeholder="Escreva a pergunta" />
+
+        <span class="step-label">WhatsApp</span>
+        <input class="input" id="whatsapp" placeholder="Ex: 67999999999" />
+
+        <span class="step-label">E-mail</span>
+        <input class="input" id="emailContato" placeholder="seuemail@exemplo.com" />
+
+        <span class="step-label">Redes sociais</span>
+        <div class="chip-row" data-group="redes" data-multi="true">
+          <button class="chip" data-value="Instagram">Instagram</button>
+          <button class="chip" data-value="TikTok">TikTok</button>
+          <button class="chip" data-value="Facebook">Facebook</button>
+          <button class="chip" data-value="YouTube">YouTube</button>
+          <button class="chip" data-value="Site">Site</button>
+          <button class="chip" data-value="Nenhuma">Nenhuma por enquanto</button>
+        </div>
+        <input class="input" id="redesLinks" placeholder="Cole os links ou @ das suas redes" />
+
+        <div class="step-actions">
+          <button class="btn-back" onclick="voltar(2)">← Voltar</button>
+          <button class="btn-next" onclick="avancar(4)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 4 -->
+    <div class="step" id="step-4">
+      <div class="step-card">
+        <h2 class="step-titulo">Quase <span>lá!</span></h2>
+        <p class="step-sub">Últimos detalhes e enviamos seu pedido.</p>
+
+        <span class="step-label">Você tem logo?</span>
+        <div class="chip-row" data-group="logo">
+          <button class="chip" data-value="Sim, tenho PNG sem fundo">Sim, tenho PNG sem fundo</button>
+          <button class="chip" data-value="Tenho mas preciso ajustar">Tenho mas preciso ajustar</button>
+          <button class="chip" data-value="Não tenho ainda">Não tenho ainda</button>
+        </div>
+        <p class="step-hint" id="avisoLogo" style="display:none;">
+          Ótimo! Envie o arquivo por e-mail após o envio do pedido.
+        </p>
+
+        <span class="step-label">Fotos dos produtos</span>
+        <p class="step-hint">Quantas fotos você tem disponíveis? (até 6)</p>
+        <div class="chip-row" data-group="fotos">
+          <button class="chip" data-value="Não tenho ainda">Não tenho ainda</button>
+          <button class="chip" data-value="1 a 3">1 a 3</button>
+          <button class="chip" data-value="4 a 6">4 a 6</button>
+          <button class="chip" data-value="Mais de 6">Mais de 6</button>
+        </div>
+
+        <span class="step-label">Seu nome</span>
+        <input class="input" id="nomeResponsavel" placeholder="Como podemos te chamar?" />
+
+        <span class="step-label">Resumo do pedido</span>
+        <pre id="resumo" class="resumo-box"></pre>
+
+        <div class="step-actions" style="flex-direction:column;">
+          <button class="btn-next" onclick="enviarEmail()">✉️ Enviar pedido por e-mail</button>
+        </div>
+
+        <button class="btn-back" style="width:100%;margin-top:10px;text-align:center;" onclick="voltar(3)">
+          ← Voltar
+        </button>
+      </div>
+    </div>
+
+    <p class="footer-note">KappaLink é um produto MindKappa®</p>
+
+  </div>
 
   <script>
-    const respostas = {
-      segmento: "",
-      objetivo: "",
-      estilo: "",
-      logo: "",
-      urgencia: ""
+    var respostas = {
+      nomeNegocio: "", segmento: "", nicho: "", frase: "",
+      cores: "", dispositivo: "", homepage: "", formulario: "", objetivo: ""
     };
+    var total = 4;
 
-    const respostasMulti = {
-      perguntas: [],
-      redes: []
-    };
+    function atualizarProgress(step) {
+      document.querySelector(".progress-fill").style.width = ((step - 1) / (total - 1)) * 100 + "%";
+      document.querySelector(".progress-label").textContent = "Etapa " + step + " de " + total;
+    }
 
-    // Single-select
-    document.querySelectorAll("[data-single]").forEach(block => {
-      const key = block.dataset.single;
+    function avancar(step) {
+      document.querySelectorAll(".step").forEach(function(s) { s.classList.remove("active"); });
+      document.getElementById("step-" + step).classList.add("active");
+      atualizarProgress(step);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-      block.querySelectorAll(".chip").forEach(btn => {
-        btn.addEventListener("click", () => {
-          block.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          respostas[key] = btn.dataset.value;
+    function voltar(step) { avancar(step); }
 
-          block.querySelectorAll(".chip[data-trigger]").forEach(b => {
-            const el = document.getElementById(b.dataset.trigger);
-            if (el) el.classList.add("hidden");
-          });
+    // Chips: data-group no .chip-row, data-value em cada .chip
+    document.querySelectorAll(".chip-row[data-group]").forEach(function(row) {
+      var group = row.dataset.group;
+      row.querySelectorAll(".chip").forEach(function(chip) {
+        chip.addEventListener("click", function() {
+          row.querySelectorAll(".chip").forEach(function(c) { c.classList.remove("active"); });
+          chip.classList.add("active");
+          respostas[group] = chip.dataset.value;
 
-          if (btn.dataset.trigger) {
-            const el = document.getElementById(btn.dataset.trigger);
-            if (el) el.classList.remove("hidden");
+          if (group === "segmento") {
+            var el = document.getElementById("segmentoOutro");
+            chip.dataset.value === "Outro" ? el.classList.remove("hidden") : el.classList.add("hidden");
           }
-
-          atualizarResumo();
+          if (group === "cores") {
+            var el = document.getElementById("coresTexto");
+            chip.dataset.value === "Tenho preferência" ? el.classList.remove("hidden") : el.classList.add("hidden");
+          }
         });
       });
     });
 
-    // Multi-select
-    document.querySelectorAll("[data-multi]").forEach(block => {
-      const key = block.dataset.multi;
-
-      block.querySelectorAll(".chip").forEach(btn => {
-        btn.addEventListener("click", () => {
-          btn.classList.toggle("active");
-
-          const value = btn.dataset.value;
-          const idx = respostasMulti[key].indexOf(value);
-
-          if (idx === -1) {
-            respostasMulti[key].push(value);
-          } else {
-            respostasMulti[key].splice(idx, 1);
-          }
-
-          if (btn.dataset.trigger) {
-            const el = document.getElementById(btn.dataset.trigger);
-            if (el) {
-              if (btn.classList.contains("active")) {
-                el.classList.remove("hidden");
-              } else {
-                el.classList.add("hidden");
-                const input = el.querySelector("input");
-                if (input) input.value = "";
-              }
-            }
-          }
-
-          atualizarResumo();
+    // Opcao cards: data-group e data-value em cada card
+    document.querySelectorAll(".opcao-card[data-group]").forEach(function(card) {
+      card.addEventListener("click", function(e) {
+        if (e.target.tagName === "A") return;
+        var group = card.dataset.group;
+        document.querySelectorAll('.opcao-card[data-group="' + group + '"]').forEach(function(c) {
+          c.classList.remove("active");
         });
+        card.classList.add("active");
+        respostas[group] = card.dataset.value;
       });
     });
 
-    ["nomeNegocio", "segmentoTexto", "objetivoTexto", "perguntaTexto", "redesTexto", "emailContato", "nomeContato"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("input", atualizarResumo);
+    // Inputs de texto
+    ["nomeNegocio", "nicho", "frase"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener("input", function(e) { respostas[id] = e.target.value; });
     });
 
-    function montarMensagem() {
-      const nomeNegocio   = document.getElementById("nomeNegocio").value.trim();
-      const segmentoTexto = document.getElementById("segmentoTexto").value.trim();
-      const objetivoTexto = document.getElementById("objetivoTexto").value.trim();
-      const perguntaTexto = document.getElementById("perguntaTexto").value.trim();
-      const redesTexto    = document.getElementById("redesTexto").value.trim();
-      const emailContato  = document.getElementById("emailContato").value.trim();
-      const nomeContato   = document.getElementById("nomeContato").value.trim();
+    document.getElementById("segmentoOutro").addEventListener("input", function(e) {
+      respostas.segmento = e.target.value;
+    });
+    document.getElementById("coresTexto").addEventListener("input", function(e) {
+      respostas.cores = e.target.value;
+    });
 
-      const segmentoFinal = (respostas.segmento === "Outro" && segmentoTexto)
-        ? segmentoTexto : respostas.segmento;
-
-      const objetivoFinal = (respostas.objetivo === "Outro" && objetivoTexto)
-        ? objetivoTexto : respostas.objetivo;
-
-      const perguntasList = [...respostasMulti.perguntas];
-      const perguntasIdx = perguntasList.indexOf("Outra pergunta");
-      if (perguntasIdx !== -1 && perguntaTexto) {
-        perguntasList[perguntasIdx] = perguntaTexto;
-      }
-
-      const redesFinal = respostasMulti.redes.length
-        ? respostasMulti.redes.join(", ")
-        : "Não informado";
-
-      const redesLinks = redesTexto ? `\nLinks / @: ${redesTexto}` : "";
-
-      return `Novo pedido KappaLink
-
-Nome do negócio: ${nomeNegocio || "Não informado"}
-Segmento: ${segmentoFinal || "Não informado"}
-Objetivo: ${objetivoFinal || "Não informado"}
-Estilo escolhido: ${respostas.estilo || "Não informado"}
-
-Perguntas desejadas: ${perguntasList.length ? perguntasList.join(", ") : "Não informado"}
-Logo: ${respostas.logo || "Não informado"}
-Redes sociais: ${redesFinal}${redesLinks}
-Urgência: ${respostas.urgencia || "Não informado"}
-
-E-mail de contato: ${emailContato || "Não informado"}
-Nome: ${nomeContato || "Não informado"}`;
-    }
-
-    function atualizarResumo() {
-      document.getElementById("resumo").textContent = montarMensagem();
-    }
-
-    function enviarPedido() {
-      const subject = encodeURIComponent("Novo pedido KappaLink");
-      const body    = encodeURIComponent(montarMensagem());
-      window.location.href = `mailto:kappalink01@gmail.com?subject=${subject}&body=${body}`;
-    }
-
-    function copiarResumo() {
-      navigator.clipboard.writeText(montarMensagem()).then(() => {
-        alert("Resumo copiado.");
-      });
-    }
-
-    atualizarResumo();
+    atualizarProgress(1);
   </script>
 </body>
 </html>
