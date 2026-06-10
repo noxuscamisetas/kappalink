@@ -500,14 +500,19 @@
   </div>
 
   <script>
-    var respostas = {
-      nomeNegocio: "", segmento: "", nicho: "", frase: "",
-      cores: "", dispositivo: "", homepage: "", formulario: "", objetivo: ""
+    const respostas = {
+      nomeNegocio: "", segmento: "", segmentoOutro: "",
+      nicho: "", frase: "", cores: "", coresTexto: "", dispositivo: "",
+      homepage: "", formulario: "", objetivo: "",
+      perguntas: [], perguntaOutra: "",
+      whatsapp: "", emailContato: "", redes: [], redesLinks: "",
+      logo: "", fotos: "", nomeResponsavel: ""
     };
-    var total = 4;
+
+    const total = 4;
 
     function atualizarProgress(step) {
-      document.querySelector(".progress-fill").style.width = ((step - 1) / (total - 1)) * 100 + "%";
+      document.querySelector(".progress-fill").style.width = ((step-1)/(total-1))*100 + "%";
       document.querySelector(".progress-label").textContent = "Etapa " + step + " de " + total;
     }
 
@@ -515,34 +520,53 @@
       document.querySelectorAll(".step").forEach(function(s) { s.classList.remove("active"); });
       document.getElementById("step-" + step).classList.add("active");
       atualizarProgress(step);
+      if (step === 4) atualizarResumo();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function voltar(step) { avancar(step); }
 
-    // Chips: data-group no .chip-row, data-value em cada .chip
-    document.querySelectorAll(".chip-row[data-group]").forEach(function(row) {
-      var group = row.dataset.group;
-      row.querySelectorAll(".chip").forEach(function(chip) {
-        chip.addEventListener("click", function() {
-          row.querySelectorAll(".chip").forEach(function(c) { c.classList.remove("active"); });
-          chip.classList.add("active");
-          respostas[group] = chip.dataset.value;
+    // Chips — single ou multi select
+    document.querySelectorAll("[data-group]").forEach(function(container) {
+      var group = container.dataset.group;
+      var multi = container.dataset.multi === "true";
 
+      container.querySelectorAll(".chip").forEach(function(chip) {
+        chip.addEventListener("click", function() {
+          if (multi) {
+            chip.classList.toggle("active");
+            var valores = [];
+            container.querySelectorAll(".chip.active").forEach(function(c) {
+              valores.push(c.dataset.value);
+            });
+            respostas[group] = valores;
+          } else {
+            container.querySelectorAll(".chip").forEach(function(c) { c.classList.remove("active"); });
+            chip.classList.add("active");
+            respostas[group] = chip.dataset.value;
+          }
+
+          // condicionais
           if (group === "segmento") {
-            var el = document.getElementById("segmentoOutro");
-            chip.dataset.value === "Outro" ? el.classList.remove("hidden") : el.classList.add("hidden");
+            document.getElementById("segmentoOutro").classList.toggle("hidden", chip.dataset.value !== "Outro");
           }
           if (group === "cores") {
-            var el = document.getElementById("coresTexto");
-            chip.dataset.value === "Tenho preferência" ? el.classList.remove("hidden") : el.classList.add("hidden");
+            document.getElementById("coresTexto").classList.toggle("hidden", chip.dataset.value !== "Tenho preferência");
+          }
+          if (group === "perguntas") {
+            var temOutra = respostas.perguntas.indexOf("Outra pergunta") > -1;
+            document.getElementById("perguntaOutra").classList.toggle("hidden", !temOutra);
+          }
+          if (group === "logo") {
+            document.getElementById("avisoLogo").style.display =
+              chip.dataset.value === "Sim, tenho PNG sem fundo" ? "block" : "none";
           }
         });
       });
     });
 
-    // Opcao cards: data-group e data-value em cada card
-    document.querySelectorAll(".opcao-card[data-group]").forEach(function(card) {
+    // Cards de opção (homepage / formulario)
+    document.querySelectorAll(".opcao-card").forEach(function(card) {
       card.addEventListener("click", function(e) {
         if (e.target.tagName === "A") return;
         var group = card.dataset.group;
@@ -555,17 +579,67 @@
     });
 
     // Inputs de texto
-    ["nomeNegocio", "nicho", "frase"].forEach(function(id) {
+    [
+      "nomeNegocio","segmentoOutro","nicho","frase","coresTexto",
+      "perguntaOutra","whatsapp","emailContato","redesLinks","nomeResponsavel"
+    ].forEach(function(id) {
       var el = document.getElementById(id);
-      if (el) el.addEventListener("input", function(e) { respostas[id] = e.target.value; });
+      if (el) {
+        el.addEventListener("input", function() {
+          respostas[id] = el.value;
+        });
+      }
     });
 
-    document.getElementById("segmentoOutro").addEventListener("input", function(e) {
-      respostas.segmento = e.target.value;
-    });
-    document.getElementById("coresTexto").addEventListener("input", function(e) {
-      respostas.cores = e.target.value;
-    });
+    function montarMensagem() {
+      var perguntas = respostas.perguntas.length > 0
+        ? respostas.perguntas.join(", ") + (respostas.perguntaOutra ? " (" + respostas.perguntaOutra + ")" : "")
+        : "Não informado";
+
+      var redes = respostas.redes.length > 0
+        ? respostas.redes.join(", ") + (respostas.redesLinks ? " — " + respostas.redesLinks : "")
+        : "Não informado";
+
+      var segmento = respostas.segmento === "Outro" && respostas.segmentoOutro
+        ? respostas.segmentoOutro
+        : respostas.segmento || "Não informado";
+
+      var cores = respostas.cores === "Tenho preferência" && respostas.coresTexto
+        ? "Tenho preferência: " + respostas.coresTexto
+        : respostas.cores || "Não informado";
+
+      return "Novo pedido KappaLink\n\n" +
+        "SOBRE O NEGÓCIO\n" +
+        "Nome: " + (respostas.nomeNegocio || "Não informado") + "\n" +
+        "Segmento: " + segmento + "\n" +
+        "Nicho/público: " + (respostas.nicho || "Não informado") + "\n" +
+        "Frase de impacto: " + (respostas.frase || "Pode sugerir") + "\n" +
+        "Cores: " + cores + "\n" +
+        "Dispositivo: " + (respostas.dispositivo || "Não informado") + "\n\n" +
+        "ESTILO DA PÁGINA\n" +
+        "Homepage: " + (respostas.homepage || "Não informado") + "\n" +
+        "Formulário: " + (respostas.formulario || "Não informado") + "\n" +
+        "Objetivo: " + (respostas.objetivo || "Não informado") + "\n\n" +
+        "PERGUNTAS E CONTATO\n" +
+        "Perguntas ao cliente: " + perguntas + "\n" +
+        "WhatsApp: " + (respostas.whatsapp || "Não informado") + "\n" +
+        "E-mail: " + (respostas.emailContato || "Não informado") + "\n" +
+        "Redes sociais: " + redes + "\n\n" +
+        "ARQUIVOS\n" +
+        "Logo: " + (respostas.logo || "Não informado") + "\n" +
+        "Fotos: " + (respostas.fotos || "Não informado") + "\n\n" +
+        "RESPONSÁVEL\n" +
+        "Nome: " + (respostas.nomeResponsavel || "Não informado");
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarEmail() {
+      var msg = encodeURIComponent(montarMensagem());
+      window.open("mailto:kappalink01@gmail.com?subject=Novo pedido KappaLink&body=" + msg, "_blank");
+    }
 
     atualizarProgress(1);
   </script>
