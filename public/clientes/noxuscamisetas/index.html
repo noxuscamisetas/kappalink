@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noxus Camisetas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg:        #0a0a0a;
+      --bg-2:      #111111;
+      --bg-card:   #161616;
+      --vermelho:  #e11d48;
+      --vermelho-2:#ff4d6d;
+      --branco:    #ffffff;
+      --muted:     rgba(255,255,255,.55);
+      --borda:     rgba(255,255,255,.08);
+      --radius:    20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0a0a0a;
+      color: white;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .page {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borda);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .header-logo {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .btn-header {
+      background: var(--vermelho);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-weight: 900;
+      font-size: 14px;
+      transition: .2s ease;
+    }
+
+    .btn-header:hover {
+      background: var(--vermelho-2);
+      transform: translateY(-1px);
+    }
+
+    /* ==============================
+       BOTÕES GLOBAIS
+    ============================== */
+
+    .btn-primary {
+      background: var(--vermelho);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 16px 28px;
+      font-weight: 900;
+      font-size: 16px;
+      transition: .25s ease;
+      box-shadow: 0 0 16px rgba(225,29,72,.18);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--vermelho-2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(225,29,72,.32);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid var(--borda);
+      border-radius: 999px;
+      padding: 16px 28px;
+      font-weight: 800;
+      font-size: 16px;
+      transition: .25s ease;
+      backdrop-filter: blur(10px);
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,.3);
+      transform: translateY(-2px);
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 16px;
+      background:
+        radial-gradient(ellipse at center, rgba(225,29,72,.12) 0%, transparent 65%),
+        #0a0a0a;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(225,29,72,.35);
+      background: rgba(225,29,72,.1);
+      color: var(--vermelho-2);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 28px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 9vw, 96px);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -0.04em;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--vermelho);
+      text-shadow: 0 0 40px rgba(225,29,72,.45);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ==============================
+       VITRINE
+    ============================== */
+
+    .vitrine {
+      padding: 60px 0;
+      border-top: 1px solid var(--borda);
+    }
+
+    .vitrine-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .vitrine-titulo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .vitrine-titulo span {
+      color: var(--vermelho);
+    }
+
+    .vitrine-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .vitrine-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--borda);
+      cursor: pointer;
+      transition: .3s ease;
+    }
+
+    .vitrine-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--vermelho);
+      box-shadow: 0 8px 32px rgba(225,29,72,.25);
+    }
+
+    .vitrine-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+
+    .vitrine-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .vitrine-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--vermelho);
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 5px 10px;
+      border-radius: 999px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .vitrine-cta {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    .footer {
+      border-top: 1px solid var(--borda);
+      padding: 40px 16px 24px;
+      text-align: center;
+      display: grid;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      height: 32px;
+      width: auto;
+      margin: 0 auto;
+      opacity: .8;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-social a {
+      font-size: 24px;
+      transition: .2s ease;
+      text-decoration: none;
+    }
+
+    .footer-social a:hover {
+      transform: translateY(-3px);
+    }
+
+    .footer-social .fa-instagram {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-social .fa-whatsapp { color: #25d366; }
+    .footer-social .fa-tiktok   { color: #ffffff; }
+    .footer-social .fa-facebook { color: #1877f2; }
+    .footer-social .fa-youtube  { color: #ff0000; }
+
+    .footer-muted {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ==============================
+       RESPONSIVO
+    ============================== */
+
+    @media (max-width: 600px) {
+      .vitrine-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-primary,
+      .btn-outline {
+        width: 100%;
+        text-align: center;
+      }
+
+      .vitrine-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <img src="./noxuscamisetas-logo.jpg" alt="Noxus Camisetas" class="header-logo" height="36" />
+      <a href="./pedido.html" class="btn-header">Fazer pedido</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-badge">🎮 Gamer • Geek • Cultura Pop</div>
+
+    <h1>Estampas que <span>falam</span><br>a sua língua</h1>
+
+    <p class="hero-sub">
+      Camisetas para o universo geek, gamer e cultura pop.
+      Modelos prontos ou personalizados do seu jeito.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn-primary" href="./pedido.html">Fazer pedido</a>
+      <a class="btn-outline" href="https://instagram.com/noxuscamisetas" target="_blank">
+        Ver no Instagram
+      </a>
+    </div>
+  </section>
+
+  <section class="vitrine page">
+    <div class="vitrine-header">
+      <h2 class="vitrine-titulo">Modelos em <span>destaque</span></h2>
+    </div>
+
+    <div class="vitrine-grid">
+      <div class="vitrine-card">
+        <span class="vitrine-badge">Destaque</span>
+        <img src="./img/modelo-1.jpg" alt="Modelo 1" />
+      </div>
+      <div class="vitrine-card">
+        <img src="./img/modelo-2.jpg" alt="Modelo 2" />
+      </div>
+      <div class="vitrine-card" style="display:flex;align-items:center;justify-content:center;background:var(--bg-card);cursor:default;">
+        <span style="font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;">Em breve</span>
+      </div>
+      <div class="vitrine-card">
+        <img src="./img/modelo-4.jpg" alt="Modelo 4" />
+      </div>
+      <div class="vitrine-card">
+        <img src="./img/modelo-5.jpg" alt="Modelo 5" />
+      </div>
+      <div class="vitrine-card">
+        <span class="vitrine-badge">Novo</span>
+        <img src="./img/modelo-6.jpg" alt="Modelo 6" />
+      </div>
+    </div>
+
+    <div class="vitrine-cta">
+      <a class="btn-primary" href="./pedido.html">Quero um desses →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <img src="./noxuscamisetas-logo.jpg" alt="Noxus Camisetas" class="footer-logo" />
+    <div class="footer-social">
+      <a href="https://instagram.com/noxuscamisetas" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/5567999910114" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <p class="footer-muted">feito com KappaLink · by MindKappa</p>
+  </footer>
+
+</body>
+</html>

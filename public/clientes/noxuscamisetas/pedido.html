@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noxus Camisetas | Pedido</title>
+  <link rel="stylesheet" href="../../assets/global.css" />
+  <style>
+    body {
+      background: linear-gradient(160deg, #0f0f0f 0%, #1a1a2e 55%, #16213e 100%);
+      animation: none;
+      color: #ffffff;
+    }
+
+    .client-top {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .client-name {
+      color: #ffffff;
+    }
+
+    .client-desc {
+      color: rgba(255,255,255,.55);
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      box-shadow: 0 12px 30px rgba(239,68,68,.28);
+    }
+
+    .noxus-shell {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .noxus-header {
+      border-radius: 26px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    }
+
+    .noxus-logo-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: cover;
+      flex: 0 0 auto;
+    }
+
+    .noxus-notice {
+      background: rgba(255,255,255,.05);
+      padding: 16px 22px;
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.45;
+    }
+
+    .noxus-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.4);
+    }
+
+    .noxus-label {
+      display: block;
+      font-weight: 800;
+      font-size: 15px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .noxus-hint {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 10px;
+    }
+
+    .noxus-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin: 20px 0;
+    }
+
+    .noxus-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .noxus-chip {
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      cursor: pointer;
+      transition: .2s ease;
+      color: rgba(255,255,255,.82);
+    }
+
+    .noxus-chip:hover {
+      border-color: rgba(239,68,68,.55);
+      background: rgba(239,68,68,.1);
+    }
+
+    .noxus-chip.active {
+      background: rgba(239,68,68,.2);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+
+    .noxus-hidden {
+      display: none;
+    }
+
+    .noxus-input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.07);
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #ffffff;
+      outline: none;
+    }
+
+    .noxus-input::placeholder {
+      color: rgba(255,255,255,.32);
+    }
+
+    .noxus-input:focus {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+    }
+
+    .noxus-textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.07);
+      padding: 14px;
+      font-family: inherit;
+      font-size: 15px;
+      color: #ffffff;
+      outline: none;
+      margin-top: 12px;
+    }
+
+    .noxus-textarea::placeholder {
+      color: rgba(255,255,255,.32);
+    }
+
+    .noxus-textarea:focus {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+    }
+
+    /* Model grid */
+    .noxus-modelo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .noxus-modelo-item {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,.12);
+      cursor: pointer;
+      transition: .2s ease;
+      position: relative;
+    }
+
+    .noxus-modelo-item:hover {
+      border-color: rgba(239,68,68,.5);
+      transform: translateY(-2px);
+    }
+
+    .noxus-modelo-item.active {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 2px rgba(239,68,68,.3);
+    }
+
+    .noxus-modelo-item img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .noxus-modelo-badge {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(0,0,0,.72);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .noxus-modelo-item.active .noxus-modelo-badge {
+      background: #ef4444;
+    }
+
+    .noxus-btn-email {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(239,68,68,.35);
+      background: rgba(239,68,68,.1);
+      color: #fca5a5;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .noxus-btn-email:hover {
+      background: rgba(239,68,68,.2);
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+</head>
+<body>
+  <main class="page">
+    <div class="noxus-shell">
+
+      <div class="noxus-header">
+        <div class="client-top">
+          <img src="noxuscamisetas-logo.jpg" alt="Noxus Camisetas" class="noxus-logo-img" />
+          <div>
+            <h1 class="client-name">Noxus Camisetas</h1>
+            <p class="client-desc">Estampas exclusivas • Personalizadas</p>
+          </div>
+        </div>
+        <div class="noxus-notice">Monte seu pedido em menos de 1 minuto.</div>
+      </div>
+
+      <div class="noxus-card">
+
+        <!-- O que você quer? (single + condicional) -->
+        <div data-noxus-single="tipo">
+          <span class="noxus-label">O que você quer?</span>
+          <div class="noxus-chip-row">
+            <button class="noxus-chip" data-value="Item da loja" data-trigger="lojaModelos">Item da loja</button>
+            <button class="noxus-chip" data-value="Camiseta personalizada" data-trigger="personalizadaBloco">Personalizada</button>
+          </div>
+
+          <div id="lojaModelos" class="noxus-hidden">
+            <span class="noxus-hint" style="margin-top:14px;">Toque para escolher o modelo:</span>
+            <div class="noxus-modelo-grid">
+              <div class="noxus-modelo-item" data-modelo="Modelo 1" onclick="selecionarModelo(this)">
+                <img src="img/modelo-1.jpg" alt="Modelo 1" />
+                <span class="noxus-modelo-badge">Modelo 1</span>
+              </div>
+              <div class="noxus-modelo-item" data-modelo="Modelo 2" onclick="selecionarModelo(this)">
+                <img src="img/modelo-2.jpg" alt="Modelo 2" />
+                <span class="noxus-modelo-badge">Modelo 2</span>
+              </div>
+              <div class="noxus-modelo-item" data-modelo="Modelo 4" onclick="selecionarModelo(this)">
+                <img src="img/modelo-4.jpg" alt="Modelo 4" />
+                <span class="noxus-modelo-badge">Modelo 4</span>
+              </div>
+              <div class="noxus-modelo-item" data-modelo="Modelo 5" onclick="selecionarModelo(this)">
+                <img src="img/modelo-5.jpg" alt="Modelo 5" />
+                <span class="noxus-modelo-badge">Modelo 5</span>
+              </div>
+              <div class="noxus-modelo-item" data-modelo="Modelo 6" onclick="selecionarModelo(this)">
+                <img src="img/modelo-6.jpg" alt="Modelo 6" />
+                <span class="noxus-modelo-badge">Modelo 6</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="personalizadaBloco" class="noxus-hidden">
+            <textarea
+              class="noxus-textarea"
+              id="descricaoPersonalizada"
+              placeholder="Descreva sua camiseta: estampa, cor de fundo, referência, quantidade..."
+            ></textarea>
+          </div>
+        </div>
+
+        <hr class="noxus-divider" />
+
+        <!-- Tamanho (single) -->
+        <div data-noxus-single="tamanho">
+          <span class="noxus-label">Qual o tamanho?</span>
+          <div class="noxus-chip-row">
+            <button class="noxus-chip" data-value="P">P</button>
+            <button class="noxus-chip" data-value="M">M</button>
+            <button class="noxus-chip" data-value="G">G</button>
+            <button class="noxus-chip" data-value="GG">GG</button>
+            <button class="noxus-chip" data-value="XGG">XGG</button>
+          </div>
+        </div>
+
+        <hr class="noxus-divider" />
+
+        <!-- Quantidade (single) -->
+        <div data-noxus-single="quantidade">
+          <span class="noxus-label">Quantas unidades?</span>
+          <div class="noxus-chip-row">
+            <button class="noxus-chip" data-value="1">1</button>
+            <button class="noxus-chip" data-value="2">2</button>
+            <button class="noxus-chip" data-value="3">3</button>
+            <button class="noxus-chip" data-value="4">4</button>
+            <button class="noxus-chip" data-value="5 ou mais">5+</button>
+          </div>
+        </div>
+
+        <hr class="noxus-divider" />
+
+        <!-- Nome -->
+        <div>
+          <span class="noxus-label">Seu nome</span>
+          <input
+            class="noxus-input"
+            id="nomeCliente"
+            placeholder="Como podemos te chamar?"
+          />
+        </div>
+
+        <hr class="noxus-divider" />
+
+        <!-- Observações -->
+        <div>
+          <span class="noxus-label">Observações</span>
+          <input
+            class="noxus-input"
+            id="observacoes"
+            placeholder="Algum detalhe extra?"
+          />
+        </div>
+
+        <hr class="noxus-divider" />
+
+        <!-- Resumo e envio -->
+        <div>
+          <span class="noxus-label">Resumo do pedido</span>
+          <pre id="resumo" class="summary-box">Escolha as opções acima para montar o resumo...</pre>
+          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+          <button class="noxus-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
+        </div>
+
+      </div>
+    </div>
+    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+  </main>
+
+  <script>
+    const telefoneWhatsApp = "5500000000000";
+    const emailContato = "exemplo@email.com";
+
+    const respostas = { tipo: "", tamanho: "", quantidade: "" };
+    let modeloSelecionado = "";
+
+    document.querySelectorAll("[data-noxus-single]").forEach(block => {
+      const key = block.dataset.noxusSingle;
+
+      block.querySelectorAll(".noxus-chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          block.querySelectorAll(".noxus-chip").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          respostas[key] = btn.dataset.value;
+
+          block.querySelectorAll(".noxus-chip[data-trigger]").forEach(b => {
+            const el = document.getElementById(b.dataset.trigger);
+            if (el) el.classList.add("noxus-hidden");
+          });
+
+          if (btn.dataset.trigger) {
+            const el = document.getElementById(btn.dataset.trigger);
+            if (el) el.classList.remove("noxus-hidden");
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    function selecionarModelo(el) {
+      document.querySelectorAll(".noxus-modelo-item").forEach(m => m.classList.remove("active"));
+      el.classList.add("active");
+      modeloSelecionado = el.dataset.modelo;
+      atualizarResumo();
+    }
+
+    ["descricaoPersonalizada", "nomeCliente", "observacoes"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", atualizarResumo);
+    });
+
+    function montarMensagem() {
+      const descricao = document.getElementById("descricaoPersonalizada").value.trim();
+      const nome = document.getElementById("nomeCliente").value.trim();
+      const observacoes = document.getElementById("observacoes").value.trim();
+
+      let itemFinal;
+      if (respostas.tipo === "Item da loja") {
+        itemFinal = modeloSelecionado
+          ? `Item da loja — ${modeloSelecionado}`
+          : "Item da loja (modelo não escolhido)";
+      } else if (respostas.tipo === "Camiseta personalizada") {
+        itemFinal = descricao
+          ? `Personalizada — ${descricao}`
+          : "Personalizada (sem descrição)";
+      } else {
+        itemFinal = "Não informado";
+      }
+
+      return `Olá, Noxus! Vim pelo formulário.
+
+Nome: ${nome || "Não informado"}
+Pedido: ${itemFinal}
+Tamanho: ${respostas.tamanho || "Não informado"}
+Quantidade: ${respostas.quantidade || "Não informado"}
+
+Observações: ${observacoes || "Não informado"}`;
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarWhatsApp() {
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+    }
+
+    function enviarEmail() {
+      const subject = encodeURIComponent("Pedido — Noxus Camisetas");
+      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+    }
+
+    atualizarResumo();
+  </script>
+</body>
+</html>
