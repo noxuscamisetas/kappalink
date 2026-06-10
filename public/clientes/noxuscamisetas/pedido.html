@@ -4,235 +4,274 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noxus Camisetas | Pedido</title>
-  <link rel="stylesheet" href="../../assets/global.css" />
   <style>
+    :root {
+      --bg:        #0a0a0a;
+      --bg-2:      #111111;
+      --bg-card:   #161616;
+      --vermelho:  #e11d48;
+      --vermelho-2:#ff4d6d;
+      --branco:    #ffffff;
+      --muted:     rgba(255,255,255,.55);
+      --borda:     rgba(255,255,255,.08);
+      --borda-red: rgba(225,29,72,.35);
+      --radius:    20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
-      background: linear-gradient(160deg, #0f0f0f 0%, #1a1a2e 55%, #16213e 100%);
-      animation: none;
-      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0a0a0a;
+      color: white;
+      min-height: 100vh;
     }
 
-    .client-top {
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
-      border-bottom: 1px solid rgba(255,255,255,.1);
+    a { text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .page {
+      width: min(680px, 100%);
+      margin: 0 auto;
+      padding: 0 16px 60px;
     }
 
-    .client-name {
-      color: #ffffff;
+    /* ==============================
+       HEADER
+    ============================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borda);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .client-desc {
-      color: rgba(255,255,255,.55);
+    .btn-voltar {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      transition: .2s ease;
     }
 
-    .send-btn {
-      background: linear-gradient(135deg, #ef4444, #b91c1c);
-      box-shadow: 0 12px 30px rgba(239,68,68,.28);
-    }
+    .btn-voltar:hover { color: white; }
 
-    .noxus-shell {
-      max-width: 520px;
+    /* ==============================
+       PROGRESSO
+    ============================== */
+
+    .progress-wrap {
+      padding: 24px 16px 0;
+      width: min(680px, 100%);
       margin: 0 auto;
     }
 
-    .noxus-header {
-      border-radius: 26px;
+    .progress-bar {
+      height: 3px;
+      background: var(--borda);
+      border-radius: 999px;
       overflow: hidden;
-      margin-bottom: 16px;
-      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      margin-bottom: 8px;
     }
 
-    .noxus-logo-img {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      object-fit: cover;
-      flex: 0 0 auto;
+    .progress-fill {
+      height: 100%;
+      background: var(--vermelho);
+      border-radius: 999px;
+      transition: width .4s ease;
+      box-shadow: 0 0 8px rgba(225,29,72,.5);
     }
 
-    .noxus-notice {
-      background: rgba(255,255,255,.05);
-      padding: 16px 22px;
+    .progress-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* ==============================
+       STEPS
+    ============================== */
+
+    .step {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .step.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--borda);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 20px;
+    }
+
+    .step-titulo {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .step-titulo span { color: var(--vermelho); }
+
+    .step-sub {
       font-size: 14px;
-      color: rgba(255,255,255,.55);
-      line-height: 1.45;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
 
-    .noxus-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 26px;
-      padding: 24px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.4);
-    }
-
-    .noxus-label {
+    .step-label {
       display: block;
-      font-weight: 800;
-      font-size: 15px;
-      color: #ffffff;
+      font-weight: 900;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
       margin-bottom: 12px;
+      margin-top: 20px;
     }
 
-    .noxus-hint {
-      display: block;
-      font-size: 13px;
-      color: rgba(255,255,255,.45);
-      margin-bottom: 10px;
-    }
+    .step-label:first-of-type { margin-top: 0; }
 
-    .noxus-divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,.1);
-      margin: 20px 0;
-    }
+    /* ==============================
+       CHIPS
+    ============================== */
 
-    .noxus-chip-row {
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
 
-    .noxus-chip {
+    .chip {
       padding: 12px 20px;
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 900;
       border-radius: 999px;
-      border: 2px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
+      border: 2px solid var(--borda);
+      background: transparent;
       cursor: pointer;
       transition: .2s ease;
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.7);
     }
 
-    .noxus-chip:hover {
-      border-color: rgba(239,68,68,.55);
-      background: rgba(239,68,68,.1);
+    .chip:hover {
+      border-color: var(--borda-red);
+      color: white;
     }
 
-    .noxus-chip.active {
-      background: rgba(239,68,68,.2);
-      border-color: #ef4444;
-      color: #fca5a5;
+    .chip.active {
+      border-color: var(--vermelho);
+      background: var(--vermelho);
+      color: white;
+      box-shadow: 0 0 16px rgba(225,29,72,.3);
     }
 
-    .noxus-hidden {
-      display: none;
-    }
+    /* ==============================
+       INPUTS
+    ============================== */
 
     .noxus-input {
       width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.07);
-      padding: 12px 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: white;
       font-family: inherit;
       font-size: 15px;
-      color: #ffffff;
+      margin-top: 12px;
       outline: none;
-    }
-
-    .noxus-input::placeholder {
-      color: rgba(255,255,255,.32);
+      transition: .2s ease;
     }
 
     .noxus-input:focus {
-      border-color: #ef4444;
-      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+      border-color: var(--borda-red);
+      background: rgba(225,29,72,.05);
     }
 
-    .noxus-textarea {
-      width: 100%;
-      min-height: 110px;
-      resize: vertical;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.07);
-      padding: 14px;
-      font-family: inherit;
-      font-size: 15px;
-      color: #ffffff;
-      outline: none;
-      margin-top: 12px;
+    .noxus-input::placeholder { color: rgba(255,255,255,.3); }
+
+    .hidden { display: none; }
+
+    /* ==============================
+       BOTÕES DE NAVEGAÇÃO
+    ============================== */
+
+    .step-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
     }
 
-    .noxus-textarea::placeholder {
-      color: rgba(255,255,255,.32);
-    }
-
-    .noxus-textarea:focus {
-      border-color: #ef4444;
-      box-shadow: 0 0 0 3px rgba(239,68,68,.15);
-    }
-
-    /* Model grid */
-    .noxus-modelo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .noxus-modelo-item {
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid rgba(255,255,255,.12);
-      cursor: pointer;
-      transition: .2s ease;
-      position: relative;
-    }
-
-    .noxus-modelo-item:hover {
-      border-color: rgba(239,68,68,.5);
-      transform: translateY(-2px);
-    }
-
-    .noxus-modelo-item.active {
-      border-color: #ef4444;
-      box-shadow: 0 0 0 2px rgba(239,68,68,.3);
-    }
-
-    .noxus-modelo-item img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      display: block;
-    }
-
-    .noxus-modelo-badge {
-      position: absolute;
-      bottom: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(0,0,0,.72);
+    .btn-next {
+      flex: 1;
+      background: var(--vermelho);
       color: white;
-      padding: 3px 8px;
+      border: none;
       border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .noxus-modelo-item.active .noxus-modelo-badge {
-      background: #ef4444;
-    }
-
-    .noxus-btn-email {
-      width: 100%;
-      margin-top: 10px;
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(239,68,68,.35);
-      background: rgba(239,68,68,.1);
-      color: #fca5a5;
+      padding: 16px 28px;
       font-weight: 900;
       font-size: 16px;
-      cursor: pointer;
+      transition: .25s ease;
+      box-shadow: 0 0 16px rgba(225,29,72,.18);
+    }
+
+    .btn-next:hover {
+      background: var(--vermelho-2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(225,29,72,.32);
+    }
+
+    .btn-back {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--borda);
+      border-radius: 999px;
+      padding: 16px 24px;
+      font-weight: 800;
+      font-size: 15px;
       transition: .2s ease;
     }
 
-    .noxus-btn-email:hover {
-      background: rgba(239,68,68,.2);
+    .btn-back:hover {
+      color: white;
+      border-color: rgba(255,255,255,.3);
+    }
+
+    /* ==============================
+       RESUMO
+    ============================== */
+
+    .resumo-box {
+      white-space: pre-wrap;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: inherit;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 16px;
+      min-height: 160px;
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -245,217 +284,281 @@
   </script>
 </head>
 <body>
+
+  <header class="header">
+    <img src="./noxuscamisetas-logo.jpg" height="36" alt="Noxus Camisetas" />
+    <a class="btn-voltar" href="./index.html">← Voltar</a>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+    <span class="progress-label">Etapa 1 de 4</span>
+  </div>
+
   <main class="page">
-    <div class="noxus-shell">
 
-      <div class="noxus-header">
-        <div class="client-top">
-          <img src="noxuscamisetas-logo.jpg" alt="Noxus Camisetas" class="noxus-logo-img" />
-          <div>
-            <h1 class="client-name">Noxus Camisetas</h1>
-            <p class="client-desc">Estampas exclusivas • Personalizadas</p>
-          </div>
-        </div>
-        <div class="noxus-notice">Monte seu pedido em menos de 1 minuto.</div>
-      </div>
+    <!-- ETAPA 1 -->
+    <div class="step active" id="step-1">
+      <div class="step-card">
+        <h2 class="step-titulo">O que você <span>quer?</span></h2>
+        <p class="step-sub">Escolha o tipo de pedido para começar.</p>
 
-      <div class="noxus-card">
-
-        <!-- O que você quer? (single + condicional) -->
-        <div data-noxus-single="tipo">
-          <span class="noxus-label">O que você quer?</span>
-          <div class="noxus-chip-row">
-            <button class="noxus-chip" data-value="Item da loja" data-trigger="lojaModelos">Item da loja</button>
-            <button class="noxus-chip" data-value="Camiseta personalizada" data-trigger="personalizadaBloco">Personalizada</button>
-          </div>
-
-          <div id="lojaModelos" class="noxus-hidden">
-            <span class="noxus-hint" style="margin-top:14px;">Toque para escolher o modelo:</span>
-            <div class="noxus-modelo-grid">
-              <div class="noxus-modelo-item" data-modelo="Modelo 1" onclick="selecionarModelo(this)">
-                <img src="img/modelo-1.jpg" alt="Modelo 1" />
-                <span class="noxus-modelo-badge">Modelo 1</span>
-              </div>
-              <div class="noxus-modelo-item" data-modelo="Modelo 2" onclick="selecionarModelo(this)">
-                <img src="img/modelo-2.jpg" alt="Modelo 2" />
-                <span class="noxus-modelo-badge">Modelo 2</span>
-              </div>
-              <div class="noxus-modelo-item" data-modelo="Modelo 4" onclick="selecionarModelo(this)">
-                <img src="img/modelo-4.jpg" alt="Modelo 4" />
-                <span class="noxus-modelo-badge">Modelo 4</span>
-              </div>
-              <div class="noxus-modelo-item" data-modelo="Modelo 5" onclick="selecionarModelo(this)">
-                <img src="img/modelo-5.jpg" alt="Modelo 5" />
-                <span class="noxus-modelo-badge">Modelo 5</span>
-              </div>
-              <div class="noxus-modelo-item" data-modelo="Modelo 6" onclick="selecionarModelo(this)">
-                <img src="img/modelo-6.jpg" alt="Modelo 6" />
-                <span class="noxus-modelo-badge">Modelo 6</span>
-              </div>
-            </div>
-          </div>
-
-          <div id="personalizadaBloco" class="noxus-hidden">
-            <textarea
-              class="noxus-textarea"
-              id="descricaoPersonalizada"
-              placeholder="Descreva sua camiseta: estampa, cor de fundo, referência, quantidade..."
-            ></textarea>
-          </div>
+        <div class="chip-row" id="chips-tipo">
+          <button class="chip" data-value="Item da loja">Item da loja</button>
+          <button class="chip" data-value="Camiseta personalizada">Camiseta personalizada</button>
         </div>
 
-        <hr class="noxus-divider" />
-
-        <!-- Tamanho (single) -->
-        <div data-noxus-single="tamanho">
-          <span class="noxus-label">Qual o tamanho?</span>
-          <div class="noxus-chip-row">
-            <button class="noxus-chip" data-value="P">P</button>
-            <button class="noxus-chip" data-value="M">M</button>
-            <button class="noxus-chip" data-value="G">G</button>
-            <button class="noxus-chip" data-value="GG">GG</button>
-            <button class="noxus-chip" data-value="XGG">XGG</button>
-          </div>
+        <div class="step-actions">
+          <button class="btn-next" onclick="avancar(2)">Continuar →</button>
         </div>
-
-        <hr class="noxus-divider" />
-
-        <!-- Quantidade (single) -->
-        <div data-noxus-single="quantidade">
-          <span class="noxus-label">Quantas unidades?</span>
-          <div class="noxus-chip-row">
-            <button class="noxus-chip" data-value="1">1</button>
-            <button class="noxus-chip" data-value="2">2</button>
-            <button class="noxus-chip" data-value="3">3</button>
-            <button class="noxus-chip" data-value="4">4</button>
-            <button class="noxus-chip" data-value="5 ou mais">5+</button>
-          </div>
-        </div>
-
-        <hr class="noxus-divider" />
-
-        <!-- Nome -->
-        <div>
-          <span class="noxus-label">Seu nome</span>
-          <input
-            class="noxus-input"
-            id="nomeCliente"
-            placeholder="Como podemos te chamar?"
-          />
-        </div>
-
-        <hr class="noxus-divider" />
-
-        <!-- Observações -->
-        <div>
-          <span class="noxus-label">Observações</span>
-          <input
-            class="noxus-input"
-            id="observacoes"
-            placeholder="Algum detalhe extra?"
-          />
-        </div>
-
-        <hr class="noxus-divider" />
-
-        <!-- Resumo e envio -->
-        <div>
-          <span class="noxus-label">Resumo do pedido</span>
-          <pre id="resumo" class="summary-box">Escolha as opções acima para montar o resumo...</pre>
-          <button class="send-btn" onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
-          <button class="noxus-btn-email" onclick="enviarEmail()">Enviar por E-mail</button>
-        </div>
-
       </div>
     </div>
-    <footer><span>feito com KappaLink · by MindKappa</span></footer>
+
+    <!-- ETAPA 2 -->
+    <div class="step" id="step-2">
+      <div class="step-card">
+        <h2 class="step-titulo">Qual o <span>modelo?</span></h2>
+        <p class="step-sub">Escolha um dos modelos ou descreva sua ideia.</p>
+
+        <div id="opcao-loja">
+          <span class="step-label">Escolha o modelo</span>
+          <div class="chip-row" id="chips-modelo">
+            <button class="chip" data-value="Modelo 1">Modelo 1</button>
+            <button class="chip" data-value="Modelo 2">Modelo 2</button>
+            <button class="chip" data-value="Modelo 3">Modelo 3</button>
+            <button class="chip" data-value="Modelo 4">Modelo 4</button>
+            <button class="chip" data-value="Modelo 5">Modelo 5</button>
+            <button class="chip" data-value="Modelo 6">Modelo 6</button>
+          </div>
+        </div>
+
+        <div id="opcao-personalizada" class="hidden">
+          <span class="step-label">Descreva sua ideia</span>
+          <textarea
+            class="noxus-input"
+            id="ideia"
+            rows="4"
+            placeholder="Ex: quero uma estampa com tema Dark Souls, fundo preto, estilo minimalista..."
+          ></textarea>
+          <p style="font-size:13px;color:var(--muted);margin-top:8px;">
+            ⚠️ Sua sugestão será avaliada antes de confirmar o pedido.
+          </p>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-back" onclick="voltar(1)">← Voltar</button>
+          <button class="btn-next" onclick="avancar(3)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 3 -->
+    <div class="step" id="step-3">
+      <div class="step-card">
+        <h2 class="step-titulo">Detalhes do <span>pedido</span></h2>
+
+        <span class="step-label">Tamanho</span>
+        <div class="chip-row" id="chips-tamanho">
+          <button class="chip" data-value="P">P</button>
+          <button class="chip" data-value="M">M</button>
+          <button class="chip" data-value="G">G</button>
+          <button class="chip" data-value="GG">GG</button>
+        </div>
+
+        <span class="step-label">Quantidade</span>
+        <div class="chip-row" id="chips-quantidade">
+          <button class="chip" data-value="1">1</button>
+          <button class="chip" data-value="2">2</button>
+          <button class="chip" data-value="3">3</button>
+          <button class="chip" data-value="4">4</button>
+          <button class="chip" data-value="5">5</button>
+          <button class="chip" data-value="6+">6+</button>
+        </div>
+
+        <span class="step-label">Cor da camiseta</span>
+        <div class="chip-row" id="chips-cor">
+          <button class="chip" data-value="Branco">Branco</button>
+          <button class="chip" data-value="Preto">Preto</button>
+        </div>
+
+        <span class="step-label">Quer nome na camiseta?</span>
+        <div class="chip-row" id="chips-nome">
+          <button class="chip" data-value="Sim">Sim</button>
+          <button class="chip" data-value="Não">Não</button>
+        </div>
+
+        <div id="campo-nome" class="hidden">
+          <input
+            class="noxus-input"
+            id="nome-camiseta"
+            placeholder="Qual nome?"
+          />
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-back" onclick="voltar(2)">← Voltar</button>
+          <button class="btn-next" onclick="avancar(4)">Continuar →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 4 -->
+    <div class="step" id="step-4">
+      <div class="step-card">
+        <h2 class="step-titulo">Seu <span>pedido</span></h2>
+        <p class="step-sub">Confira o resumo e escolha como enviar.</p>
+
+        <pre id="resumo" class="resumo-box"></pre>
+
+        <input
+          class="noxus-input"
+          id="nome-cliente"
+          placeholder="Seu nome"
+          style="margin-bottom:16px;"
+          oninput="atualizarResumo()"
+        />
+
+        <div class="step-actions" style="flex-direction:column;">
+          <button class="btn-next" onclick="enviarWhatsApp()">
+            📱 Enviar pelo WhatsApp
+          </button>
+          <button class="btn-next" style="background:transparent;border:1px solid var(--borda);box-shadow:none;" onclick="enviarEmail()">
+            ✉️ Enviar por E-mail
+          </button>
+          <a class="btn-back" href="https://instagram.com/noxuscamisetas" target="_blank" style="text-align:center;">
+            📸 Ver no Instagram
+          </a>
+        </div>
+
+        <button class="btn-back" style="width:100%;margin-top:12px;text-align:center;" onclick="voltar(3)">
+          ← Voltar
+        </button>
+      </div>
+    </div>
+
   </main>
 
+  <footer style="text-align:center;padding:40px 16px 24px;color:var(--muted);font-size:12px;">
+    feito com KappaLink · by MindKappa
+  </footer>
+
   <script>
-    const telefoneWhatsApp = "5500000000000";
-    const emailContato = "exemplo@email.com";
+    const whatsapp = "5567999910114";
+    const email = "noxuscamisetas@gmail.com";
+    const instagram = "https://instagram.com/noxuscamisetas";
 
-    const respostas = { tipo: "", tamanho: "", quantidade: "" };
-    let modeloSelecionado = "";
+    const respostas = {
+      tipo: "", modelo: "", ideia: "",
+      tamanho: "", quantidade: "", cor: "",
+      nomeCamiseta: "", nomeCliente: ""
+    };
 
-    document.querySelectorAll("[data-noxus-single]").forEach(block => {
-      const key = block.dataset.noxusSingle;
+    const totalSteps = 4;
 
-      block.querySelectorAll(".noxus-chip").forEach(btn => {
-        btn.addEventListener("click", () => {
-          block.querySelectorAll(".noxus-chip").forEach(b => b.classList.remove("active"));
+    function atualizarProgress(step) {
+      const pct = ((step - 1) / (totalSteps - 1)) * 100;
+      document.querySelector(".progress-fill").style.width = pct + "%";
+      document.querySelector(".progress-label").textContent =
+        "Etapa " + step + " de " + totalSteps;
+    }
+
+    function avancar(step) {
+      document.querySelectorAll(".step").forEach(function(s) {
+        s.classList.remove("active");
+      });
+      document.getElementById("step-" + step).classList.add("active");
+      atualizarProgress(step);
+      if (step === 4) atualizarResumo();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function voltar(step) {
+      avancar(step);
+    }
+
+    function initChips(grupoId, key) {
+      document.getElementById(grupoId).querySelectorAll(".chip").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          document.getElementById(grupoId).querySelectorAll(".chip")
+            .forEach(function(b) { b.classList.remove("active"); });
           btn.classList.add("active");
           respostas[key] = btn.dataset.value;
 
-          block.querySelectorAll(".noxus-chip[data-trigger]").forEach(b => {
-            const el = document.getElementById(b.dataset.trigger);
-            if (el) el.classList.add("noxus-hidden");
-          });
-
-          if (btn.dataset.trigger) {
-            const el = document.getElementById(btn.dataset.trigger);
-            if (el) el.classList.remove("noxus-hidden");
+          if (key === "tipo") {
+            var loja   = document.getElementById("opcao-loja");
+            var custom = document.getElementById("opcao-personalizada");
+            if (btn.dataset.value === "Item da loja") {
+              loja.classList.remove("hidden");
+              custom.classList.add("hidden");
+            } else {
+              loja.classList.add("hidden");
+              custom.classList.remove("hidden");
+            }
           }
 
-          atualizarResumo();
+          if (key === "nomeCamiseta") {
+            var campo = document.getElementById("campo-nome");
+            btn.dataset.value === "Sim"
+              ? campo.classList.remove("hidden")
+              : campo.classList.add("hidden");
+          }
         });
       });
-    });
-
-    function selecionarModelo(el) {
-      document.querySelectorAll(".noxus-modelo-item").forEach(m => m.classList.remove("active"));
-      el.classList.add("active");
-      modeloSelecionado = el.dataset.modelo;
-      atualizarResumo();
     }
 
-    ["descricaoPersonalizada", "nomeCliente", "observacoes"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.addEventListener("input", atualizarResumo);
+    initChips("chips-tipo", "tipo");
+    initChips("chips-modelo", "modelo");
+    initChips("chips-tamanho", "tamanho");
+    initChips("chips-quantidade", "quantidade");
+    initChips("chips-cor", "cor");
+    initChips("chips-nome", "nomeCamiseta");
+
+    document.getElementById("ideia").addEventListener("input", function(e) {
+      respostas.ideia = e.target.value;
+    });
+
+    document.getElementById("nome-camiseta").addEventListener("input", function(e) {
+      respostas.nomeCamiseta = e.target.value;
     });
 
     function montarMensagem() {
-      const descricao = document.getElementById("descricaoPersonalizada").value.trim();
-      const nome = document.getElementById("nomeCliente").value.trim();
-      const observacoes = document.getElementById("observacoes").value.trim();
+      var modelo = respostas.tipo === "Item da loja"
+        ? (respostas.modelo || "Não informado")
+        : ("Personalizada: " + (respostas.ideia || "Não informado"));
 
-      let itemFinal;
-      if (respostas.tipo === "Item da loja") {
-        itemFinal = modeloSelecionado
-          ? `Item da loja — ${modeloSelecionado}`
-          : "Item da loja (modelo não escolhido)";
-      } else if (respostas.tipo === "Camiseta personalizada") {
-        itemFinal = descricao
-          ? `Personalizada — ${descricao}`
-          : "Personalizada (sem descrição)";
-      } else {
-        itemFinal = "Não informado";
-      }
+      var nomeCamiseta = respostas.nomeCamiseta
+        ? ("Sim (" + respostas.nomeCamiseta + ")")
+        : (respostas.nomeCamiseta === "" && respostas.tipo ? "Não informado" : "Não");
 
-      return `Olá, Noxus! Vim pelo formulário.
-
-Nome: ${nome || "Não informado"}
-Pedido: ${itemFinal}
-Tamanho: ${respostas.tamanho || "Não informado"}
-Quantidade: ${respostas.quantidade || "Não informado"}
-
-Observações: ${observacoes || "Não informado"}`;
+      return "Olá, Noxus! Vim pelo formulário.\n\n" +
+        "Nome: " + (respostas.nomeCliente || "Não informado") + "\n" +
+        "Pedido: " + (respostas.tipo || "Não informado") + "\n" +
+        "Modelo: " + modelo + "\n" +
+        "Tamanho: " + (respostas.tamanho || "Não informado") + "\n" +
+        "Quantidade: " + (respostas.quantidade || "Não informado") + "\n" +
+        "Cor: " + (respostas.cor || "Não informado") + "\n" +
+        "Nome na camiseta: " + nomeCamiseta;
     }
 
     function atualizarResumo() {
+      respostas.nomeCliente = document.getElementById("nome-cliente").value;
       document.getElementById("resumo").textContent = montarMensagem();
     }
 
     function enviarWhatsApp() {
-      window.open(`https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(montarMensagem())}`, "_blank");
+      var msg = encodeURIComponent(montarMensagem());
+      window.open("https://wa.me/" + whatsapp + "?text=" + msg, "_blank");
     }
 
     function enviarEmail() {
-      const subject = encodeURIComponent("Pedido — Noxus Camisetas");
-      window.location.href = `mailto:${emailContato}?subject=${subject}&body=${encodeURIComponent(montarMensagem())}`;
+      var msg = encodeURIComponent(montarMensagem());
+      window.open("mailto:" + email + "?subject=Pedido Noxus Camisetas&body=" + msg, "_blank");
     }
 
-    atualizarResumo();
+    atualizarProgress(1);
   </script>
+
 </body>
 </html>
