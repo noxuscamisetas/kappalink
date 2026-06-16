@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festa Linda Personalizados | Pedido</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+  <style>
+    :root {
+      --azul:   #5b9bd5;
+      --rosa:   #ec4899;
+      --bg:     #fef9f6;
+      --card:   #ffffff;
+      --amarelo:#fbbf24;
+      --text:   #3d3450;
+      --muted:  #8b8499;
+      --line:   #f3e8f0;
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Quicksand', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    h1, h2 { font-family: 'Baloo 2', sans-serif; }
+
+    .wrap { max-width: 480px; margin: 0 auto; }
+
+    button, input, textarea { font-family: inherit; }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 24px rgba(91,155,213,.08);
+    }
+
+    .label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .hint {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -6px;
+      margin-bottom: 10px;
+    }
+
+    /* CHIPS */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 999px;
+      border: 2px solid var(--line);
+      background: var(--bg);
+      cursor: pointer;
+      transition: .2s ease;
+      color: var(--text);
+    }
+
+    .chip:hover { border-color: var(--rosa); }
+
+    .chip.active {
+      border-color: var(--rosa);
+      background: var(--rosa);
+      color: white;
+    }
+
+    /* INPUTS */
+    .input {
+      width: 100%;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: .2s ease;
+      margin-top: 10px;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .input:focus { border-color: var(--rosa); }
+    .input::placeholder { color: var(--muted); }
+
+    .hidden { display: none; }
+
+    textarea.input { resize: vertical; min-height: 70px; }
+
+    /* RESUMO */
+    .resumo-card {
+      background: linear-gradient(135deg, rgba(91,155,213,.06), rgba(236,72,153,.05));
+      border: 2px solid var(--line);
+    }
+
+    .resumo-box {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .btn-enviar {
+      width: 100%;
+      background: var(--rosa);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 16px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s ease;
+      box-shadow: 0 8px 20px rgba(236,72,153,.25);
+    }
+
+    .btn-enviar:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <img src="./festalindapersonalizados-logo.jpg" alt="Festa Linda Personalizados" style="height:56px;border-radius:14px;margin-bottom:10px;" />
+      <p style="color:var(--muted);font-size:14px;">Conte pra gente o que você precisa</p>
+    </div>
+
+    <div class="card">
+      <span class="label">Nome e idade da festa</span>
+      <span class="hint">Ex: João, 5 aninhos</span>
+      <input class="input" id="nomeFesta" placeholder="Nome e idade" oninput="atualizarResumo()" />
+    </div>
+
+    <div class="card">
+      <span class="label">O que você precisa?</span>
+      <div class="chip-row" data-group="produto">
+        <button class="chip" data-value="Ecobag">Ecobag</button>
+        <button class="chip" data-value="Caneca">Caneca</button>
+        <button class="chip" data-value="Potinho">Potinho</button>
+        <button class="chip" data-value="Kit completo">Kit completo</button>
+        <button class="chip" data-value="Outro">Outro</button>
+      </div>
+      <input class="input hidden" id="produtoOutro" placeholder="O quê?" oninput="atualizarResumo()" />
+    </div>
+
+    <div class="card">
+      <span class="label">Qual a urgência?</span>
+      <div class="chip-row" data-group="urgencia">
+        <button class="chip" data-value="Sem pressa">Sem pressa</button>
+        <button class="chip" data-value="Essa semana">Essa semana</button>
+        <button class="chip" data-value="Urgente">Urgente</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="label">Tem referência?</span>
+      <div class="chip-row" data-group="referencia">
+        <button class="chip" data-value="Tenho foto/ideia">Tenho foto/ideia</button>
+        <button class="chip" data-value="Vi no Instagram">Vi no Instagram</button>
+        <button class="chip" data-value="Quero sugestão">Quero sugestão</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="label">Conte o que você pensa</span>
+      <span class="hint">Tema da festa, cores, quantidade — qualquer detalhe ajuda!</span>
+      <textarea class="input" id="detalhes" placeholder="Escreva aqui..." oninput="atualizarResumo()"></textarea>
+    </div>
+
+    <div class="card">
+      <span class="label">Seu nome</span>
+      <input class="input" id="nomeCliente" placeholder="Como posso te chamar?" oninput="atualizarResumo()" />
+    </div>
+
+    <div class="card resumo-card">
+      <span class="label">Resumo do pedido</span>
+      <pre id="resumo" class="resumo-box">Escolha as opções acima...</pre>
+      <button class="btn-enviar" onclick="enviarEmail()">Enviar pedido por e-mail</button>
+    </div>
+
+  </div>
+
+  <script>
+    const whatsapp = "5567999910114";
+    const email = "kappalink01@gmail.com";
+
+    const respostas = { produto: "", produtoOutro: "", urgencia: "", referencia: "", detalhes: "", nomeFesta: "", nomeCliente: "" };
+
+    document.querySelectorAll("[data-group]").forEach(function(container) {
+      var group = container.dataset.group;
+      container.querySelectorAll(".chip").forEach(function(chip) {
+        chip.addEventListener("click", function() {
+          container.querySelectorAll(".chip").forEach(function(c) { c.classList.remove("active"); });
+          chip.classList.add("active");
+          respostas[group] = chip.dataset.value;
+
+          if (group === "produto") {
+            document.getElementById("produtoOutro").classList.toggle("hidden", chip.dataset.value !== "Outro");
+          }
+
+          atualizarResumo();
+        });
+      });
+    });
+
+    document.getElementById("produtoOutro").addEventListener("input", function(e) { respostas.produtoOutro = e.target.value; atualizarResumo(); });
+    document.getElementById("detalhes").addEventListener("input", function(e) { respostas.detalhes = e.target.value; atualizarResumo(); });
+    document.getElementById("nomeFesta").addEventListener("input", function(e) { respostas.nomeFesta = e.target.value; atualizarResumo(); });
+    document.getElementById("nomeCliente").addEventListener("input", function(e) { respostas.nomeCliente = e.target.value; atualizarResumo(); });
+
+    function montarMensagem() {
+      var produto = respostas.produto === "Outro" && respostas.produtoOutro
+        ? respostas.produtoOutro
+        : respostas.produto || "Não informado";
+
+      return "Olá, Festa Linda! Vim pelo formulário.\n\n" +
+        "Festa: " + (respostas.nomeFesta || "Não informado") + "\n" +
+        "Produto: " + produto + "\n" +
+        "Urgência: " + (respostas.urgencia || "Não informado") + "\n" +
+        "Referência: " + (respostas.referencia || "Não informado") + "\n\n" +
+        "Detalhes:\n" + (respostas.detalhes || "Não informado") + "\n\n" +
+        "Nome: " + (respostas.nomeCliente || "Não informado");
+    }
+
+    function atualizarResumo() {
+      document.getElementById("resumo").textContent = montarMensagem();
+    }
+
+    function enviarEmail() {
+      var msg = encodeURIComponent(montarMensagem());
+      window.open("mailto:" + email + "?subject=Pedido Festa Linda&body=" + msg, "_blank");
+    }
+  </script>
+</body>
+</html>
