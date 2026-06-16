@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festa Linda Personalizados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+  <style>
+    :root {
+      --azul:   #5b9bd5;
+      --rosa:   #ec4899;
+      --bg:     #fef9f6;
+      --card:   #ffffff;
+      --amarelo:#fbbf24;
+      --text:   #3d3450;
+      --muted:  #8b8499;
+      --line:   #f3e8f0;
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    h1, h2, .cf-num, .header strong {
+      font-family: 'Baloo 2', sans-serif;
+    }
+
+    a { text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    .page {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(254,249,246,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-header {
+      background: var(--rosa);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-weight: 800;
+      font-size: 14px;
+      transition: .2s ease;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(236,72,153,.25);
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 70px 16px 60px;
+      background: linear-gradient(180deg, rgba(91,155,213,.08), rgba(236,72,153,.05), transparent);
+      overflow: hidden;
+    }
+
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .5;
+      filter: blur(2px);
+    }
+
+    .hero::before {
+      width: 90px;
+      height: 90px;
+      background: var(--amarelo);
+      top: 20px;
+      left: 6%;
+      animation: float1 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      width: 70px;
+      height: 70px;
+      background: var(--azul);
+      top: 60px;
+      right: 8%;
+      animation: float2 7s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-14px) rotate(8deg); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(12px) rotate(-8deg); }
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 2px solid var(--amarelo);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--rosa);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(251,191,36,.15);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--azul), var(--rosa));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 420px;
+      margin: 0 auto 28px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      background: var(--rosa);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 16px 28px;
+      font-weight: 800;
+      font-size: 15px;
+      transition: .25s ease;
+      box-shadow: 0 8px 20px rgba(236,72,153,.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(236,72,153,.35);
+    }
+
+    /* ==============================
+       VITRINE
+    ============================== */
+
+    .vitrine { padding: 50px 0; }
+
+    .vitrine h2 {
+      font-size: 26px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .vitrine > p {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .vitrine-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .vitrine-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: 0 8px 24px rgba(91,155,213,.12);
+      transition: .3s ease;
+      position: relative;
+      border: 3px solid white;
+    }
+
+    .vitrine-card::before {
+      content: '✦';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      background: var(--amarelo);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(251,191,36,.4);
+      z-index: 2;
+    }
+
+    .vitrine-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(236,72,153,.18);
+    }
+
+    .vitrine-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 600px) {
+      .vitrine-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ==============================
+       COMO FUNCIONA
+    ============================== */
+
+    .como-funciona { padding: 40px 0; }
+
+    .cf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .cf-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(91,155,213,.08);
+    }
+
+    .cf-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--azul), var(--rosa));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin: 0 auto 12px;
+      font-size: 15px;
+    }
+
+    .cf-card strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .cf-card span {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 600px) {
+      .cf-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    .footer {
+      text-align: center;
+      padding: 40px 16px 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .footer img {
+      height: 32px;
+      opacity: .8;
+      margin: 0 auto;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .footer-social a {
+      font-size: 22px;
+      color: var(--muted);
+      transition: .2s ease;
+    }
+
+    .footer-social a:hover {
+      color: var(--rosa);
+      transform: translateY(-2px);
+    }
+
+    .footer-social .fa-whatsapp { color: #25d366; }
+    .footer-social .fa-whatsapp:hover { color: #25d366; }
+
+    .footer small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="./festalindapersonalizados-logo.jpg" alt="Festa Linda Personalizados" style="height:40px;border-radius:10px;" />
+    </div>
+    <a class="btn-header" href="./pedido.html">Pedir orçamento</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🎈 Lembrancinhas personalizadas</div>
+      <h1>Detalhes que viram <span>lembranças</span></h1>
+      <p>Ecobags, canecas e potinhos personalizados para tornar a festa do seu filho ainda mais especial.</p>
+      <a class="btn-primary" href="./pedido.html">Pedir orçamento</a>
+    </div>
+  </section>
+
+  <section class="vitrine page">
+    <h2>Nossos trabalhos</h2>
+    <p>Cada peça feita com carinho, do seu jeito</p>
+    <div class="vitrine-grid">
+      <div class="vitrine-card"><img src="./img/modelo-1.jpg" alt="Ecobag personalizada" /></div>
+      <div class="vitrine-card"><img src="./img/modelo-2.jpg" alt="Potinho personalizado" /></div>
+      <div class="vitrine-card"><img src="./img/modelo-3.jpg" alt="Caneca personalizada" /></div>
+    </div>
+  </section>
+
+  <section class="como-funciona page">
+    <h2 style="text-align:center;font-size:26px;font-weight:800;">Como funciona</h2>
+    <div class="cf-grid">
+      <div class="cf-card">
+        <div class="cf-num">1</div>
+        <strong>Você escolhe o tema</strong>
+        <span>Nos conta a ideia ou tema da festa</span>
+      </div>
+      <div class="cf-card">
+        <div class="cf-num">2</div>
+        <strong>Fazemos o orçamento</strong>
+        <span>Você recebe o valor rapidinho</span>
+      </div>
+      <div class="cf-card">
+        <div class="cf-num">3</div>
+        <strong>Aprovamos e entregamos</strong>
+        <span>Combinamos prazo e entrega</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <img src="./festalindapersonalizados-logo.jpg" alt="Festa Linda Personalizados" />
+    <div class="footer-social">
+      <a href="https://wa.me/5567999910114" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <small>feito com KappaLink · by MindKappa</small>
+  </footer>
+
+</body>
+</html>
