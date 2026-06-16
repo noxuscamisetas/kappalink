@@ -22,7 +22,7 @@
       height: 42px;
       border-radius: 14px;
       object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0,212,255,.2);
+      box-shadow: 0 8px 24px rgba(58,136,237,.2);
     }
 
     /* HERO */
@@ -39,9 +39,9 @@
       gap: 8px;
       padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(0,212,255,.25);
-      background: rgba(0,212,255,.08);
-      color: var(--ciano);
+      border: 1px solid rgba(0,184,217,.3);
+      background: rgba(0,184,217,.08);
+      color: #0891b2;
       font-size: 13px;
       font-weight: 800;
       margin-bottom: 20px;
@@ -82,14 +82,11 @@
     }
     .mockup-phone {
       width: 280px;
-      background: rgba(255,255,255,.06);
+      background: #ffffff;
       border: 1px solid var(--line);
       border-radius: 44px;
       padding: 14px;
-      box-shadow:
-        0 40px 80px rgba(0,0,0,.4),
-        0 0 0 1px rgba(255,255,255,.06);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 60px rgba(15,23,42,.12);
     }
     .mockup-screen {
       border-radius: 32px;
@@ -109,18 +106,17 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--bg-card);
+      background: white;
       border: 1px solid var(--line);
-      color: white;
+      color: var(--text);
       display: grid;
       place-items: center;
       cursor: pointer;
       font-size: 16px;
       transition: .2s ease;
-      backdrop-filter: blur(10px);
     }
     .mock-arrow:hover {
-      background: rgba(255,255,255,.1);
+      background: #f1f5f9;
       transform: scale(1.08);
     }
     .mock-dots {
@@ -155,7 +151,7 @@
       margin-top: 24px;
     }
     .estilo-card {
-      background: rgba(255,255,255,.03);
+      background: #f8fafc;
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
       padding: 20px 16px;
@@ -166,8 +162,8 @@
       transition: .25s ease;
     }
     .estilo-card:hover {
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.15);
+      background: #f1f5f9;
+      border-color: #cbd5e1;
       transform: translateY(-3px);
     }
     .estilo-card.active {
@@ -179,7 +175,7 @@
       height: 32px;
       border-radius: 50%;
     }
-    .estilo-card strong { font-size: 15px; font-weight: 900; color: white; }
+    .estilo-card strong { font-size: 15px; font-weight: 900; color: var(--text); }
     .estilo-card span { font-size: 13px; color: var(--muted); line-height: 1.4; }
 
     .demo-frame-wrap {
@@ -196,20 +192,21 @@
     }
 
     .demo-frame-header {
-      background: rgba(255,255,255,.04);
+      background: #f8fafc;
       padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 13px;
       font-weight: 800;
-      color: white;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
     }
 
     .demo-frame-close {
-      background: rgba(255,255,255,.08);
+      background: white;
       border: 1px solid var(--line);
-      color: white;
+      color: var(--text);
       border-radius: 999px;
       padding: 6px 14px;
       font-size: 12px;
@@ -219,7 +216,7 @@
     }
 
     .demo-frame-close:hover {
-      background: rgba(255,255,255,.15);
+      background: #f1f5f9;
     }
 
     .demo-frame {
@@ -244,7 +241,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: rgba(255,255,255,.03);
+      background: #f8fafc;
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
       padding: 16px 20px;
@@ -252,8 +249,8 @@
       transition: .25s ease;
     }
     .cliente-card:hover {
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.15);
+      background: #f1f5f9;
+      border-color: #cbd5e1;
       transform: translateX(4px);
     }
     .cliente-logo {
@@ -268,10 +265,10 @@
       flex: 0 0 auto;
     }
     .cliente-info { flex: 1; }
-    .cliente-info strong { display: block; font-size: 15px; color: white; font-weight: 900; }
+    .cliente-info strong { display: block; font-size: 15px; color: var(--text); font-weight: 900; }
     .cliente-info span { font-size: 13px; color: var(--muted); }
     .cliente-arrow { color: var(--muted); font-size: 18px; transition: .2s ease; }
-    .cliente-card:hover .cliente-arrow { color: white; transform: translateX(4px); }
+    .cliente-card:hover .cliente-arrow { color: var(--text); transform: translateX(4px); }
 
     /* RESPONSIVO */
     @media (max-width: 860px) {
@@ -307,11 +304,11 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-copy">
-      <div class="hero-badge">✦ kit presença digital completo</div>
+      <div class="hero-badge">✦ pronto em poucos dias</div>
       <h1>páginas que <span class="destaque">vendem</span></h1>
       <p class="hero-sub">
-        Sua vitrine no celular — homepage bonita, formulário de pedido
-        e tudo no ar em dias. Pronto para receber clientes.
+        Seu cliente pede. Você só responde. Uma página simples
+        que organiza tudo antes da conversa.
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="./clientes/pedido.html">Quero minha página</a>
@@ -337,22 +334,22 @@
   <!-- COMO FUNCIONA -->
   <section class="section" id="como-funciona">
     <h2>Menos conversa. <span style="color:var(--ciano)">Mais ação.</span></h2>
-    <p>O KappaLink organiza o pedido antes da conversa. Seu cliente entende, escolhe e envia — você recebe tudo claro.</p>
+    <p>Nada de ida e volta no WhatsApp tentando entender o que a pessoa quer. Ela já te diz tudo de uma vez.</p>
     <div class="grid-3">
       <div class="mini-card">
         <span class="mini-num">1</span>
-        <strong>Cliente acessa</strong>
-        <span>Você envia o link ou coloca na bio.</span>
+        <strong>Você manda o link</strong>
+        <span>No WhatsApp, na bio, onde quiser.</span>
       </div>
       <div class="mini-card">
         <span class="mini-num">2</span>
-        <strong>Responde em cliques</strong>
-        <span>Perguntas simples, botões grandes, pouco esforço no celular.</span>
+        <strong>Ele responde em cliques</strong>
+        <span>Sem digitar muito, sem complicação.</span>
       </div>
       <div class="mini-card">
         <span class="mini-num">3</span>
-        <strong>Você recebe claro</strong>
-        <span>Pedido pronto para orçar, responder ou preparar.</span>
+        <strong>Você recebe pronto</strong>
+        <span>Já sabe o que fazer — só responder.</span>
       </div>
     </div>
   </section>
@@ -360,7 +357,7 @@
   <!-- ESCOLHA SEU ESTILO -->
   <section class="section">
     <h2>Escolha o estilo do seu <span style="color:var(--ciano)">formulário</span></h2>
-    <p>Cada estilo muda como seu cliente preenche o pedido. Clique para experimentar.</p>
+    <p>Três jeitos diferentes de perguntar. Clica e testa antes de decidir.</p>
 
     <div class="estilos-grid" id="estilosGrid">
       <div class="estilo-card" data-demo="./demos/lista-rapida.html" data-cor="#3a88ed">
@@ -392,13 +389,21 @@
   <!-- QUEM JÁ USA -->
   <section class="section" id="exemplos">
     <h2>Quem já <span style="color:var(--ciano)">usa</span></h2>
-    <p>Páginas reais feitas com KappaLink.</p>
+    <p>Gente de verdade usando de verdade.</p>
     <div class="clientes-grid">
       <a class="cliente-card" href="https://noxuscamisetas.kappalink.com" target="_blank">
         <div class="cliente-logo" style="background:linear-gradient(135deg,#e11d48,#ff4d6d)">N</div>
         <div class="cliente-info">
           <strong>Noxus Camisetas</strong>
           <span>Moda • Gamer • Geek</span>
+        </div>
+        <span class="cliente-arrow">→</span>
+      </a>
+      <a class="cliente-card" href="https://festalindapersonalizados.kappalink.com" target="_blank">
+        <div class="cliente-logo" style="background:linear-gradient(135deg,#5b9bd5,#ec4899)">F</div>
+        <div class="cliente-info">
+          <strong>Festa Linda Personalizados</strong>
+          <span>Lembrancinhas • Festas infantis</span>
         </div>
         <span class="cliente-arrow">→</span>
       </a>
@@ -412,8 +417,7 @@
   <section class="section" style="text-align:center;background:linear-gradient(135deg,rgba(58,136,237,.08),rgba(0,212,255,.06));">
     <h2>Pronto para ter sua <span style="color:var(--ciano)">página?</span></h2>
     <p style="margin:0 auto 28px;">
-      Você me envia as informações e eu preparo uma página com sua marca,
-      seu objetivo e um caminho claro para o cliente entrar em contato.
+      Me conta um pouco do seu negócio e eu preparo a página. Simples assim.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a class="btn btn-primary" href="./clientes/pedido.html">Quero minha página</a>
@@ -427,7 +431,7 @@
   <!-- FOOTER -->
   <footer>
     <span style="color:var(--muted);font-size:13px;">KappaLink é um produto MindKappa®</span>
-    <small style="color:rgba(255,255,255,.3);font-size:11px;">páginas que vendem</small>
+    <small style="color:var(--muted);font-size:11px;">páginas que vendem</small>
   </footer>
 
 </main>
