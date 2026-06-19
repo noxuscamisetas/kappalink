@@ -1,5 +1,5 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/:path*",
       "has": [
@@ -8,7 +8,8 @@
           "value": "(?<cliente>.+)\\.kappalink\\.com"
         }
       ],
-      "destination": "/clientes/:cliente/:path*"
+      "destination": "/clientes/:cliente/:path*",
+      "permanent": false
     }
   ]
 }
