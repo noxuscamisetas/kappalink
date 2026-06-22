@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar Consulta — Ana Beatriz Nutrição</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+  <style>
+    :root {
+      --verde: #16a34a;
+      --verde-claro: #f0fdf4;
+      --verde-medio: #dcfce7;
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
+    .wrap { max-width: 480px; margin: 0 auto; }
+    button, input, textarea { font-family: inherit; }
+
+    /* CONVERSA */
+    .conv-wrap {
+      background: white; border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 20px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-height: 300px; margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(15,23,42,.04);
+    }
+
+    .conv-bubble {
+      max-width: 85%; padding: 14px 18px; border-radius: 18px;
+      line-height: 1.5; font-size: 14px; animation: bubbleIn .35s ease;
+    }
+
+    .conv-left {
+      background: var(--verde-claro); color: var(--text);
+      border-bottom-left-radius: 4px; align-self: flex-start; font-weight: 600;
+    }
+
+    .conv-right {
+      background: var(--verde); color: white;
+      border-bottom-right-radius: 4px; align-self: flex-end; font-weight: 700;
+    }
+
+    @keyframes bubbleIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .typing {
+      display: flex; gap: 4px; align-self: flex-start;
+      background: var(--verde-claro); padding: 14px 18px;
+      border-radius: 18px; border-bottom-left-radius: 4px;
+    }
+
+    .typing span {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--verde); opacity: .4;
+      animation: typingBounce 1.2s infinite ease;
+    }
+
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: .4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .conv-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 8px; align-self: flex-start; max-width: 90%;
+    }
+
+    .conv-chip {
+      padding: 10px 16px; font-size: 13px; font-weight: 700;
+      border-radius: 999px; border: 2px solid var(--verde-medio);
+      background: white; cursor: pointer; transition: .2s ease; color: var(--text);
+    }
+
+    .conv-chip:hover { border-color: var(--verde); background: var(--verde-claro); }
+    .conv-chip.selected { border-color: var(--verde); background: var(--verde); color: white; }
+
+    .conv-textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 14px;
+      padding: 12px 14px; font-size: 14px; resize: vertical;
+      min-height: 80px; outline: none; transition: .2s ease;
+      margin-top: 8px; align-self: flex-start; max-width: 90%;
+    }
+
+    .conv-textarea:focus { border-color: var(--verde); }
+
+    .conv-input {
+      width: 90%; border: 1px solid var(--line); border-radius: 14px;
+      padding: 12px 14px; font-size: 14px; outline: none;
+      transition: .2s ease; margin-top: 8px;
+    }
+
+    .conv-input:focus { border-color: var(--verde); }
+
+    .btn-enviar {
+      width: 100%; background: var(--verde); color: white; border: none;
+      border-radius: 999px; padding: 16px; font-weight: 900;
+      font-size: 15px; cursor: pointer; transition: .25s ease;
+      box-shadow: 0 8px 20px rgba(22,163,74,.25);
+    }
+
+    .btn-enviar:hover { transform: translateY(-2px); }
+
+    .footer-note { text-align: center; font-size: 11px; color: var(--muted); margin-top: 14px; opacity: .6; }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div style="text-align:center;margin-bottom:20px;">
+    <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#15803d);margin:0 auto 10px;display:grid;place-items:center;color:white;font-weight:900;font-size:22px;box-shadow:0 8px 20px rgba(22,163,74,.2);border:3px solid white;">A</div>
+    <h1 style="font-size:18px;font-weight:900;letter-spacing:-0.02em;margin-bottom:4px;">Ana Beatriz</h1>
+    <p style="font-size:13px;color:var(--muted);">Nutricionista • Agendamento de consulta</p>
+  </div>
+
+  <div class="conv-wrap" id="convWrap"></div>
+
+  <p class="footer-note">feito com KappaLink · KappaLink é um produto MindKappa®</p>
+
+</div>
+
+<script>
+var email = "kappalink01@gmail.com";
+
+var perguntas = [
+  {
+    texto: "Olá! Que bom te ver por aqui 🌿 O que você busca?",
+    opcoes: ["Emagrecer", "Ganhar massa", "Reeducar alimentação", "Saúde geral"]
+  },
+  {
+    texto: "Como prefere a consulta?",
+    opcoes: ["Online", "Presencial", "Sem preferência"]
+  },
+  {
+    texto: "Qual sua disponibilidade?",
+    opcoes: ["Manhã", "Tarde", "Noite", "Flexível"]
+  },
+  {
+    texto: "É sua primeira consulta com nutricionista?",
+    opcoes: ["Sim, primeira vez", "Já fiz antes", "Prefiro não dizer"]
+  },
+  {
+    texto: "Quer deixar alguma mensagem ou dúvida?",
+    tipo: "textarea",
+    placeholder: "Escreva aqui..."
+  },
+  {
+    texto: "Qual seu nome?",
+    tipo: "input",
+    placeholder: "Como posso te chamar?"
+  }
+];
+
+var wrap = document.getElementById("convWrap");
+var etapa = 0;
+var respostas = [];
+
+function mostrarTyping(callback) {
+  var typing = document.createElement("div");
+  typing.className = "typing";
+  typing.innerHTML = "<span></span><span></span><span></span>";
+  wrap.appendChild(typing);
+  wrap.scrollTop = wrap.scrollHeight;
+  setTimeout(function() {
+    typing.remove();
+    callback();
+  }, 700);
+}
+
+function mostrarPergunta() {
+  if (etapa >= perguntas.length) {
+    mostrarTyping(function() {
+      var fim = document.createElement("div");
+      fim.className = "conv-bubble conv-left";
+      fim.textContent = "Perfeito! Vou entrar em contato em breve para confirmar sua consulta 💚";
+      wrap.appendChild(fim);
+
+      var btnWrap = document.createElement("div");
+      btnWrap.style.marginTop = "12px";
+      btnWrap.innerHTML = '<button class="btn-enviar" onclick="enviarEmail()">Confirmar agendamento</button>';
+      wrap.appendChild(btnWrap);
+      wrap.scrollTop = wrap.scrollHeight;
+    });
+    return;
+  }
+
+  mostrarTyping(function() {
+    var p = perguntas[etapa];
+    var bubble = document.createElement("div");
+    bubble.className = "conv-bubble conv-left";
+    bubble.textContent = p.texto;
+    wrap.appendChild(bubble);
+
+    if (p.tipo === "textarea") {
+      var ta = document.createElement("textarea");
+      ta.className = "conv-textarea";
+      ta.placeholder = p.placeholder;
+      wrap.appendChild(ta);
+      var btn = document.createElement("button");
+      btn.className = "conv-chip";
+      btn.textContent = "Continuar →";
+      btn.style.marginTop = "8px";
+      btn.onclick = function() {
+        var val = ta.value.trim() || "Sem mensagem";
+        respostas.push(val);
+        var resp = document.createElement("div");
+        resp.className = "conv-bubble conv-right";
+        resp.textContent = val;
+        wrap.appendChild(resp);
+        ta.disabled = true;
+        btn.style.display = "none";
+        etapa++;
+        setTimeout(mostrarPergunta, 400);
+      };
+      wrap.appendChild(btn);
+    } else if (p.tipo === "input") {
+      var inp = document.createElement("input");
+      inp.className = "conv-input";
+      inp.placeholder = p.placeholder;
+      wrap.appendChild(inp);
+      var btn2 = document.createElement("button");
+      btn2.className = "conv-chip";
+      btn2.textContent = "Confirmar →";
+      btn2.style.marginTop = "8px";
+      btn2.onclick = function() {
+        var val = inp.value.trim() || "Não informado";
+        respostas.push(val);
+        var resp = document.createElement("div");
+        resp.className = "conv-bubble conv-right";
+        resp.textContent = val;
+        wrap.appendChild(resp);
+        inp.disabled = true;
+        btn2.style.display = "none";
+        etapa++;
+        setTimeout(mostrarPergunta, 400);
+      };
+      wrap.appendChild(btn2);
+    } else {
+      var chips = document.createElement("div");
+      chips.className = "conv-chips";
+      p.opcoes.forEach(function(op) {
+        var chip = document.createElement("button");
+        chip.className = "conv-chip";
+        chip.textContent = op;
+        chip.onclick = function() {
+          chips.querySelectorAll(".conv-chip").forEach(function(c) {
+            c.disabled = true;
+            c.classList.toggle("selected", c.textContent === op);
+          });
+          respostas.push(op);
+          var resp = document.createElement("div");
+          resp.className = "conv-bubble conv-right";
+          resp.textContent = op;
+          wrap.appendChild(resp);
+          etapa++;
+          setTimeout(mostrarPergunta, 400);
+        };
+        chips.appendChild(chip);
+      });
+      wrap.appendChild(chips);
+    }
+    wrap.scrollTop = wrap.scrollHeight;
+  });
+}
+
+function montarMensagem() {
+  return "Agendamento — Ana Beatriz Nutrição\n\n" +
+    "Objetivo: " + (respostas[0] || "Não informado") + "\n" +
+    "Modalidade: " + (respostas[1] || "Não informado") + "\n" +
+    "Disponibilidade: " + (respostas[2] || "Não informado") + "\n" +
+    "Primeira consulta: " + (respostas[3] || "Não informado") + "\n\n" +
+    "Mensagem:\n" + (respostas[4] || "Sem mensagem") + "\n\n" +
+    "Nome: " + (respostas[5] || "Não informado");
+}
+
+function enviarEmail() {
+  var msg = encodeURIComponent(montarMensagem());
+  window.open("mailto:" + email + "?subject=Agendamento Ana Beatriz Nutrição&body=" + msg, "_blank");
+}
+
+mostrarPergunta();
+</script>
+
+</body>
+</html>

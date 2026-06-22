@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ana Beatriz Nutrição</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-038DM4PDTG');
+  </script>
+  <style>
+    :root {
+      --verde: #16a34a;
+      --verde-claro: #f0fdf4;
+      --verde-medio: #dcfce7;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --radius: 24px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    a { text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+    .page { width: min(720px, 100%); margin: 0 auto; padding: 0 16px 60px; }
+
+    /* HEADER */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .avatar-header {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--verde), #15803d);
+      display: grid; place-items: center;
+      color: white; font-weight: 900; font-size: 16px;
+    }
+    .header-nome { font-size: 15px; font-weight: 900; color: var(--text); }
+    .header-crn { font-size: 11px; color: var(--muted); }
+    .btn-agendar {
+      background: var(--verde); color: white; border: none;
+      border-radius: 999px; padding: 10px 20px;
+      font-weight: 800; font-size: 13px; transition: .2s ease;
+    }
+    .btn-agendar:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(22,163,74,.25); }
+
+    /* HERO */
+    .hero {
+      padding: 70px 16px 60px; text-align: center;
+      background: linear-gradient(180deg, var(--verde-claro), transparent);
+    }
+    .hero-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--verde), #15803d);
+      display: grid; place-items: center; margin: 0 auto 20px;
+      color: white; font-weight: 900; font-size: 32px;
+      box-shadow: 0 8px 24px rgba(22,163,74,.25);
+      border: 4px solid white;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--verde-claro); border: 1px solid var(--verde-medio);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 12px; font-weight: 700; color: var(--verde);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 42px); font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 14px;
+    }
+    .hero h1 span { color: var(--verde); }
+    .hero-sub {
+      font-size: 16px; color: var(--muted); line-height: 1.6;
+      max-width: 420px; margin: 0 auto 28px;
+    }
+    .btn-primary {
+      display: inline-flex; background: var(--verde); color: white;
+      border: none; border-radius: 999px; padding: 16px 28px;
+      font-weight: 800; font-size: 15px; transition: .25s ease;
+      box-shadow: 0 8px 20px rgba(22,163,74,.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(22,163,74,.35); }
+
+    /* ESPECIALIDADES */
+    .especialidades { padding: 50px 0; }
+    .especialidades h2 { font-size: 24px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .esp-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .esp-card {
+      background: var(--bg-soft); border: 1px solid var(--line);
+      border-radius: var(--radius-sm); padding: 18px;
+      display: flex; align-items: flex-start; gap: 12px;
+      transition: .2s ease;
+    }
+    .esp-card:hover { border-color: var(--verde); background: var(--verde-claro); }
+    .esp-icone {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--verde-claro); display: grid;
+      place-items: center; font-size: 18px; flex: 0 0 auto;
+    }
+    .esp-card strong { display: block; font-size: 14px; font-weight: 900; margin-bottom: 4px; }
+    .esp-card span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+    @media (max-width: 480px) { .esp-grid { grid-template-columns: 1fr; } }
+
+    /* COMO FUNCIONA */
+    .como-funciona {
+      background: var(--bg-soft); border-radius: var(--radius);
+      margin-bottom: 40px; padding: 32px;
+    }
+    .cf-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px; }
+    .cf-card { text-align: center; padding: 16px; }
+    .cf-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--verde); color: white;
+      display: grid; place-items: center; font-weight: 900;
+      margin: 0 auto 12px; font-size: 15px;
+    }
+    .cf-card strong { display: block; font-size: 14px; font-weight: 900; margin-bottom: 6px; }
+    .cf-card span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+    @media (max-width: 480px) { .cf-grid { grid-template-columns: 1fr; } }
+
+    /* DEPOIMENTO */
+    .depoimento {
+      background: var(--verde-claro); border: 1px solid var(--verde-medio);
+      border-radius: var(--radius-sm); padding: 24px; margin-bottom: 40px;
+    }
+    .dep-estrelas { color: #f59e0b; font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+    .dep-texto { font-size: 15px; color: var(--text); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+    .dep-autor { font-size: 13px; font-weight: 700; color: var(--verde); }
+
+    /* CTA FINAL */
+    .cta-final { text-align: center; padding: 50px 0; }
+    .cta-final h2 { font-size: 26px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .cta-final p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+
+    /* FOOTER */
+    .footer { text-align: center; padding: 30px 16px 20px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+    .footer small { color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div class="avatar-header">A</div>
+    <div>
+      <div class="header-nome">Ana Beatriz</div>
+      <div class="header-crn">Nutricionista • CRN ativa</div>
+    </div>
+  </div>
+  <a class="btn-agendar" href="./pedido.html">Agendar consulta</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-avatar">A</div>
+  <div class="hero-badge">🌿 Atendimento online e presencial</div>
+  <h1>Sua saúde <span>começa no prato</span></h1>
+  <p class="hero-sub">Consultas personalizadas para você conquistar mais saúde, energia e equilíbrio alimentar.</p>
+  <a class="btn-primary" href="./pedido.html">Agendar minha consulta</a>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="especialidades page">
+  <h2>Como posso te ajudar</h2>
+  <div class="esp-grid">
+    <div class="esp-card">
+      <div class="esp-icone">⚖️</div>
+      <div>
+        <strong>Emagrecimento</strong>
+        <span>Sem dietas restritivas. Com reeducação alimentar sustentável.</span>
+      </div>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icone">🏋️</div>
+      <div>
+        <strong>Nutrição esportiva</strong>
+        <span>Alimentação para melhorar performance e recuperação.</span>
+      </div>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icone">🌱</div>
+      <div>
+        <strong>Reeducação alimentar</strong>
+        <span>Construindo uma relação saudável com a comida.</span>
+      </div>
+    </div>
+    <div class="esp-card">
+      <div class="esp-icone">💚</div>
+      <div>
+        <strong>Saúde feminina</strong>
+        <span>Nutrição nas fases do ciclo, gestação e menopausa.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como-funciona page">
+  <h2 style="font-size:22px;font-weight:900;letter-spacing:-0.03em;">Como funciona</h2>
+  <div class="cf-grid">
+    <div class="cf-card">
+      <div class="cf-num">1</div>
+      <strong>Você agenda</strong>
+      <span>Preenche o formulário e eu entro em contato para confirmar.</span>
+    </div>
+    <div class="cf-card">
+      <div class="cf-num">2</div>
+      <strong>Fazemos a consulta</strong>
+      <span>Online ou presencial, no horário que funciona pra você.</span>
+    </div>
+    <div class="cf-card">
+      <div class="cf-num">3</div>
+      <strong>Você recebe seu plano</strong>
+      <span>Cardápio personalizado com acompanhamento contínuo.</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTO -->
+<section class="page">
+  <div class="depoimento">
+    <div class="dep-estrelas">★★★★★</div>
+    <p class="dep-texto">"Perdi 8kg em 3 meses sem passar fome. A Ana entende que cada pessoa é diferente e monta um plano que realmente encaixa na sua rotina."</p>
+    <span class="dep-autor">Mariana S. — paciente há 6 meses</span>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final page">
+  <h2>Pronta para começar?</h2>
+  <p>Preencha o formulário e eu entro em contato para agendar sua primeira consulta.</p>
+  <a class="btn-primary" href="./pedido.html">Agendar minha consulta</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="avatar-header" style="margin:0 auto;width:40px;height:40px;font-size:18px;">A</div>
+  <small>Ana Beatriz Nutrição</small>
+  <small>feito com KappaLink · KappaLink é um produto MindKappa®</small>
+</footer>
+
+</body>
+</html>
