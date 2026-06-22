@@ -283,6 +283,131 @@
       .estilos-grid { grid-template-columns: 1fr; }
       .section { padding: 24px; }
     }
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+      align-items: start;
+    }
+    .produto-card {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: .25s ease;
+    }
+    .produto-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(15,23,42,.08);
+    }
+    .produto-destaque {
+      background: white;
+      border-color: var(--azul);
+      box-shadow: 0 8px 24px rgba(58,136,237,.12);
+    }
+    .produto-destaque:hover {
+      border-color: var(--azul);
+      box-shadow: 0 12px 32px rgba(58,136,237,.2);
+    }
+    .produto-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--azul), var(--ciano));
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 999px;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .produto-num {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .produto-card h3 {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin: 0;
+    }
+    .produto-card > p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+      max-width: 100%;
+    }
+    .produto-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .produto-lista li {
+      font-size: 13px;
+      color: var(--text);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .produto-lista li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--azul);
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .produto-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: white;
+      transition: .2s ease;
+      text-decoration: none;
+      margin-top: auto;
+    }
+    .produto-btn:hover {
+      border-color: var(--azul);
+      color: var(--azul);
+      transform: translateY(-1px);
+    }
+    .produto-btn-primary {
+      background: linear-gradient(135deg, var(--azul), var(--ciano));
+      color: white;
+      border: none;
+      box-shadow: 0 6px 16px rgba(58,136,237,.25);
+    }
+    .produto-btn-primary:hover {
+      color: white;
+      box-shadow: 0 10px 24px rgba(58,136,237,.35);
+    }
+    @media (max-width: 860px) {
+      .produtos-grid { grid-template-columns: 1fr; }
+      .produto-destaque { order: -1; }
+    }
   </style>
 </head>
 
@@ -328,6 +453,62 @@
         <button class="mock-arrow mock-next">›</button>
       </div>
       <a class="btn btn-ghost mock-link" href="#" target="_blank">Ver página ao vivo →</a>
+    </div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <section class="section" id="produtos">
+    <h2>O que você <span style="background:linear-gradient(135deg,var(--azul),var(--ciano));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">precisa?</span></h2>
+    <p>Escolha o nível que faz sentido para você agora.</p>
+
+    <div class="produtos-grid">
+
+      <div class="produto-card">
+        <div class="produto-num">P1</div>
+        <h3>Organizador de Pedidos</h3>
+        <p>Para quem já tem Instagram ou WhatsApp e quer organizar os pedidos que chegam.</p>
+        <ul class="produto-lista">
+          <li>Formulário personalizado</li>
+          <li>Integração com WhatsApp</li>
+          <li>Hospedado por nós</li>
+          <li>Setup + mensalidade</li>
+        </ul>
+        <a class="produto-btn" href="./pedido-organizador.html" onclick="gtag('event','cta_p1',{'event_category':'pedido'})">
+          Quero o Organizador →
+        </a>
+      </div>
+
+      <div class="produto-card produto-destaque">
+        <div class="produto-badge">Mais popular</div>
+        <div class="produto-num">P2</div>
+        <h3>Página + Organizador</h3>
+        <p>Para quem quer ter sua própria página profissional na internet.</p>
+        <ul class="produto-lista">
+          <li>Homepage personalizada</li>
+          <li>Organizador integrado</li>
+          <li>GitHub e Vercel próprios</li>
+          <li>Domínio opcional à parte</li>
+        </ul>
+        <a class="produto-btn produto-btn-primary" href="./pedido-pagina.html" onclick="gtag('event','cta_p2',{'event_category':'pedido'})">
+          Quero minha Página →
+        </a>
+      </div>
+
+      <div class="produto-card">
+        <div class="produto-num">P3</div>
+        <h3>Kit Completo</h3>
+        <p>Para quem quer receber tudo pronto e já sair divulgando.</p>
+        <ul class="produto-lista">
+          <li>Tudo do P2</li>
+          <li>Domínio incluso</li>
+          <li>Google Analytics configurado</li>
+          <li>Zero configuração extra</li>
+        </ul>
+        <a class="produto-btn" href="./pedido-kit.html" onclick="gtag('event','cta_p3',{'event_category':'pedido'})">
+          Quero o Kit Completo →
+        </a>
+      </div>
+
     </div>
   </section>
 
