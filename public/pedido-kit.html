@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Organizador de Pedidos — KappaLink</title>
+  <title>Kit Completo — KappaLink</title>
   <link rel="stylesheet" href="./assets/global.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
   <script>
@@ -114,13 +114,18 @@
 
   <div class="pedido-header">
     <div class="logo">K</div>
-    <h1>Organizador de <span>Pedidos</span></h1>
-    <p>Preencha as informações abaixo e entraremos em contato para configurar seu organizador.</p>
+    <h1>Kit <span>Completo</span></h1>
+    <p>Tudo pronto para você começar a divulgar. Sem surpresas, sem configuração extra.</p>
   </div>
 
   <div class="pedido-group">
 
-    <span class="pedido-label">Qual o seu segmento?</span>
+    <span class="pedido-label">Nome do negócio</span>
+    <input class="pedido-input" id="nomeNegocio" placeholder="Ex: Studio Bella, Chef Marcos..." />
+
+    <hr class="pedido-divider" />
+
+    <span class="pedido-label">Segmento</span>
     <div class="chip-row" data-group="segmento">
       <button class="chip" data-value="Moda / Personalizados">Moda / Personalizados</button>
       <button class="chip" data-value="Saúde / Estética">Saúde / Estética</button>
@@ -134,20 +139,35 @@
 
     <hr class="pedido-divider" />
 
-    <span class="pedido-label">Qual estilo de formulário?</span>
-    <span class="pedido-hint">Clique em "Experimentar" para ver antes de escolher.</span>
+    <span class="pedido-label">Estilo da homepage</span>
+    <div class="estilo-card" data-group="homepage" data-value="Bold">
+      <strong>Bold</strong>
+      <span>Escuro, impactante. Ideal para moda, games, produtos.</span>
+    </div>
+    <div class="estilo-card" data-group="homepage" data-value="Clean">
+      <strong>Clean</strong>
+      <span>Branco, minimalista. Ideal para serviços premium.</span>
+    </div>
+    <div class="estilo-card" data-group="homepage" data-value="Suave">
+      <strong>Suave</strong>
+      <span>Claro e acolhedor. Ideal para saúde, beleza, festas.</span>
+    </div>
 
-    <div class="estilo-card" data-group="estilo" data-value="Lista Rápida">
+    <hr class="pedido-divider" />
+
+    <span class="pedido-label">Estilo do formulário de pedido</span>
+    <span class="pedido-hint">Clique em "Experimentar" para ver antes de escolher.</span>
+    <div class="estilo-card" data-group="formulario" data-value="Lista Rápida">
       <strong>Lista Rápida</strong>
-      <span>Organizado e direto ao ponto.</span>
+      <span>Organizado e direto.</span>
       <a href="./demos/lista-rapida.html" target="_blank">Experimentar →</a>
     </div>
-    <div class="estilo-card" data-group="estilo" data-value="Conversa">
+    <div class="estilo-card" data-group="formulario" data-value="Conversa">
       <strong>Conversa</strong>
       <span>Acolhedor, estilo chat.</span>
       <a href="./demos/conversa.html" target="_blank">Experimentar →</a>
     </div>
-    <div class="estilo-card" data-group="estilo" data-value="Por Etapas">
+    <div class="estilo-card" data-group="formulario" data-value="Por Etapas">
       <strong>Por Etapas</strong>
       <span>Passo a passo com barra de progresso.</span>
       <a href="./demos/etapas.html" target="_blank">Experimentar →</a>
@@ -155,14 +175,55 @@
 
     <hr class="pedido-divider" />
 
-    <span class="pedido-label">Como seus clientes entram em contato hoje?</span>
-    <div class="chip-row" data-group="canal" data-multi="true">
-      <button class="chip" data-value="WhatsApp">WhatsApp</button>
-      <button class="chip" data-value="Instagram">Instagram</button>
-      <button class="chip" data-value="Telefone">Telefone</button>
-      <button class="chip" data-value="E-mail">E-mail</button>
-      <button class="chip" data-value="Presencial">Presencial</button>
+    <span class="pedido-label">Cores da página</span>
+    <div class="chip-row" data-group="cores">
+      <button class="chip" data-value="Seguir minha logo">Seguir minha logo</button>
+      <button class="chip" data-value="Tenho preferência">Tenho preferência</button>
+      <button class="chip" data-value="Pode sugerir">Pode sugerir</button>
     </div>
+    <input class="pedido-input hidden" id="coresTexto" placeholder="Quais cores?" />
+
+    <hr class="pedido-divider" />
+
+    <span class="pedido-label">Você tem logo?</span>
+    <div class="chip-row" data-group="logo">
+      <button class="chip" data-value="Sim, tenho PNG sem fundo">Sim, tenho PNG</button>
+      <button class="chip" data-value="Tenho mas preciso ajustar">Preciso ajustar</button>
+      <button class="chip" data-value="Não tenho ainda">Não tenho ainda</button>
+    </div>
+
+    <hr class="pedido-divider" />
+
+    <span class="pedido-label">Tem fotos dos produtos/serviços?</span>
+    <div class="chip-row" data-group="fotos">
+      <button class="chip" data-value="Não tenho ainda">Não tenho ainda</button>
+      <button class="chip" data-value="1 a 3 fotos">1 a 3 fotos</button>
+      <button class="chip" data-value="4 a 6 fotos">4 a 6 fotos</button>
+    </div>
+
+    <hr class="pedido-divider" />
+
+    <span class="pedido-label">Já tem um domínio em mente?</span>
+    <span class="pedido-hint">Ex: seunegocio.com.br — o domínio já está incluso no kit.</span>
+    <div class="chip-row" data-group="dominio">
+      <button class="chip" data-value="Sim, já tenho ideia">Sim, já tenho ideia</button>
+      <button class="chip" data-value="Não, podem sugerir">Não, podem sugerir</button>
+      <button class="chip" data-value="Não quero domínio agora">Não quero por enquanto</button>
+    </div>
+    <input class="pedido-input hidden" id="dominioTexto" placeholder="Qual domínio você quer?" />
+
+    <hr class="pedido-divider" />
+
+    <span class="pedido-label">Redes sociais</span>
+    <div class="chip-row" data-group="redes" data-multi="true">
+      <button class="chip" data-value="Instagram">Instagram</button>
+      <button class="chip" data-value="TikTok">TikTok</button>
+      <button class="chip" data-value="WhatsApp">WhatsApp</button>
+      <button class="chip" data-value="Facebook">Facebook</button>
+      <button class="chip" data-value="YouTube">YouTube</button>
+      <button class="chip" data-value="Nenhuma">Nenhuma</button>
+    </div>
+    <input class="pedido-input" id="redesLinks" placeholder="Cole os links ou @ das suas redes" />
 
     <hr class="pedido-divider" />
 
@@ -181,6 +242,17 @@
 
     <hr class="pedido-divider" />
 
+    <span class="pedido-label">O que você já tem pronto?</span>
+    <span class="pedido-hint">Isso nos ajuda a entender o que falta configurar.</span>
+    <div class="chip-row" data-group="temPronto" data-multi="true">
+      <button class="chip" data-value="Logo">Logo</button>
+      <button class="chip" data-value="Fotos dos produtos">Fotos dos produtos</button>
+      <button class="chip" data-value="Texto de apresentação">Texto de apresentação</button>
+      <button class="chip" data-value="Nenhum ainda">Nenhum ainda</button>
+    </div>
+
+    <hr class="pedido-divider" />
+
     <span class="pedido-label">Resumo do pedido</span>
     <pre id="resumo" class="resumo-box">Preencha as opções acima...</pre>
     <button class="btn-enviar" onclick="enviarEmail()">Enviar pedido</button>
@@ -191,7 +263,12 @@
 </main>
 
 <script>
-var respostas = { segmento: "", estilo: "", canal: [], whatsapp: "", email: "", nome: "" };
+var respostas = {
+  nomeNegocio: "", segmento: "", segmentoOutro: "",
+  homepage: "", formulario: "", cores: "", coresTexto: "",
+  logo: "", fotos: "", dominio: "", dominioTexto: "", redes: [], redesLinks: "",
+  whatsapp: "", email: "", nome: "", temPronto: []
+};
 
 document.querySelectorAll("[data-group]").forEach(function(container) {
   var group = container.dataset.group;
@@ -211,6 +288,12 @@ document.querySelectorAll("[data-group]").forEach(function(container) {
         if (group === "segmento") {
           document.getElementById("segmentoOutro").classList.toggle("hidden", chip.dataset.value !== "Outro");
         }
+        if (group === "cores") {
+          document.getElementById("coresTexto").classList.toggle("hidden", chip.dataset.value !== "Tenho preferência");
+        }
+        if (group === "dominio") {
+          document.getElementById("dominioTexto").classList.toggle("hidden", chip.dataset.value !== "Sim, já tenho ideia");
+        }
       }
       atualizarResumo();
     });
@@ -227,18 +310,31 @@ document.querySelectorAll("[data-group]").forEach(function(container) {
   });
 });
 
-["whatsapp","email","nome","segmentoOutro"].forEach(function(id) {
+["nomeNegocio","segmentoOutro","coresTexto","dominioTexto","redesLinks","whatsapp","email","nome"].forEach(function(id) {
   var el = document.getElementById(id);
   if (el) el.addEventListener("input", function() { respostas[id] = el.value; atualizarResumo(); });
 });
 
 function montarMensagem() {
-  var canal = respostas.canal.length > 0 ? respostas.canal.join(", ") : "Não informado";
   var segmento = respostas.segmento === "Outro" && respostas.segmentoOutro ? respostas.segmentoOutro : respostas.segmento || "Não informado";
-  return "Pedido — Organizador de Pedidos (P1)\n\n" +
-    "Segmento: " + segmento + "\n" +
-    "Estilo de formulário: " + (respostas.estilo || "Não informado") + "\n" +
-    "Canal atual: " + canal + "\n\n" +
+  var cores = respostas.cores === "Tenho preferência" && respostas.coresTexto ? "Tenho preferência: " + respostas.coresTexto : respostas.cores || "Não informado";
+  var redes = respostas.redes.length > 0 ? respostas.redes.join(", ") + (respostas.redesLinks ? " — " + respostas.redesLinks : "") : "Não informado";
+
+  return "Pedido — Kit Completo (P3)\n\n" +
+    "Nome do negócio: " + (respostas.nomeNegocio || "Não informado") + "\n" +
+    "Segmento: " + segmento + "\n\n" +
+    "ESTILO\n" +
+    "Homepage: " + (respostas.homepage || "Não informado") + "\n" +
+    "Formulário: " + (respostas.formulario || "Não informado") + "\n" +
+    "Cores: " + cores + "\n\n" +
+    "ARQUIVOS\n" +
+    "Logo: " + (respostas.logo || "Não informado") + "\n" +
+    "Fotos: " + (respostas.fotos || "Não informado") + "\n\n" +
+    "EXTRAS\n" +
+    "Domínio: " + (respostas.dominio || "Não informado") + (respostas.dominioTexto ? " (" + respostas.dominioTexto + ")" : "") + "\n" +
+    "Já tem pronto: " + (respostas.temPronto.length > 0 ? respostas.temPronto.join(", ") : "Nada ainda") + "\n" +
+    "Redes sociais: " + redes + "\n\n" +
+    "CONTATO\n" +
     "WhatsApp: " + (respostas.whatsapp || "Não informado") + "\n" +
     "E-mail: " + (respostas.email || "Não informado") + "\n" +
     "Nome: " + (respostas.nome || "Não informado");
@@ -250,7 +346,7 @@ function atualizarResumo() {
 
 function enviarEmail() {
   var msg = encodeURIComponent(montarMensagem());
-  window.open("mailto:kappalink01@gmail.com?subject=Pedido Organizador KappaLink&body=" + msg, "_blank");
+  window.open("mailto:kappalink01@gmail.com?subject=Pedido Kit Completo KappaLink&body=" + msg, "_blank");
 }
 </script>
 
