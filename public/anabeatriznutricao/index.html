@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ana Beatriz Nutrição</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
   <script>
@@ -28,7 +31,8 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    body { font-family: 'Quicksand', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    h1, h2, h3 { font-family: 'Baloo 2', sans-serif; }
     a { text-decoration: none; }
     button { cursor: pointer; font-family: inherit; }
     .page { width: min(720px, 100%); margin: 0 auto; padding: 0 16px 60px; }
@@ -61,7 +65,34 @@
     .hero {
       padding: 70px 16px 60px; text-align: center;
       background: linear-gradient(180deg, var(--verde-claro), transparent);
+      position: relative;
+      overflow: hidden;
     }
+    .hero::before {
+      content: '🌿';
+      position: absolute;
+      font-size: 60px;
+      top: 20px; left: 5%;
+      opacity: .15;
+      animation: float1 7s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '🌱';
+      position: absolute;
+      font-size: 50px;
+      top: 40px; right: 6%;
+      opacity: .15;
+      animation: float2 6s ease-in-out infinite;
+    }
+    @keyframes float1 {
+      0%, 100% { transform: translateY(0) rotate(-10deg); }
+      50% { transform: translateY(-16px) rotate(10deg); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translateY(0) rotate(8deg); }
+      50% { transform: translateY(14px) rotate(-8deg); }
+    }
+    .hero-content { position: relative; z-index: 2; }
     .hero-avatar {
       width: 80px; height: 80px; border-radius: 50%;
       background: linear-gradient(135deg, var(--verde), #15803d);
@@ -82,6 +113,14 @@
       letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 14px;
     }
     .hero h1 span { color: var(--verde); }
+    .hero h1::before {
+      content: '';
+      display: block;
+      width: 40px; height: 4px;
+      background: var(--verde);
+      border-radius: 999px;
+      margin: 0 auto 14px;
+    }
     .hero-sub {
       font-size: 16px; color: var(--muted); line-height: 1.6;
       max-width: 420px; margin: 0 auto 28px;
@@ -102,9 +141,14 @@
       background: var(--bg-soft); border: 1px solid var(--line);
       border-radius: var(--radius-sm); padding: 18px;
       display: flex; align-items: flex-start; gap: 12px;
-      transition: .2s ease;
+      transition: .25s ease;
     }
-    .esp-card:hover { border-color: var(--verde); background: var(--verde-claro); }
+    .esp-card:hover {
+      border-color: var(--verde);
+      background: var(--verde-claro);
+      box-shadow: 0 8px 20px rgba(22,163,74,.1);
+      transform: translateY(-2px);
+    }
     .esp-icone {
       width: 36px; height: 36px; border-radius: 10px;
       background: var(--verde-claro); display: grid;
@@ -119,7 +163,7 @@
       background: var(--bg-soft); border-radius: var(--radius);
       margin-bottom: 40px; padding: 32px;
     }
-    .cf-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px; }
+    .cf-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 20px; }
     .cf-card { text-align: center; padding: 16px; }
     .cf-num {
       width: 36px; height: 36px; border-radius: 50%;
@@ -129,7 +173,8 @@
     }
     .cf-card strong { display: block; font-size: 14px; font-weight: 900; margin-bottom: 6px; }
     .cf-card span { font-size: 13px; color: var(--muted); line-height: 1.4; }
-    @media (max-width: 480px) { .cf-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .cf-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 380px) { .cf-grid { grid-template-columns: 1fr; } }
 
     /* DEPOIMENTO */
     .depoimento {
@@ -145,9 +190,34 @@
     .cta-final h2 { font-size: 26px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 12px; }
     .cta-final p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
 
+    /* GARANTIA */
+    .garantia {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: var(--verde-claro);
+      border: 1px solid var(--verde-medio);
+      border-radius: var(--radius-sm); padding: 20px;
+      margin-bottom: 20px;
+    }
+    .garantia-icone { font-size: 28px; flex: 0 0 auto; }
+    .garantia strong { display: block; font-size: 15px; font-weight: 900; color: var(--text); margin-bottom: 4px; }
+    .garantia p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+
     /* FOOTER */
     .footer { text-align: center; padding: 30px 16px 20px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
     .footer small { color: var(--muted); font-size: 12px; }
+    .footer-whatsapp {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: #25d366;
+      text-decoration: none; padding: 10px 20px;
+      border-radius: 999px; border: 1px solid rgba(37,211,102,.25);
+      background: rgba(37,211,102,.06); transition: .2s ease;
+      margin: 0 auto;
+    }
+    .footer-whatsapp:hover {
+      background: rgba(37,211,102,.12);
+      border-color: rgba(37,211,102,.4);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
@@ -166,11 +236,13 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-avatar">A</div>
-  <div class="hero-badge">🌿 Atendimento online e presencial</div>
-  <h1>Sua saúde <span>começa no prato</span></h1>
-  <p class="hero-sub">Consultas personalizadas para você conquistar mais saúde, energia e equilíbrio alimentar.</p>
-  <a class="btn-primary" href="./pedido.html">Agendar minha consulta</a>
+  <div class="hero-content">
+    <div class="hero-avatar">A</div>
+    <div class="hero-badge">🌿 Atendimento online e presencial</div>
+    <h1>Sua saúde <span>começa no prato</span></h1>
+    <p class="hero-sub">Consultas personalizadas para você conquistar mais saúde, energia e equilíbrio alimentar.</p>
+    <a class="btn-primary" href="./pedido.html">Agendar minha consulta</a>
+  </div>
 </section>
 
 <!-- ESPECIALIDADES -->
@@ -227,6 +299,11 @@
       <strong>Você recebe seu plano</strong>
       <span>Cardápio personalizado com acompanhamento contínuo.</span>
     </div>
+    <div class="cf-card">
+      <div class="cf-num">4</div>
+      <strong>Retorno em 24h</strong>
+      <span>Após o agendamento entro em contato para confirmar data e horário.</span>
+    </div>
   </div>
 </section>
 
@@ -236,6 +313,17 @@
     <div class="dep-estrelas">★★★★★</div>
     <p class="dep-texto">"Perdi 8kg em 3 meses sem passar fome. A Ana entende que cada pessoa é diferente e monta um plano que realmente encaixa na sua rotina."</p>
     <span class="dep-autor">Mariana S. — paciente há 6 meses</span>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="page" style="margin-bottom:0;">
+  <div class="garantia">
+    <span class="garantia-icone">🛡️</span>
+    <div>
+      <strong>Sem compromisso na primeira conversa</strong>
+      <p>Preencha o formulário e eu entro em contato para entender sua situação antes de qualquer coisa. Sem pressão.</p>
+    </div>
   </div>
 </section>
 
@@ -250,6 +338,9 @@
 <footer class="footer">
   <div class="avatar-header" style="margin:0 auto;width:40px;height:40px;font-size:18px;">A</div>
   <small>Ana Beatriz Nutrição</small>
+  <a href="https://wa.me/5567999910114" target="_blank" class="footer-whatsapp">
+    💬 Prefere conversar? Chama no WhatsApp
+  </a>
   <small>feito com KappaLink · KappaLink é um produto MindKappa®</small>
 </footer>
 
