@@ -404,15 +404,28 @@
       color: white;
       box-shadow: 0 10px 24px rgba(58,136,237,.35);
     }
-    .produto-valor {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-      background: #f1f5f9;
-      border-radius: 999px;
-      padding: 6px 12px;
-      text-align: center;
+    .produto-preco {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
       margin-top: 4px;
+    }
+    .produto-preco-valor {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .produto-destaque .produto-preco-valor {
+      background: linear-gradient(135deg, var(--azul), var(--ciano));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .produto-preco-detalhe {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
     }
     .footer-whatsapp {
       display: inline-flex;
@@ -505,7 +518,10 @@
           <li>Hospedado por nós</li>
           <li>Setup + mensalidade</li>
         </ul>
-        <div class="produto-valor">Setup inicial + mensalidade mensal</div>
+        <div class="produto-preco">
+          <span class="produto-preco-valor">R$147</span>
+          <span class="produto-preco-detalhe">setup + R$67/mês</span>
+        </div>
         <a class="produto-btn" href="./pedido-organizador.html" onclick="gtag('event','cta_p1',{'event_category':'pedido'})">
           Quero o Organizador →
         </a>
@@ -522,7 +538,10 @@
           <li>GitHub e Vercel próprios</li>
           <li>Domínio opcional à parte</li>
         </ul>
-        <div class="produto-valor">Pagamento único · domínio opcional à parte</div>
+        <div class="produto-preco">
+          <span class="produto-preco-valor">R$597</span>
+          <span class="produto-preco-detalhe">pagamento único</span>
+        </div>
         <a class="produto-btn produto-btn-primary" href="./pedido-pagina.html" onclick="gtag('event','cta_p2',{'event_category':'pedido'})">
           Quero minha Página →
         </a>
@@ -538,7 +557,10 @@
           <li>Google Analytics configurado</li>
           <li>Zero configuração extra</li>
         </ul>
-        <div class="produto-valor">Pagamento único · tudo incluso</div>
+        <div class="produto-preco">
+          <span class="produto-preco-valor">R$897</span>
+          <span class="produto-preco-detalhe">pagamento único · tudo incluso</span>
+        </div>
         <a class="produto-btn" href="./pedido-kit.html" onclick="gtag('event','cta_p3',{'event_category':'pedido'})">
           Quero o Kit Completo →
         </a>
