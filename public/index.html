@@ -404,6 +404,36 @@
       color: white;
       box-shadow: 0 10px 24px rgba(58,136,237,.35);
     }
+    .produto-valor {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 6px 12px;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .footer-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #25d366;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(37,211,102,.25);
+      background: rgba(37,211,102,.06);
+      transition: .2s ease;
+      margin: 0 auto;
+    }
+    .footer-whatsapp:hover {
+      background: rgba(37,211,102,.12);
+      border-color: rgba(37,211,102,.4);
+      transform: translateY(-2px);
+    }
     @media (max-width: 860px) {
       .produtos-grid { grid-template-columns: 1fr; }
       .produto-destaque { order: -1; }
@@ -436,9 +466,11 @@
         que organiza tudo antes da conversa.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="./pedido-organizador.html">Quero minha página</a>
+        <a class="btn btn-primary" href="#produtos" onclick="event.preventDefault();document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">
+          Ver os planos ↓
+        </a>
         <button class="btn btn-ghost" onclick="document.getElementById('exemplos').scrollIntoView({behavior:'smooth'})">
-          Ver exemplos ↓
+          Ver exemplos
         </button>
       </div>
     </div>
@@ -473,6 +505,7 @@
           <li>Hospedado por nós</li>
           <li>Setup + mensalidade</li>
         </ul>
+        <div class="produto-valor">Setup inicial + mensalidade mensal</div>
         <a class="produto-btn" href="./pedido-organizador.html" onclick="gtag('event','cta_p1',{'event_category':'pedido'})">
           Quero o Organizador →
         </a>
@@ -489,6 +522,7 @@
           <li>GitHub e Vercel próprios</li>
           <li>Domínio opcional à parte</li>
         </ul>
+        <div class="produto-valor">Pagamento único · domínio opcional à parte</div>
         <a class="produto-btn produto-btn-primary" href="./pedido-pagina.html" onclick="gtag('event','cta_p2',{'event_category':'pedido'})">
           Quero minha Página →
         </a>
@@ -504,6 +538,7 @@
           <li>Google Analytics configurado</li>
           <li>Zero configuração extra</li>
         </ul>
+        <div class="produto-valor">Pagamento único · tudo incluso</div>
         <a class="produto-btn" href="./pedido-kit.html" onclick="gtag('event','cta_p3',{'event_category':'pedido'})">
           Quero o Kit Completo →
         </a>
@@ -612,6 +647,9 @@
   <!-- FOOTER -->
   <footer>
     <span style="color:var(--muted);font-size:13px;">KappaLink é um produto MindKappa®</span>
+    <a href="https://wa.me/5567999910114" target="_blank" class="footer-whatsapp">
+      💬 Prefere conversar? Chama no WhatsApp
+    </a>
     <small style="color:var(--muted);font-size:11px;">páginas que vendem</small>
   </footer>
 
@@ -761,7 +799,7 @@
           '</div>' +
           '<div style="background:' + cardBg + ';border-radius:16px;padding:14px;box-shadow:0 4px 16px rgba(0,0,0,.08);">' +
             '<div style="font-size:12px;font-weight:900;color:' + textColor + ';margin-bottom:10px;">Qual a urgência?</div>' +
-            '<div style="display:flex;gap:6px;">' + opts2 + '</div>' +
+            '<div style="display:flex;flex-wrap:wrap;gap:6px;">' + opts2 + '</div>' +
           '</div>' +
         '</div>' +
         '<div style="padding:12px 16px;">' +
