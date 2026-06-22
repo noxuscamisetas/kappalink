@@ -8,7 +8,7 @@
           "value": "(?<cliente>.+)\\.kappalink\\.com"
         }
       ],
-      "destination": "/clientes/:cliente/:path*"
+      "destination": "/:cliente/:path*"
     }
   ]
 }
