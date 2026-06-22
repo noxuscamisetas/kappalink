@@ -451,6 +451,74 @@
       .produtos-grid { grid-template-columns: 1fr; }
       .produto-destaque { order: -1; }
     }
+    .provas {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .prova-card {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .prova-estrelas {
+      color: #f59e0b;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    .prova-card p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+      font-style: italic;
+      margin: 0;
+      max-width: 100%;
+    }
+    .prova-card span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    @media (max-width: 600px) {
+      .provas { grid-template-columns: 1fr; }
+    }
+    .garantia {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(58,136,237,.04);
+      border: 1px solid rgba(58,136,237,.15);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      margin-top: 14px;
+    }
+    .garantia-icone { font-size: 28px; flex: 0 0 auto; }
+    .garantia strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .garantia p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+      max-width: 100%;
+    }
+    .grid-3 { grid-template-columns: repeat(4,1fr); }
+    @media (max-width: 860px) {
+      .grid-3 { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -567,6 +635,27 @@
       </div>
 
     </div>
+
+    <div class="provas">
+      <div class="prova-card">
+        <div class="prova-estrelas">★★★★★</div>
+        <p>"Em menos de 2 dias minha página estava no ar recebendo pedidos. Não precisei fazer nada técnico."</p>
+        <span>Lion R. — Noxus Camisetas</span>
+      </div>
+      <div class="prova-card">
+        <div class="prova-estrelas">★★★★★</div>
+        <p>"Finalmente tenho um jeito organizado de receber pedidos. Meus clientes adoraram a página."</p>
+        <span>Lion R. — Festa Linda Personalizados</span>
+      </div>
+    </div>
+
+    <div class="garantia">
+      <span class="garantia-icone">🛡️</span>
+      <div>
+        <strong>Resultado garantido antes de ir ao ar</strong>
+        <p>Se não gostar do resultado antes da entrega final, a gente ajusta. Sem custo extra.</p>
+      </div>
+    </div>
   </section>
 
   <!-- COMO FUNCIONA -->
@@ -588,6 +677,11 @@
         <span class="mini-num">3</span>
         <strong>Você recebe pronto</strong>
         <span>Já sabe o que fazer — só responder.</span>
+      </div>
+      <div class="mini-card">
+        <span class="mini-num">4</span>
+        <strong>Receba em 2 dias</strong>
+        <span>Após o pedido entramos em contato em até 24h e entregamos tudo pronto em até 2 dias úteis.</span>
       </div>
     </div>
   </section>
@@ -658,7 +752,7 @@
       Me conta um pouco do seu negócio e eu preparo a página. Simples assim.
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a class="btn btn-primary" href="./pedido-organizador.html">Quero minha página</a>
+      <a class="btn btn-primary" href="#produtos">Ver os planos →</a>
       <button class="btn btn-ghost" onclick="window.scrollTo({top:0,behavior:'smooth'})">Ver exemplos de novo</button>
     </div>
     <p style="margin-top:16px;font-size:13px;color:var(--muted);">
