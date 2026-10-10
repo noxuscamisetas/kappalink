@@ -1,10 +1,11 @@
 {
   "name": "kappalink-app",
   "version": "1.0.0",
-  "description": "Motor universal de pré-atendimento.",
+  "description": "Motor universal de pr\u00e9-atendimento.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:mcd": "node --test tests/mcd/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/noxuscamisetas/kappalink#readme",
   "dependencies": {
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "pg": "^8.20.0"
   }
 }
