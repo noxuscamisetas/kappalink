@@ -26,3 +26,9 @@ Quantidade, trocas de cor, repetição e tempo mediano aparecem em resumo visual
 ## Verificação
 
 `npm run test:mcd` executa os 17 testes de métricas, validação, persistência simulada e controlador com DOM/relógio simulados. Eles não substituem a conferência em navegador real nem o teste com o banco real.
+
+## Banco provisionado
+
+Um banco novo foi criado no Neon, com ambientes separados de produção e verificação. A migração versionada em `migrations/001_mcd_sessions_v2.sql` foi aplicada nos dois ambientes. A inserção sintética e o reenvio sem duplicação foram verificados por SQL no ambiente de teste; a produção permanece vazia.
+
+Pendente: configurar `DATABASE_URL` na Vercel e verificar o envio pela API publicada. O acesso às variáveis da equipe foi recusado com 403. A verificação por SQL não substitui o teste ponta a ponta.
