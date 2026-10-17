@@ -1,14 +1,37 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/:path*",
+      "src": "^/(.*)$",
       "has": [
         {
           "type": "host",
-          "value": "(?<cliente>.+)\\.kappalink\\.com"
+          "value": "noxuscamisetas\\.kappalink\\.com"
         }
       ],
-      "destination": "/:cliente/:path*"
+      "dest": "/noxuscamisetas/$1"
+    },
+    {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "festalindapersonalizados\\.kappalink\\.com"
+        }
+      ],
+      "dest": "/festalindapersonalizados/$1"
+    },
+    {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "anabeatriznutricao\\.kappalink\\.com"
+        }
+      ],
+      "dest": "/anabeatriznutricao/$1"
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }
