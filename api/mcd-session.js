@@ -14,6 +14,18 @@ function createHandler(getPool) {
  return async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ success: false, error: 'Use POST.' }); }
+  const headers = req.headers || {};
+  const origin = headers.origin;
+  if (origin && !['https://www.kappalink.com','https://kappalink.com'].includes(origin)) return res.status(403).json({success:false,error:'Origem não permitida.'});
+  if (headers['sec-fetch-site'] === 'cross-site') return res.status(403).json({success:false,error:'Origem não permitida.'});
+  if (headers['content-type'] && !/^application\/json(?:\s*;|$)/i.test(headers['content-type'])) return res.status(415).json({success:false,error:'Use application/json.'});
+  // Bound nesting before validation/canonicalization, including unknown fields.
+  const pending = [[req.body,0]];
+  while (pending.length) {
+   const [value,depth] = pending.pop();
+   if (depth > 12) return res.status(400).json({success:false,error:'Estrutura do registro inválida.'});
+   if (value && typeof value === 'object') for (const child of Object.values(value)) pending.push([child,depth+1]);
+  }
   if (Buffer.byteLength(JSON.stringify(req.body || {})) > 256000) return res.status(413).json({ success: false, error: 'Registro muito grande.' });
   const result = MCD.processSession(req.body);
   if (!result.success) return res.status(400).json(result);
