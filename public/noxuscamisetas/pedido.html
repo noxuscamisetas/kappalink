@@ -273,6 +273,7 @@
       margin-bottom: 16px;
       min-height: 160px;
     }
+    :focus-visible{outline:3px solid #ffbf70;outline-offset:4px}.chip{min-height:48px}.resumo-box{overflow-wrap:anywhere}.step-card{scroll-margin-top:90px}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-038DM4PDTG"></script>
@@ -327,8 +328,7 @@
           <div class="chip-row" id="chips-modelo">
             <button class="chip" data-value="Modelo 1">Modelo 1</button>
             <button class="chip" data-value="Modelo 2">Modelo 2</button>
-            <button class="chip" data-value="Modelo 3">Modelo 3</button>
-            <button class="chip" data-value="Modelo 4">Modelo 4</button>
+              <button class="chip" data-value="Modelo 4">Modelo 4</button>
             <button class="chip" data-value="Modelo 5">Modelo 5</button>
             <button class="chip" data-value="Modelo 6">Modelo 6</button>
           </div>
@@ -441,7 +441,7 @@
   </main>
 
   <footer style="text-align:center;padding:40px 16px 24px;color:var(--muted);font-size:12px;">
-    feito com KappaLink · by MindKappa
+    feito com KappaLink <span style="display:block;font-size:10px;margin-top:8px;color:#aaa2b0;letter-spacing:.4px">MindKappa</span>
   </footer>
 
   <script>
@@ -452,7 +452,7 @@
     const respostas = {
       tipo: "", modelo: "", ideia: "",
       tamanho: "", quantidade: "", cor: "",
-      nomeCamiseta: "", nomeCliente: ""
+      querNome: "", nomeCamiseta: "", nomeCliente: ""
     };
 
     const totalSteps = 4;
@@ -498,7 +498,7 @@
             }
           }
 
-          if (key === "nomeCamiseta") {
+          if (key === "querNome") {
             var campo = document.getElementById("campo-nome");
             btn.dataset.value === "Sim"
               ? campo.classList.remove("hidden")
@@ -513,7 +513,7 @@
     initChips("chips-tamanho", "tamanho");
     initChips("chips-quantidade", "quantidade");
     initChips("chips-cor", "cor");
-    initChips("chips-nome", "nomeCamiseta");
+    initChips("chips-nome", "querNome");
 
     document.getElementById("ideia").addEventListener("input", function(e) {
       respostas.ideia = e.target.value;
@@ -528,9 +528,7 @@
         ? (respostas.modelo || "Não informado")
         : ("Personalizada: " + (respostas.ideia || "Não informado"));
 
-      var nomeCamiseta = respostas.nomeCamiseta
-        ? ("Sim (" + respostas.nomeCamiseta + ")")
-        : (respostas.nomeCamiseta === "" && respostas.tipo ? "Não informado" : "Não");
+      var nomeCamiseta = respostas.querNome === "Não" ? "Não" : respostas.querNome === "Sim" ? ("Sim (" + (respostas.nomeCamiseta.trim() || "a combinar") + ")") : "Não informado";
 
       return "Olá, Noxus! Vim pelo formulário.\n\n" +
         "Nome: " + (respostas.nomeCliente || "Não informado") + "\n" +
@@ -557,6 +555,14 @@
       window.open("mailto:" + email + "?subject=Pedido Noxus Camisetas&body=" + msg, "_blank");
     }
 
+    const params = new URLSearchParams(window.location.search);
+    const modeloInicial = params.get('modelo');
+    if (['1','2','4','5','6'].includes(modeloInicial)) {
+      document.querySelector('#chips-tipo [data-value="Item da loja"]').click();
+      document.querySelector('#chips-modelo [data-value="Modelo '+modeloInicial+'"]').click();
+    } else if (params.get('tipo') === 'personalizada') {
+      document.querySelector('#chips-tipo [data-value="Camiseta personalizada"]').click();
+    }
     atualizarProgress(1);
   </script>
 
