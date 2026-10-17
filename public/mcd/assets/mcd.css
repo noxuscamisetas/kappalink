@@ -5,3 +5,10 @@
 
 /* Visible choices, following KappaLink's pre-service interaction. */
 .option-field{border:0;margin:0;padding:0;min-width:0}.option-field legend{margin-bottom:12px;font-weight:600}.option-buttons,.chips{display:flex;flex-wrap:wrap;gap:9px}.option-button{position:relative;display:inline-flex;cursor:pointer;max-width:100%}.option-button input{position:absolute;width:1px;height:1px;opacity:0;margin:0}.option-button span{display:flex;align-items:center;justify-content:center;min-height:44px;padding:10px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.035);color:var(--muted);font-size:14px;line-height:1.4;transition:background .15s,border-color .15s,color .15s}.option-button input:checked+span{background:rgba(76,139,255,.18);border-color:#79a6ff;color:#f2f6ff;box-shadow:inset 0 0 0 1px #79a6ff}.option-button:hover span{border-color:#79a6ff}.option-button input:focus-visible+span{outline:3px solid #a7c5ff;outline-offset:3px}.extra-context>summary{cursor:pointer;font-weight:600;line-height:1.5}.extra-context[open]>summary{margin-bottom:18px}.extra-context>.field{margin-top:16px}.post-condition .form-grid{grid-template-columns:1fr}.post-condition .option-buttons{gap:10px}@media(max-width:760px){.option-buttons .option-button{flex:1 1 auto}.option-button span{width:100%}.option-field{margin-bottom:8px}}
+
+/* Keep supporting text readable on each surface. */
+.app-wrap>.muted,.result-boundary{color:#c3d0e6}
+.panel .option-button input:checked+span{background:#dce8fc;border-color:#245de2;color:#183565;box-shadow:inset 0 0 0 1px #245de2}
+.panel .option-button input:focus-visible+span{outline-color:#245de2}
+.panel .notice{color:#785118}
+@media print{.app-wrap>.muted,.result-boundary{color:#526079}}
