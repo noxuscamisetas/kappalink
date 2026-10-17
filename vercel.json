@@ -15,7 +15,7 @@
       "has": [
         {
           "type": "host",
-          "value": "festalindapersonalizados\\.kappalink\\.com"
+          "value": "(?:festalinda|festalindapersonalizados)\\.kappalink\\.com"
         }
       ],
       "dest": "/festalindapersonalizados/$1"
