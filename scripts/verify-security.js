@@ -12,6 +12,7 @@ for(const store of stores){
  }
  for(const file of ['index.html','pedido.html'])assert(fs.existsSync(path.join('public',store.id,file)),'Página ausente');
 }
+for(const entry of fs.readdirSync('public',{withFileTypes:true})){if(entry.isDirectory()&&fs.existsSync(path.join('public',entry.name,'index.html'))&&fs.existsSync(path.join('public',entry.name,'pedido.html')))assert(ids.has(entry.name),'Loja sem cadastro de segurança: '+entry.name);}
 const headers=config.routes[0].headers;assert.equal(headers['X-Content-Type-Options'],'nosniff');assert.equal(headers['X-Frame-Options'],'DENY');assert.equal(headers['Referrer-Policy'],'no-referrer');assert(config.routes.some(r=>r.status===404&&r.dest==='/404.html'));
 function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);}
 for(const file of walk('public')){
