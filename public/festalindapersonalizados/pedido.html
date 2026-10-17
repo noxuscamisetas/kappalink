@@ -142,6 +142,7 @@
     }
 
     .btn-enviar:hover { transform: translateY(-2px); }
+    :root{--muted:#71657c;--rosa:#b82f73}:focus-visible{outline:3px solid #96365e;outline-offset:3px}.chip{min-height:46px}.resumo-box{overflow-wrap:anywhere}.input{font-size:16px}
   </style>
 </head>
 <body>
@@ -149,8 +150,8 @@
 
     <!-- Header -->
     <div style="text-align:center;margin-bottom:20px;">
-      <img src="./festalindapersonalizados-logo.jpg" alt="Festa Linda Personalizados" style="height:56px;border-radius:14px;margin-bottom:10px;" />
-      <p style="color:var(--muted);font-size:14px;">Conte pra gente o que você precisa</p>
+      <img src="https://festalindapersonalizados.kappalink.com/festalindapersonalizados-logo.jpg" alt="Festa Linda Personalizados" style="height:56px;border-radius:14px;margin-bottom:10px;" />
+      <p><a href="https://festalindapersonalizados.kappalink.com/" style="color:#96365e;font-size:13px">← Ver produtos</a></p><h1 style="font-size:28px;margin:15px 0 8px">Vamos preparar sua festa?</h1><p style="color:var(--muted);font-size:14px;">Conte pra gente o que você precisa</p>
     </div>
 
     <div class="card">
@@ -206,7 +207,7 @@
       <button class="btn-enviar" onclick="enviarEmail()">Enviar pedido por e-mail</button>
     </div>
 
-  </div>
+  <footer style="text-align:center;padding:25px 0;color:#71657c;font-size:12px">feito com KappaLink<span style="display:block;font-size:10px;margin-top:7px">MindKappa</span></footer></div>
 
   <script>
     const whatsapp = "5567999910114";
@@ -236,6 +237,10 @@
     document.getElementById("nomeFesta").addEventListener("input", function(e) { respostas.nomeFesta = e.target.value; atualizarResumo(); });
     document.getElementById("nomeCliente").addEventListener("input", function(e) { respostas.nomeCliente = e.target.value; atualizarResumo(); });
 
+    const produtoInicial = new URLSearchParams(window.location.search).get('produto');
+    if (['Ecobag','Caneca','Potinho','Kit completo'].includes(produtoInicial)) {
+      document.querySelector('[data-group="produto"] [data-value="'+produtoInicial+'"]').click();
+    }
     function montarMensagem() {
       var produto = respostas.produto === "Outro" && respostas.produtoOutro
         ? respostas.produtoOutro
