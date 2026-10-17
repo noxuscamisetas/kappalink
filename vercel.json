@@ -25,7 +25,7 @@
       "has": [
         {
           "type": "host",
-          "value": "anabeatriznutricao\\.kappalink\\.com"
+          "value": "(?:anabeatriz|anabeatriznutricao)\\.kappalink\\.com"
         }
       ],
       "dest": "/anabeatriznutricao/$1"
