@@ -1,7 +1,38 @@
 {
   "stores": [
-    {"id":"noxuscamisetas","hosts":["noxuscamisetas.kappalink.com"],"demo":true,"contact_verified":false},
-    {"id":"festalindapersonalizados","hosts":["festalinda.kappalink.com","festalindapersonalizados.kappalink.com"],"demo":true,"contact_verified":false},
-    {"id":"anabeatriznutricao","hosts":["anabeatriz.kappalink.com","anabeatriznutricao.kappalink.com"],"demo":true,"contact_verified":false}
+    {
+      "id": "noxuscamisetas",
+      "hosts": [
+        "noxuscamisetas.kappalink.com"
+      ],
+      "demo": true,
+      "contact_verified": false
+    },
+    {
+      "id": "festalindapersonalizados",
+      "hosts": [
+        "festalinda.kappalink.com",
+        "festalindapersonalizados.kappalink.com"
+      ],
+      "demo": true,
+      "contact_verified": false
+    },
+    {
+      "id": "anabeatriznutricao",
+      "hosts": [
+        "anabeatriz.kappalink.com",
+        "anabeatriznutricao.kappalink.com"
+      ],
+      "demo": true,
+      "contact_verified": false
+    },
+    {
+      "id": "guardauminstante",
+      "hosts": [
+        "guardauminstante.kappalink.com"
+      ],
+      "demo": true,
+      "contact_verified": false
+    }
   ]
 }
