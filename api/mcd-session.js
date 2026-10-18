@@ -10,7 +10,7 @@ function canonical(v) {
  if (v && typeof v === 'object') return Object.fromEntries(Object.keys(v).sort().map(k => [k, canonical(v[k])]));
  return v;
 }
-function createHandler(getPool) {
+function createHandler(getPool, {limiter} = {}) {
  return async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ success: false, error: 'Use POST.' }); }
@@ -33,6 +33,10 @@ function createHandler(getPool) {
   try {
    const pool = getPool();
    if (!pool) return res.status(503).json({ success: false, error: 'A coleta online não está configurada. Você pode exportar o registro.' });
+   if (limiter) {
+    const quota=await limiter(pool,req);
+    if(!quota.allowed){res.setHeader('Retry-After',String(quota.retryAfter));return res.status(429).json({success:false,error:'Limite temporário de envios. Seu resultado continua disponível para exportação.'});}
+   }
    await pool.query(SCHEMA);
    const json = JSON.stringify(canonical(req.body)), hash = createHash('sha256').update(json).digest('hex');
    const saved = await pool.query(`INSERT INTO mcd_sessions_v2 (session_id, protocol_version, payload_hash, raw_payload_json, metrics_json)
@@ -48,6 +52,6 @@ function createHandler(getPool) {
   }
  };
 }
-module.exports=createHandler(()=>process.env.DATABASE_URL?require('../lib/mcd-db'):null);
+module.exports=createHandler(()=>process.env.DATABASE_URL?require('../lib/mcd-db'):null,{limiter:require('../lib/mcd-rate-limit').enforce});
 module.exports.createHandler=createHandler;
 module.exports.SCHEMA=SCHEMA;

@@ -6,7 +6,7 @@ Revisão técnica: 17/10/2026. Escopo: código versionado, dependências, rotas,
 
 As vitrines são HTML estático; não existe painel público de edição, login de cliente ou upload. Alterações exigem acesso autorizado ao GitHub e ao deploy. Código e imagens publicados são públicos; dados privados, chaves, documentos, exportações e arquivos de cliente não devem entrar em `public/` nem no histórico Git. Não conceder acesso ao repositório compartilhado a clientes. Separar projetos/repos quando precisarem editar código.
 
-Os formulários de lojas apenas preparam mensagens no aparelho. Não enviam nem salvam pedidos automaticamente no servidor. O MCD é separado: sua API pública recebe uma sessão com consentimento e grava no Neon; não tem endpoint de leitura, edição ou exclusão pública. O endpoint público ainda pode receber spam técnico; validação e origem não substituem rate limiting persistente.
+Os formulários de lojas apenas preparam mensagens no aparelho. Não enviam nem salvam pedidos automaticamente no servidor. O MCD é separado: sua API pública recebe uma sessão com consentimento e grava no Neon; não tem endpoint de leitura, edição ou exclusão pública. O endpoint agora limita envios válidos a 10 por minuto e 60 por hora por IP, com contadores persistentes no Postgres. Os contadores usam HMAC diário com segredo do servidor; não armazenam o IP bruto. Requisições inválidas são recusadas antes do banco, mas proteção contra ataques distribuídos ainda depende da plataforma.
 
 ## Aplicado
 
@@ -15,7 +15,7 @@ Os formulários de lojas apenas preparam mensagens no aparelho. Não enviam nem 
 - Analytics removido dos formulários de contato/pedido.
 - API: consentimento, payload limitado e validado, profundidade limitada, origem explícita quando presente, tipo JSON, consultas parametrizadas e não exposição de erros internos.
 - Cadastro `config/stores.json` e `npm run check:security` verificam aliases, pastas, duplicações, proteção e padrões conhecidos de segredo em arquivos públicos.
-- CI executa verificações e 19 testes. CI só vira impedimento obrigatório de merge com proteção de branch configurada; não presumir que já existe.
+- CI executa verificações e 22 testes. CI só vira impedimento obrigatório de merge com proteção de branch configurada; não presumir que já existe.
 - Atualização do sharp para 0.35.5; npm audit sem vulnerabilidades conhecidas na data. Auditoria não prova ausência de falhas.
 
 ## Antes de ativar CADA cliente real
@@ -26,8 +26,12 @@ Os formulários de lojas apenas preparam mensagens no aparelho. Não enviam nem 
 4. Testar domínio com HTTPS, fotos, pedido, resumo e destinatário final. Nenhuma mensagem de teste real deve ser enviada sem autorização. Testar endereço curto/longo aprovado, com/sem barra e acesso móvel.
 5. Executar `npm test`, revisar diff e publicar; conferir produção e manter commit de rollback.
 6. Conferir 2FA, colaboradores, aplicativos e proteção de main no GitHub; membros, tokens e proteção de deploy na Vercel. Não compartilhar chaves administrativas. Não confirmado por esta revisão por falta de acesso administrativo suficiente.
-7. MCD: revisar papel de banco com menor privilégio, retenção/exclusão e adicionar limite persistente de requisições na plataforma. WAF não foi alterado nem considerado auditado.
+7. MCD: revisar papel de banco com menor privilégio e retenção/exclusão. Limite persistente na aplicação implementado e validado em branch de teste; WAF não foi alterado nem considerado auditado. Contadores vencidos deixam de participar da quota, mas ainda não há limpeza automática da tabela.
 
 ## Limitações / bloqueios
 
-A conexão Vercel retorna projeto não encontrado/sem acesso para consultas administrativas. Não foi possível certificar membros, tokens, firewall, logs, 2FA, branch protection ou todos os acessos ao Neon. Não houve pentest externo nem garantia de segurança absoluta. O estado é reforçado para vitrines estáticas geridas pelo proprietário; não está homologado como plataforma multiusuário com painel, upload ou pagamentos.
+A conexão Vercel retorna projeto não encontrado/sem acesso para consultas administrativas. A listagem de membros Vercel mostrou apenas o proprietário noxuscamisetas-8279. Não foi possível certificar tokens, firewall, logs, 2FA, branch protection ou todos os acessos ao Neon. Não houve pentest externo nem garantia de segurança absoluta. O estado é reforçado para vitrines estáticas geridas pelo proprietário; não está homologado como plataforma multiusuário com painel, upload ou pagamentos.
+
+## Validação do limitador
+
+Operação atômica testada no Neon em `qa-rate-limit-20261017`: limite 2 aceitou contadores 1 e 2 e recusou o terceiro incremento. A tabela foi criada em produção após esse teste. Limite por minuto e por hora, renovação de janela, separação de identidade e resposta 429 testados automaticamente. Pessoas numa mesma rede compartilham quota; o resultado local e a exportação continuam disponíveis. Não é defesa completa contra bots distribuídos.
