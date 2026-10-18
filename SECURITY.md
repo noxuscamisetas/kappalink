@@ -35,3 +35,14 @@ A conexão Vercel retorna projeto não encontrado/sem acesso para consultas admi
 ## Validação do limitador
 
 Operação atômica testada no Neon em `qa-rate-limit-20261017`: limite 2 aceitou contadores 1 e 2 e recusou o terceiro incremento. A tabela foi criada em produção após esse teste. Limite por minuto e por hora, renovação de janela, separação de identidade e resposta 429 testados automaticamente. Pessoas numa mesma rede compartilham quota; o resultado local e a exportação continuam disponíveis. Não é defesa completa contra bots distribuídos.
+
+## Checkpoint — 18/10/2026
+
+Limitador publicado e verificado na API de produção: 11 envios simultâneos da mesma sessão sintética produziram um bloqueio 429, 1 criação e 9 reenvios sem duplicação. SQL confirmou um único registro QA-RATE-LIMIT-20261018. Os 22 testes passaram.
+
+Pendências de verificação, sem aprovação aberta:
+- Conferir 2FA, tokens, aplicativos autorizados e permissões administrativas no GitHub e na Vercel. A listagem de membros da equipe Vercel apresentou apenas o proprietário; isso não certifica tokens nem 2FA.
+- Antes de ativar o primeiro cliente real, confirmar com o responsável o subdomínio exato, destinatário de e-mail e WhatsApp. Não reaproveitar os contatos centrais das demonstrações.
+- Conferir política de menor privilégio e retenção do banco; limpeza dos contadores expirados continua sem automação.
+
+Essas pendências não significam que exista um diálogo de aprovação em andamento. Não foi emitido certificado de segurança absoluta.
