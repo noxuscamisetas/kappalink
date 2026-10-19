@@ -1,12 +1,13 @@
 {
   "name": "kappalink-app",
   "version": "1.0.0",
-  "description": "Motor universal de pré-atendimento.",
+  "description": "Motor universal de pr\u00e9-atendimento.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run check:security && npm run test:mcd",
+    "test": "npm run check:security && npm run test:mcd && npm run test:ana",
     "test:mcd": "node --test tests/mcd/*.test.js",
-    "check:security": "node scripts/verify-security.js"
+    "check:security": "node scripts/verify-security.js",
+    "test:ana": "node --test tests/ana.test.js"
   },
   "repository": {
     "type": "git",
