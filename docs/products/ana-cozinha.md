@@ -22,3 +22,9 @@ Sem analytics, conta, upload público ou armazenamento de pedidos. Resumos usam 
 ## Antes de considerar venda concluída
 
 Confirmar recebimento do pedido, pagamento acordado, produção e entrega efetiva. Página publicada e clique em botão não contam como venda. Preço inicial é uma hipótese comercial, não evidência de demanda.
+
+## Amostra pública de entrega
+
+`public/anabeatriznutricao/amostra.pdf` contém quatro páginas: lista consolidada e três receitas, cada uma com rendimento culinário aproximado de quatro porções. Gerar com `python scripts/generate-ana-sample.py` (ReportLab e fontes DejaVu). O script usa a mesma fonte de receitas e o mesmo consolidador da demonstração, sem recopiar quantidades manualmente.
+
+Prévia da primeira página em `assets/amostra.jpg`; link para o PDF na abertura da vitrine. PDF renderizado e inspecionado página a página; somas verificadas, incluindo cebola (2 unidades) e azeite (5 colheres de sopa). Não contém dados de comprador nem constitui plano alimentar.
