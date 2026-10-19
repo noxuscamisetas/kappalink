@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Oqpagar · Um pouco mais de clareza nas contas</title>
+<meta name="description" content="Suas contas, entradas e próximos vencimentos em um lugar. Organizador pessoal com dados neste navegador.">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f8f6ef">
+<link rel="canonical" href="https://oqpagar.kappalink.com/">
+<link rel="stylesheet" href="/assets/app.css">
+<script defer src="/assets/core.js"></script><script defer src="/assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Ir ao conteúdo</a>
+<div class="shell">
+<header class="top"><a class="brand" href="/" aria-label="Oqpagar, início"><span class="symbol" aria-hidden="true">o<span>✓</span></span><span>oqpagar<span class="brand-dot">.</span><small>um projeto KappaLink</small></span></a><span class="local-badge">● Só neste navegador</span></header>
+<section class="intro"><p class="eyebrow">MENOS PESO NA CABEÇA</p><h1>Contas à vista.<br><em>Um passo de cada vez.</em></h1><p>O que vence, o que entra e o que sobra.<br>Você organiza. Você decide.</p></section>
+<nav class="tabs" aria-label="Telas do organizador">
+<button type="button" data-tab="overview" aria-current="page">Meu momento</button><button type="button" data-tab="debts">Contas</button><button type="button" data-tab="incomes">Entradas</button><button type="button" data-tab="cards">Cartões</button><button type="button" data-tab="simulation">Simular</button><button type="button" data-tab="backup">Meus dados</button>
+</nav>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+<main id="main" tabindex="-1">
+<section data-panel="overview">
+<div class="section-head"><div><p class="eyebrow">SEU PONTO DE PARTIDA</p><h2>Como estão os próximos 7 dias?</h2></div><button class="text-btn" data-go="debts">+ Adicionar conta</button></div>
+<div class="metrics"><article class="metric"><span>Tenho hoje</span><strong id="cashTop">R$ 0,00</strong><small>Saldo que você informou</small></article><article class="metric"><span>Contas até 7 dias</span><strong id="dueTop">R$ 0,00</strong><small>Inclui contas atrasadas</small></article><article class="metric forecast"><span>Previsão de sobra / falta</span><strong id="gapTop">R$ 0,00</strong><small>Saldo + entradas previstas − contas</small></article></div>
+<div class="overview-grid"><section class="card balance"><span class="step">01 · DINHEIRO DE HOJE</span><h2>Quanto você tem agora?</h2><p class="helper">Só o dinheiro disponível. Limite de cartão fica separado.</p><form id="cashForm"><label for="cashNow">Saldo disponível (R$)</label><input id="cashNow" type="number" min="0" max="10000000000" step="0.01" inputmode="decimal" placeholder="0,00" required><button class="primary">Atualizar saldo</button></form><p class="fine">Ao atualizar, informe o saldo total atual. Entradas marcadas como recebidas já fazem parte dele.</p></section>
+<section class="card"><span class="step">02 · PRÓXIMOS VENCIMENTOS</span><h2>Uma conta de cada vez.</h2><p class="helper">Por vencimento; essenciais primeiro em caso de empate. Confira também juros e risco de corte.</p><div id="priorityList" class="list"></div></section></div>
+<p id="forecastNote" class="note"></p>
+<div class="privacy-strip"><span aria-hidden="true">↳</span><p><strong>Suas anotações ficam com você.</strong> Sem cadastro e sem sincronização. Faça backup para levar a outro navegador.</p><button class="text-btn" data-go="backup">Meus dados →</button></div>
+</section>
+<section data-panel="debts" hidden>
+<div class="section-head"><div><p class="eyebrow">TIRE DA CABEÇA</p><h2>Uma lista para suas contas.</h2></div></div>
+<div class="workspace"><section class="card"><h3 id="debtFormTitle">Adicionar conta</h3><form id="debtForm">
+<div class="chips" data-fill="debtName"><button type="button">Luz</button><button type="button">Água</button><button type="button">Aluguel</button><button type="button">Mercado</button><button type="button">Internet</button></div>
+<label for="debtName">Nome</label><input id="debtName" maxlength="100" required placeholder="Ex.: conta de luz">
+<label for="debtAmount">Valor (R$)</label><input id="debtAmount" type="number" min="0.01" max="10000000000" step="0.01" inputmode="decimal" required>
+<label for="debtDate">Vencimento</label><div class="chips" data-date="debtDate"><button type="button" data-days="0">Hoje</button><button type="button" data-days="1">Amanhã</button><button type="button" data-days="7">Em 7 dias</button></div><input id="debtDate" type="date" required>
+<label for="debtType">Tipo</label><select id="debtType"><option value="essential">Essencial</option><option value="card">Fatura de cartão</option><option value="loan">Empréstimo</option><option value="negotiable">Negociável</option><option value="late">Atrasada</option><option value="other">Outra conta</option></select>
+<button class="primary">Salvar conta</button><button type="button" class="text-btn" id="cancelDebtEdit" hidden>Cancelar edição</button></form></section><section class="card"><h3>Contas em aberto</h3><div id="debtsList" class="list"></div><details><summary>Contas pagas</summary><div id="paidList" class="list"></div></details></section></div>
+</section>
+<section data-panel="incomes" hidden>
+<div class="section-head"><div><p class="eyebrow">DINHEIRO A CAMINHO</p><h2>Previsão é diferente de saldo.</h2></div></div>
+<div class="workspace"><section class="card"><h3 id="incomeFormTitle">Adicionar entrada prevista</h3><form id="incomeForm"><div class="chips" data-fill="incomeName"><button type="button">Salário</button><button type="button">Pix</button><button type="button">Diária</button><button type="button">Venda</button></div><label for="incomeName">Nome</label><input id="incomeName" maxlength="100" required><label for="incomeAmount">Valor (R$)</label><input id="incomeAmount" type="number" min="0.01" max="10000000000" step="0.01" inputmode="decimal" required><label for="incomeDate">Quando espera receber?</label><div class="chips" data-date="incomeDate"><button type="button" data-days="0">Hoje</button><button type="button" data-days="1">Amanhã</button><button type="button" data-days="7">Em 7 dias</button></div><input id="incomeDate" type="date" required><button class="primary">Salvar entrada</button><button type="button" class="text-btn" id="cancelIncomeEdit" hidden>Cancelar edição</button></form><p class="fine">“Recebi” soma o valor ao saldo uma única vez. Se ele já estiver no saldo informado, use “Já está no saldo”.</p></section><section class="card"><h3>Entradas previstas</h3><div id="incomesList" class="list"></div><details><summary>Entradas recebidas</summary><div id="receivedList" class="list"></div></details></section></div>
+</section>
+<section data-panel="cards" hidden>
+<div class="section-head"><div><p class="eyebrow">LIMITE NÃO É RENDA</p><h2>Cartões, sem misturar com o saldo.</h2></div></div>
+<p class="note">Os cartões são anotações de referência. Para incluir uma fatura na previsão, cadastre-a uma vez em Contas com o vencimento correto. Atualize aqui a fatura e o limite manualmente.</p>
+<div class="workspace"><section class="card"><h3 id="cardFormTitle">Adicionar cartão</h3><form id="cardForm"><label for="cardName">Apelido do cartão</label><input id="cardName" maxlength="100" required placeholder="Só o nome, nunca o número"><label for="cardLimit">Limite total (R$)</label><input id="cardLimit" type="number" min="0.01" max="10000000000" step="0.01" inputmode="decimal" required><label for="cardInvoice">Fatura atual (R$)</label><input id="cardInvoice" type="number" min="0" max="10000000000" step="0.01" inputmode="decimal" required><div class="two-fields"><div><label for="cardDueDay">Dia do vencimento</label><input id="cardDueDay" type="number" min="1" max="31" step="1" inputmode="numeric"></div><div><label for="cardClosingDay">Dia do fechamento</label><input id="cardClosingDay" type="number" min="1" max="31" step="1" inputmode="numeric"></div></div><button class="primary">Salvar cartão</button><button type="button" class="text-btn" id="cancelCardEdit" hidden>Cancelar edição</button></form></section><section class="card"><h3>Meus cartões</h3><div id="cardsList" class="list"></div></section></div>
+</section>
+<section data-panel="simulation" hidden>
+<div class="section-head"><div><p class="eyebrow">ANTES DE DECIDIR</p><h2>E se eu pagar isso?</h2></div></div>
+<div class="workspace"><section class="card"><form id="simForm"><label for="simDebt">O que quer simular?</label><select id="simDebt"><option value="">Um gasto novo</option></select><label for="simValue">Valor (R$)</label><input id="simValue" type="number" min="0.01" max="10000000000" step="0.01" inputmode="decimal" required><button class="primary">Ver o cenário</button></form><p class="fine">Simular não registra pagamento. Entradas futuras não garantem dinheiro disponível hoje.</p></section><section class="card"><h3>Seu cenário</h3><div id="simResult" class="empty" role="status">Escolha uma conta ou informe um gasto novo.</div><p class="fine">A previsão considera as contas cadastradas até 7 dias e as entradas esperadas nesse período. Não calcula juros nem recomenda crédito.</p></section></div>
+</section>
+<section data-panel="backup" hidden>
+<div class="section-head"><div><p class="eyebrow">SEUS DADOS, SEU CONTROLE</p><h2>Guarde uma cópia.</h2></div></div>
+<div class="workspace"><section class="card"><h3>Levar e trazer minhas anotações</h3><p>O backup permite restaurar suas contas neste ou em outro navegador.</p><button id="exportBtn" class="primary">Baixar backup (.json)</button><label class="file-label" for="importFile">Restaurar backup</label><input type="file" id="importFile" accept=".json,application/json"><p class="fine">Aceita também o backup do seu Oqpagar antigo. No arquivo antigo, toque em “Exportar backup”. A restauração substitui os dados deste navegador após sua confirmação.</p><p class="fine">O arquivo contém seus valores sem criptografia. Guarde em um lugar privado.</p></section><section class="card"><h3>Como a privacidade funciona</h3><p>Contas e valores ficam no armazenamento deste navegador. O app não envia essas anotações ao KappaLink e não carrega analytics.</p><p>Quem usa este navegador pode acessar os dados. Não há senha nem sincronização. Apagar os dados do navegador ou usar uma janela privada pode fazer você perder as anotações.</p><p class="fine">O provedor de hospedagem pode registrar dados técnicos do acesso, como IP e página visitada. O app não inclui seus valores nesses pedidos.</p><button id="resetBtn" class="danger">Apagar dados deste navegador</button></section></div>
+</section>
+</main>
+<footer><span>oqpagar. <span class="gold">Um pouco mais de clareza.</span></span><a href="https://www.kappalink.com/" rel="noopener noreferrer">Conheça o KappaLink ↗</a></footer>
+<noscript><p class="note">Ative JavaScript para usar o organizador. Nenhum dado é enviado por este formulário.</p></noscript>
+</div></body></html>
