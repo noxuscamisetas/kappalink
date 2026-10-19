@@ -4,14 +4,15 @@
   "description": "Motor universal de pré-atendimento.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run check:security && npm run test:mcd && npm run test:ana && npm run test:payments && npm run test:home && npm run test:gym && npm run test:jewel",
+    "test": "npm run check:security && npm run test:mcd && npm run test:ana && npm run test:payments && npm run test:home && npm run test:gym && npm run test:jewel && npm run test:oqpagar",
     "test:mcd": "node --test tests/mcd/*.test.js",
     "check:security": "node scripts/verify-security.js",
     "test:ana": "node --test tests/ana.test.js",
     "test:payments": "node --test tests/payment-flow.test.js",
     "test:home": "node --test tests/home*.test.js",
     "test:gym": "node --test tests/gym.test.js",
-    "test:jewel": "node --test tests/jewel.test.js"
+    "test:jewel": "node --test tests/jewel.test.js",
+    "test:oqpagar": "node --test tests/oqpagar.test.js"
   },
   "repository": {
     "type": "git",

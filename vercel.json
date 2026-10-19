@@ -12,6 +12,34 @@
       "continue": true
     },
     {
+      "src": "^/.*$",
+      "has": [
+        {
+          "type": "host",
+          "value": "oqpagar\\.kappalink\\.com"
+        }
+      ],
+      "headers": {
+        "Content-Security-Policy": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; font-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'",
+        "X-Robots-Tag": "noindex, nofollow",
+        "Cache-Control": "no-store"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/oqpagar(?:/.*)?$",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?:www\\.)?kappalink\\.com"
+        }
+      ],
+      "headers": {
+        "Location": "https://oqpagar.kappalink.com/"
+      },
+      "status": 308
+    },
+    {
       "src": "^/marianojoias(?:/.*)?$",
       "headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' https://www.kappalink.com; style-src 'self' https://www.kappalink.com 'unsafe-inline'; img-src 'self' https://www.kappalink.com data:; connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'",
@@ -113,6 +141,16 @@
         }
       ],
       "dest": "/marianojoias/$1"
+    },
+    {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "oqpagar\\.kappalink\\.com"
+        }
+      ],
+      "dest": "/oqpagar/$1"
     },
     {
       "src": "^/(.*)$",
