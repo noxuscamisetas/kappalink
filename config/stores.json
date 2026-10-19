@@ -33,6 +33,14 @@
       ],
       "demo": true,
       "contact_verified": false
+    },
+    {
+      "id": "academia",
+      "hosts": [
+        "academia.kappalink.com"
+      ],
+      "demo": true,
+      "contact_verified": false
     }
   ]
 }

@@ -12,6 +12,13 @@
       "continue": true
     },
     {
+      "src": "^/academia$",
+      "headers": {
+        "Location": "/academia/"
+      },
+      "status": 308
+    },
+    {
       "src": "^/guardauminstante$",
       "headers": {
         "Location": "/guardauminstante/"
@@ -57,6 +64,16 @@
         }
       ],
       "dest": "/anabeatriznutricao/$1"
+    },
+    {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "academia\\.kappalink\\.com"
+        }
+      ],
+      "dest": "/academia/$1"
     },
     {
       "src": "^/(.*)$",
