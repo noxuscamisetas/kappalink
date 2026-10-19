@@ -41,6 +41,14 @@
       ],
       "demo": true,
       "contact_verified": false
+    },
+    {
+      "id": "marianojoias",
+      "hosts": [
+        "marianojoias.kappalink.com"
+      ],
+      "demo": true,
+      "contact_verified": false
     }
   ]
 }

@@ -12,6 +12,13 @@
       "continue": true
     },
     {
+      "src": "^/marianojoias$",
+      "headers": {
+        "Location": "/marianojoias/"
+      },
+      "status": 308
+    },
+    {
       "src": "^/academia$",
       "headers": {
         "Location": "/academia/"
@@ -74,6 +81,16 @@
         }
       ],
       "dest": "/academia/$1"
+    },
+    {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "marianojoias\\.kappalink\\.com"
+        }
+      ],
+      "dest": "/marianojoias/$1"
     },
     {
       "src": "^/(.*)$",
