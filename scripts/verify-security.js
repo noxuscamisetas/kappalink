@@ -7,7 +7,7 @@ for(const store of stores){
  assert(/^[a-z0-9-]+$/.test(store.id),'Identificador inválido');assert(!ids.has(store.id),'Pasta duplicada');ids.add(store.id);
  assert(typeof store.demo==='boolean');assert(store.demo||store.contact_verified===true,'Cliente real exige destinatário conferido');
  for(const host of store.hosts){assert(/^[a-z0-9-]+\.kappalink\.com$/.test(host));assert(!hosts.has(host),'Endereço duplicado');hosts.add(host);
-  const rule=config.routes.find(r=>r.has?.some(h=>h.type==='host'&&new RegExp('^(?:'+h.value+')$').test(host)));
+  const rule=config.routes.find(r=>r.dest&&r.has?.some(h=>h.type==='host'&&new RegExp('^(?:'+h.value+')$').test(host)));
   assert.equal(rule?.dest,'/'+store.id+'/$1','Endereço não encaminha à pasta cadastrada');
  }
  for(const file of ['index.html','pedido.html'])assert(fs.existsSync(path.join('public',store.id,file)),'Página ausente');
