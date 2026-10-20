@@ -12,6 +12,21 @@
       "continue": true
     },
     {
+      "src": "^/joalheria(?:/.*)?$",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'",
+        "X-Robots-Tag": "noindex, nofollow"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/joalheria$",
+      "headers": {
+        "Location": "/joalheria/"
+      },
+      "status": 308
+    },
+    {
       "src": "^/.*$",
       "has": [
         {
