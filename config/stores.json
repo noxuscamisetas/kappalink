@@ -49,6 +49,12 @@
       ],
       "demo": true,
       "contact_verified": false
+    },
+    {
+      "id": "joalheria",
+      "hosts": [],
+      "demo": true,
+      "contact_verified": false
     }
   ]
 }
