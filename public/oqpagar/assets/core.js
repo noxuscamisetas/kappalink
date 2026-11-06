@@ -56,8 +56,9 @@ function plan(s,today=iso()){
  const group=items=>({rows:items,income:sum(items.filter(r=>r.amount>0).map(r=>r.amount)),due:-sum(items.filter(r=>r.amount<0).map(r=>r.amount))});
  const before=group(rows.filter(r=>r.date<cut)),after=group(rows.filter(r=>r.date>=cut));
  before.balance=sum([s.cashNow,before.income,-before.due]);after.balance=sum([before.balance,after.income,-after.due]);
+ const earlyEnd=payDay>15?cut.slice(0,8)+'15':addDays(-1,cut);const early=group(before.rows.filter(r=>r.date<=earlyEnd)),bridge=group(before.rows.filter(r=>r.date>earlyEnd));early.balance=sum([s.cashNow,early.income,-early.due]);bridge.balance=before.balance;
  const day15=nextDay(15,today);const until15=-sum(rows.filter(r=>r.amount<0&&r.date<=day15).map(r=>r.amount));
- return {today,end,cut,payDay,rows,before,after,income:sum([before.income,after.income]),due:sum([before.due,after.due]),balance,until15,day15,firstShortfall:rows.find(r=>r.balance<0),overdueIncome:s.incomes.filter(d=>!d.received&&d.date<today).length};
+ return {today,end,cut,payDay,rows,before,after,early,bridge,earlyEnd,income:sum([before.income,after.income]),due:sum([before.due,after.due]),balance,until15,day15,firstShortfall:rows.find(r=>r.balance<0),overdueIncome:s.incomes.filter(d=>!d.received&&d.date<today).length};
 }
 return {nextDay,plan,money,sum,iso,validDate,addDays,days,amount,id,empty,validate,summary,simulate,pay,receive,ranked,types};
 });

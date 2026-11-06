@@ -16,7 +16,7 @@ Organizador pessoal próprio, distinto das vitrines comerciais. Origem canônica
 
 ## Experiência e cálculos
 
-Uma tela: resumo dos próximos 30 dias (hoje + 29 dias), cartões por tipo, períodos antes e a partir do vale (dia 20 editável), tabela cronológica e formulário único de entrada/saída. Contas até o próximo dia 15 recebem um subtotal; dias 16–19 continuam na previsão. O saldo final do primeiro período passa ao segundo. Não há abas nem simulação separada.
+Uma tela: resumo dos próximos 30 dias (hoje + 29 dias), cartões por tipo, períodos até dia 15 e a partir do vale (dia 20 editável), tabela cronológica e formulário único de entrada/saída. Contas até o próximo dia 15 recebem um subtotal; dias 16–19 continuam na previsão. O saldo final do primeiro período, com as entradas e saídas dos dias 16–19 indicadas entre os cartões, passa ao segundo. Não há abas nem simulação separada.
 
 Saldo atual + entradas futuras não recebidas − contas abertas até o fim da janela, incluindo atrasadas. Entradas com data passada não contam como previsão; permanecem disponíveis para confirmar ou editar. A tabela mostra o saldo após cada evento e sinaliza falta de dinheiro anterior a uma entrada. Eventos do mesmo dia consideram entradas primeiro; não há previsão de horário ou garantia de recebimento.
 

@@ -50,7 +50,7 @@ test('failed writes and cross-tab changes never report a successful mutation',()
 test('invalid stored data stays untouched and write controls cannot overwrite it',()=>{const bad='{broken';const ui=controller(bad);ui.get('cashNow').value='10';ui.submit('cashForm');assert.equal(ui.storage.get('oqpagar_v2'),bad);});
 test('30-day plan carries balances across the vale and keeps days 16–19',()=>{
  const s=C.empty();s.cashNow=100;s.debts=[debt('a',80,'2026-11-15'),debt('b',50,'2026-11-18'),debt('c',100,'2026-11-22'),debt('old',10,'2026-11-01'),debt('outside',999,'2026-12-06')];s.incomes=[income('i',300,'2026-11-20')];
- const p=C.plan(s,'2026-11-06');assert.equal(p.end,'2026-12-05');assert.equal(p.until15,90);assert.equal(p.before.due,140);assert.equal(p.before.balance,-40);assert.equal(p.after.balance,160);assert.equal(p.balance,160);assert.equal(p.firstShortfall.date,'2026-11-18');assert.equal(p.rows.length,5);
+ const p=C.plan(s,'2026-11-06');assert.equal(p.end,'2026-12-05');assert.equal(p.until15,90);assert.equal(p.early.due,90);assert.equal(p.early.balance,10);assert.equal(p.bridge.due,50);assert.equal(p.before.due,140);assert.equal(p.before.balance,-40);assert.equal(p.after.balance,160);assert.equal(p.balance,160);assert.equal(p.firstShortfall.date,'2026-11-18');assert.equal(p.rows.length,5);
 });
 test('credit invoices counted once, benefits and overdraft never inflate cash',()=>{
  const s=C.empty();s.cashNow=100;s.cards=[{id:'c',name:'Credito',kind:'credit',limit:1000,invoice:30,dueDay:15,invoiceInDebts:false},{id:'f',name:'Alimentacao',kind:'food',limit:500,invoice:0},{id:'o',name:'Especial',kind:'overdraft',limit:99999,invoice:10}];
