@@ -20,24 +20,24 @@ function validate(raw,{rekey=false}={}){
  const ids=new Set();const safeId=v=>{let k=!rekey&&typeof v==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(v)?v:id();if(ids.has(k))k=id();ids.add(k);return k;};
  const out=empty();out.cashNow=amount(raw.cashNow);
  if(raw.payDay!==undefined){if(!Number.isInteger(raw.payDay)||raw.payDay<1||raw.payDay>31)throw Error('Dia do recebimento inválido.');out.payDay=raw.payDay;}
- out.debts=raw.debts.map(d=>{if(typeof d.paid!=='boolean'||!types.includes(d.type))throw Error('Conta inválida no backup.');return {id:safeId(d.id),name:name(d.name),amount:amount(d.amount,true),dueDate:date(d.dueDate),type:d.type,paid:d.paid};});
+ out.debts=raw.debts.map(d=>{if(d.frozen!==undefined&&typeof d.frozen!=='boolean')throw Error('Estado da conta inválido.');if(d.notes!==undefined&&(typeof d.notes!=='string'||d.notes.length>500))throw Error('Observação inválida: use até 500 caracteres.');if(d.frozen&&d.paid)throw Error('Uma conta paga não pode ficar congelada.');if(typeof d.paid!=='boolean'||!types.includes(d.type))throw Error('Conta inválida no backup.');return {id:safeId(d.id),name:name(d.name),amount:amount(d.amount,true),dueDate:date(d.dueDate),type:d.type,paid:d.paid,frozen:!!d.frozen,notes:d.notes||''};});
  out.incomes=raw.incomes.map(d=>{if(d.received!==undefined&&typeof d.received!=='boolean')throw Error('Entrada inválida no backup.');return {id:safeId(d.id),name:name(d.name),amount:amount(d.amount,true),date:date(d.date),received:!!d.received,kind:['salary','advance','pix','daily','sale','refund','loan','other'].includes(d.kind)?d.kind:'other'};});
  out.cards=raw.cards.map(d=>{if(d.invoiceInDebts!==undefined&&typeof d.invoiceInDebts!=='boolean')throw Error('Opção de fatura inválida.');for(const k of ['dueDay','closingDay'])if(!Number.isInteger(d[k])||d[k]<0||d[k]>31)throw Error('Dia do cartão inválido.');return {id:safeId(d.id),name:name(d.name),limit:amount(d.limit),invoice:amount(d.invoice),dueDay:d.dueDay,closingDay:d.closingDay,kind:['credit','food','meal','benefit','overdraft'].includes(d.kind)?d.kind:'credit',invoiceInDebts:d.invoiceInDebts===undefined?true:!!d.invoiceInDebts};});
  return out;
 }
 function summary(s,horizon=7,today=iso()){
- const debtItems=s.debts.filter(d=>!d.paid&&days(d.dueDate,today)<=horizon);
+ const debtItems=s.debts.filter(d=>!d.paid&&!d.frozen&&days(d.dueDate,today)<=horizon);
  const incomeItems=s.incomes.filter(d=>!d.received&&days(d.date,today)>=0&&days(d.date,today)<=horizon);
  const due=sum(debtItems.map(d=>d.amount)),income=sum(incomeItems.map(d=>d.amount));
  return {due,income,cash:s.cashNow,gap:sum([s.cashNow,income,-due]),overdueIncome:s.incomes.filter(d=>!d.received&&days(d.date,today)<0).length};
 }
 function simulate(s,value,{debtId=null,today=iso()}={}){
- const p=summary(s,7,today);const existing=s.debts.find(d=>d.id===debtId&&!d.paid&&days(d.dueDate,today)<=7);
+ const p=summary(s,7,today);const existing=s.debts.find(d=>d.id===debtId&&!d.paid&&!d.frozen&&days(d.dueDate,today)<=7);
  return {cashAfter:money(s.cashNow-value),forecastAfter:sum([p.gap,-value,existing?existing.amount:0]),included:!!existing};
 }
-function pay(s,debtId){const d=s.debts.find(d=>d.id===debtId&&!d.paid);if(!d)throw Error('Conta não encontrada.');if(cents(s.cashNow)<cents(d.amount))throw Error('Saldo de hoje insuficiente. Atualize o saldo antes de registrar o pagamento.');s.cashNow=sum([s.cashNow,-d.amount]);d.paid=true;}
+function pay(s,debtId){const d=s.debts.find(d=>d.id===debtId&&!d.paid&&!d.frozen);if(!d)throw Error('Conta não encontrada.');if(cents(s.cashNow)<cents(d.amount))throw Error('Saldo de hoje insuficiente. Atualize o saldo antes de registrar o pagamento.');s.cashNow=sum([s.cashNow,-d.amount]);d.paid=true;}
 function receive(s,incomeId){const d=s.incomes.find(d=>d.id===incomeId&&!d.received);if(!d)throw Error('Entrada não encontrada.');if(sum([s.cashNow,d.amount])>MAX)throw Error('Saldo acima do limite aceito.');s.cashNow=sum([s.cashNow,d.amount]);d.received=true;}
-function ranked(s,today=iso()){return s.debts.filter(d=>!d.paid).slice().sort((a,b)=>days(a.dueDate,today)-days(b.dueDate,today)||(a.type==='essential'?-1:0)-(b.type==='essential'?-1:0));}
+function ranked(s,today=iso()){return s.debts.filter(d=>!d.paid&&!d.frozen).slice().sort((a,b)=>days(a.dueDate,today)-days(b.dueDate,today)||(a.type==='essential'?-1:0)-(b.type==='essential'?-1:0));}
 function nextDay(day,today=iso()){
  const d=new Date(today+'T12:00:00');
  const build=(y,m)=>iso(new Date(y,m,Math.min(day,new Date(y,m+1,0).getDate()),12));
@@ -48,7 +48,7 @@ function nextDay(day,today=iso()){
 function plan(s,today=iso()){
  const end=addDays(29,today),payDay=s.payDay||20,cut=nextDay(payDay,today);
  const rows=[];
- for(const d of s.debts)if(!d.paid&&d.dueDate<=end)rows.push({id:d.id,source:'debt',name:d.name,date:d.dueDate,amount:-d.amount,kind:d.type});
+ for(const d of s.debts)if(!d.paid&&!d.frozen&&d.dueDate<=end)rows.push({id:d.id,source:'debt',name:d.name,date:d.dueDate,amount:-d.amount,kind:d.type});
  for(const d of s.incomes)if(!d.received&&d.date>=today&&d.date<=end)rows.push({id:d.id,source:'income',name:d.name,date:d.date,amount:d.amount,kind:d.kind||'other'});
  for(const c of s.cards)if((c.kind||'credit')==='credit'&&!c.invoiceInDebts&&c.invoice>0&&c.dueDay){const date=nextDay(c.dueDay,today);if(date<=end)rows.push({id:c.id,source:'invoice',name:'Fatura '+c.name,date,amount:-c.invoice,kind:'card'});}
  rows.sort((a,b)=>a.date.localeCompare(b.date)||(b.amount>0)-(a.amount>0)||a.name.localeCompare(b.name));

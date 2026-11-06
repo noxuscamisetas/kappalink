@@ -33,7 +33,7 @@ test('privacy headers and routes isolate app; local scripts only, no analytics o
 });
 function controller(initial){
  const nodes=new Map(),listeners={},storage=new Map(initial?[["oqpagar_v2",initial]]:[]);let fail=false;
- const get=id=>{if(!nodes.has(id))nodes.set(id,{value:'',textContent:'',innerHTML:'',hidden:false,dataset:{},classList:{toggle(){}},addEventListener(k,f){this[k]=f;},focus(){},reset(){}});return nodes.get(id);};
+ const get=id=>{if(!nodes.has(id))nodes.set(id,{value:'',textContent:'',innerHTML:'',hidden:false,dataset:{},classList:{toggle(){}},addEventListener(k,f){this[k]=f;},focus(){},scrollIntoView(){},reset(){}});return nodes.get(id);};
  const context={window:{Oqpagar:C,addEventListener(k,f){listeners[k]=f;}},location:{hostname:'oqpagar.kappalink.com'},document:{getElementById:get,querySelectorAll(){return[];},querySelector(){return null;},addEventListener(k,f){listeners[k]=f;}},localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>{if(fail)throw Error('Armazenamento indisponível');storage.set(k,v);},removeItem:k=>storage.delete(k)},Intl,confirm:()=>true,setTimeout,console};
  vm.runInNewContext(fs.readFileSync('public/oqpagar/assets/app.js','utf8'),context);
  return {get,listeners,storage,fail(){fail=true;},submit:id=>get(id).submit({preventDefault(){}}),click:(action,id)=>listeners.click({target:{closest:()=>({dataset:{action,id}})}})};
@@ -65,4 +65,19 @@ test('next due day handles month lengths, leap years and same-day vale',()=>{
 });
 test('recording a credit invoice payment changes cash and invoice exactly once',()=>{
  const s=C.empty();s.cashNow=100;s.cards=[{id:'c',name:'Cartao',kind:'credit',limit:500,invoice:30,dueDay:15,closingDay:8,invoiceInDebts:false}];const ui=controller(JSON.stringify(s));ui.click('pay-invoice','c');ui.click('pay-invoice','c');const saved=JSON.parse(ui.storage.get('oqpagar_v2'));assert.equal(saved.cashNow,70);assert.equal(saved.cards[0].invoice,0);assert.equal(saved.debts.length,1);assert.equal(saved.debts[0].paid,true);
+});
+
+test('frozen accounts stay outside every forecast and cannot be paid before reactivation',()=>{
+ const s=C.empty();s.cashNow=100;s.debts=[debt('a',20),{...debt('old',9000,'2020-01-01'),frozen:true,notes:'Conferir acordo'}];
+ assert.equal(C.plan(s,today).due,20);assert.equal(C.summary(s,7,today).due,20);assert.equal(C.ranked(s,today).length,1);assert.throws(()=>C.pay(s,'old'));assert.equal(s.cashNow,100);
+ const r=C.validate(JSON.parse(JSON.stringify(s)));assert.equal(r.debts[1].frozen,true);assert.equal(r.debts[1].notes,'Conferir acordo');
+ assert.throws(()=>C.validate({...s,debts:[{...s.debts[1],frozen:'yes'}]}));assert.throws(()=>C.validate({...s,debts:[{...s.debts[1],notes:'a'.repeat(501)}]}));
+});
+test('frozen form persists and escapes notes; reactivation waits for a saved date',()=>{
+ const ui=controller();ui.get('frozenName').value='Banco antigo';ui.get('frozenAmount').value='500';ui.get('frozenNotes').value='<img src=x onerror=alert(1)>';ui.submit('frozenForm');
+ let saved=JSON.parse(ui.storage.get('oqpagar_v2'));const id=saved.debts[0].id;assert.equal(saved.debts[0].frozen,true);assert(ui.get('frozenList').innerHTML.includes('&lt;img'));assert.equal(ui.get('dueTop').textContent,new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(0));
+ ui.click('thaw',id);assert.equal(JSON.parse(ui.storage.get('oqpagar_v2')).debts[0].frozen,true);ui.get('movementDate').value=C.addDays(3);ui.submit('movementForm');saved=JSON.parse(ui.storage.get('oqpagar_v2'));assert.equal(saved.debts.length,1);assert.equal(saved.debts[0].frozen,false);assert.equal(saved.debts[0].dueDate,C.addDays(3));assert.equal(saved.debts[0].notes,'<img src=x onerror=alert(1)>');assert.equal(C.plan(saved).due,500);
+});
+test('freezing an existing bill preserves the cash balance and survives reload',()=>{
+ const s=C.empty();s.cashNow=100;s.debts=[debt('a',30,C.iso())];const ui=controller(JSON.stringify(s));ui.click('freeze','a');const saved=JSON.parse(ui.storage.get('oqpagar_v2'));assert.equal(saved.cashNow,100);assert.equal(saved.debts[0].frozen,true);assert.equal(C.plan(saved).due,0);const reload=controller(JSON.stringify(saved));assert(reload.get('frozenList').innerHTML.includes('Conta'));assert.equal(reload.get('frozenCount').textContent,1);
 });

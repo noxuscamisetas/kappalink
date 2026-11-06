@@ -28,6 +28,12 @@ Pagar exige saldo suficiente e desconta uma vez. Recebi soma uma vez; “Já no 
 
 A chave `oqpagar_v2` e a versão 2 de backup são mantidas, com novos campos opcionais compatíveis. Campos antigos não são descartados; não há sobrescrita ao abrir. Dados inválidos e alterações em outra aba bloqueiam gravações.
 
+## Contas congeladas
+
+Segunda área, separada do balanço, para pendências antigas (bancos, Serasa etc.). Nome, valor e observação opcional de até 500 caracteres; total próprio, edição e exclusão. O campo opcional `debts[].frozen` exclui o registro dos cálculos, pagamentos e listas do balanço, sem alterar o saldo atual. As observações são escapadas na tela e preservadas no backup. Backups antigos recebem `frozen: false`.
+
+Congelar uma conta existente mantém seus dados. “Voltar ao balanço” abre o formulário para escolher data e valor; só reativa ao salvar, sem duplicar. Não há consulta ou integração com instituições.
+
 ## Verificação
 
 `npm test` inclui `tests/oqpagar.test.js`, além das suítes anteriores. Conferência visual no celular ainda necessária quando navegador de QA não estiver disponível.
