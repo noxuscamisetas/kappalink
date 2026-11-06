@@ -14,13 +14,19 @@ Organizador pessoal próprio, distinto das vitrines comerciais. Origem canônica
 - Falha ao ler armazenamento bloqueia gravação para evitar sobrescrever dados. Mudanças de outra aba bloqueiam gravação até recarregar.
 - A hospedagem pode reter dados técnicos de acesso, sem valores anotados nas requisições do app.
 
-## Regras dos cálculos
+## Experiência e cálculos
 
-Saldo de hoje + entradas não recebidas entre hoje e 7 dias − contas abertas vencidas ou com vencimento até 7 dias. Datas antigas de entradas não contam como dinheiro futuro. A previsão agregada não garante disponibilidade antes de cada vencimento.
+Uma tela: resumo dos próximos 30 dias (hoje + 29 dias), cartões por tipo, períodos até dia 15 e a partir do vale (dia 20 editável), tabela cronológica e formulário único de entrada/saída. Contas até o próximo dia 15 recebem um subtotal; dias 16–19 continuam na previsão. O saldo final do primeiro período, com as entradas e saídas dos dias 16–19 indicadas entre os cartões, passa ao segundo. Não há abas nem simulação separada.
 
-Cartões são referência manual: limite não é renda. Fatura só entra na previsão quando cadastrada em Contas; o app informa isso explicitamente e não soma faturas duas vezes automaticamente.
+Saldo atual + entradas futuras não recebidas − contas abertas até o fim da janela, incluindo atrasadas. Entradas com data passada não contam como previsão; permanecem disponíveis para confirmar ou editar. A tabela mostra o saldo após cada evento e sinaliza falta de dinheiro anterior a uma entrada. Eventos do mesmo dia consideram entradas primeiro; não há previsão de horário ou garantia de recebimento.
 
-Pagar exige saldo suficiente, desconta uma vez e marca a conta paga. Recebi soma a entrada uma vez; “Já está no saldo” confirma sem somar. Editar apenas contas/entradas abertas; registros liquidados são histórico. A simulação de uma conta já incluída não desconta duas vezes. Não estima juros, recomenda crédito ou executa pagamentos.
+Crédito normal, alimentação, refeição, outros benefícios e limite especial ficam separados do dinheiro próprio. Benefícios mostram saldo informado; crédito e especial mostram limite menos valor utilizado. Tipos de entrada: salário, vale, Pix, diária, venda, reembolso, empréstimo e outras; saídas: casa, mercado, transporte, saúde, educação, fatura, empréstimo, imposto, lazer e outras.
+
+Novos cartões de crédito incluem a fatura automaticamente pelo próximo vencimento, salvo a opção “Já lancei essa fatura como saída”. Cartões existentes/importados mantêm a regra manual anterior para não duplicar contas: fatura incluída nas saídas. Cartão sem vencimento gera aviso e não é somado silenciosamente. Saldos/limites dos cartões são atualizados manualmente; as movimentações do formulário representam dinheiro, não compras ou recargas automáticas em cartão.
+
+Pagar exige saldo suficiente e desconta uma vez. Recebi soma uma vez; “Já no saldo” confirma sem somar. Pagar fatura automática desconta o dinheiro e zera a fatura anotada, com registro no histórico. Não executa pagamentos, calcula juros nem recomenda crédito.
+
+A chave `oqpagar_v2` e a versão 2 de backup são mantidas, com novos campos opcionais compatíveis. Campos antigos não são descartados; não há sobrescrita ao abrir. Dados inválidos e alterações em outra aba bloqueiam gravações.
 
 ## Verificação
 

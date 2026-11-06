@@ -40,12 +40,29 @@ function controller(initial){
 }
 test('real controller persists, escapes names, pays once and restores after reload',()=>{
  const ui=controller();ui.get('cashNow').value='200';ui.submit('cashForm');
- ui.get('debtName').value='<img src=x onerror=alert(1)>';ui.get('debtAmount').value='50';ui.get('debtDate').value=C.iso();ui.get('debtType').value='essential';ui.submit('debtForm');
- assert(ui.get('debtsList').innerHTML.includes('&lt;img'));assert(!ui.get('debtsList').innerHTML.includes('<img'));
+ ui.get('movementName').value='<img src=x onerror=alert(1)>';ui.get('movementAmount').value='50';ui.get('movementDate').value=C.iso();ui.get('movementKind').value='essential';ui.submit('movementForm');
+ assert(ui.get('ledger').innerHTML.includes('&lt;img'));assert(!ui.get('ledger').innerHTML.includes('<img'));
  const saved=JSON.parse(ui.storage.get('oqpagar_v2'));ui.click('pay',saved.debts[0].id);ui.click('pay',saved.debts[0].id);
  const paid=JSON.parse(ui.storage.get('oqpagar_v2'));assert.equal(paid.cashNow,150);assert.equal(paid.debts[0].paid,true);
- const reload=controller(JSON.stringify(paid));assert.equal(reload.get('cashTop').textContent,ui.get('cashTop').textContent);assert(reload.get('paidList').innerHTML.includes('&lt;img'));
+ const reload=controller(JSON.stringify(paid));assert.equal(reload.get('cashTop').textContent,ui.get('cashTop').textContent);assert(reload.get('historyList').innerHTML.includes('&lt;img'));
 });
 test('failed writes and cross-tab changes never report a successful mutation',()=>{const ui=controller();ui.fail();ui.get('cashNow').value='99';ui.submit('cashForm');assert.equal(ui.storage.size,0);assert.match(ui.get('status').textContent,/indisponível/);const other=controller();other.listeners.storage({key:'oqpagar_v2'});other.get('cashNow').value='42';other.submit('cashForm');assert.equal(other.storage.size,0);});
 test('invalid stored data stays untouched and write controls cannot overwrite it',()=>{const bad='{broken';const ui=controller(bad);ui.get('cashNow').value='10';ui.submit('cashForm');assert.equal(ui.storage.get('oqpagar_v2'),bad);});
-test('paying a selected simulation bill releases the amount field for a new expense',()=>{const s=C.empty();s.cashNow=100;s.debts=[debt('a',20,C.iso())];const ui=controller(JSON.stringify(s));ui.get('simDebt').value='a';ui.get('simDebt').change();assert.equal(ui.get('simValue').readOnly,true);ui.click('pay','a');assert.equal(ui.get('simDebt').value,'');assert.equal(ui.get('simValue').readOnly,false);});
+test('30-day plan carries balances across the vale and keeps days 16–19',()=>{
+ const s=C.empty();s.cashNow=100;s.debts=[debt('a',80,'2026-11-15'),debt('b',50,'2026-11-18'),debt('c',100,'2026-11-22'),debt('old',10,'2026-11-01'),debt('outside',999,'2026-12-06')];s.incomes=[income('i',300,'2026-11-20')];
+ const p=C.plan(s,'2026-11-06');assert.equal(p.end,'2026-12-05');assert.equal(p.until15,90);assert.equal(p.early.due,90);assert.equal(p.early.balance,10);assert.equal(p.bridge.due,50);assert.equal(p.before.due,140);assert.equal(p.before.balance,-40);assert.equal(p.after.balance,160);assert.equal(p.balance,160);assert.equal(p.firstShortfall.date,'2026-11-18');assert.equal(p.rows.length,5);
+});
+test('credit invoices counted once, benefits and overdraft never inflate cash',()=>{
+ const s=C.empty();s.cashNow=100;s.cards=[{id:'c',name:'Credito',kind:'credit',limit:1000,invoice:30,dueDay:15,invoiceInDebts:false},{id:'f',name:'Alimentacao',kind:'food',limit:500,invoice:0},{id:'o',name:'Especial',kind:'overdraft',limit:99999,invoice:10}];
+ assert.equal(C.plan(s,'2026-11-06').balance,70);s.cards[0].invoiceInDebts=true;s.debts=[debt('fatura',30,'2026-11-15')];assert.equal(C.plan(s,'2026-11-06').balance,70);
+});
+test('new fields survive backup roundtrip, old credit cards retain manual invoice semantics',()=>{
+ const old=C.empty();old.cards=[{id:'c',name:'Cartao',limit:500,invoice:100,dueDay:15,closingDay:8}];const migrated=C.validate(old);assert.equal(migrated.cards[0].invoiceInDebts,true);assert.equal(migrated.cards[0].kind,'credit');
+ migrated.payDay=20;migrated.cards[0].kind='food';migrated.incomes=[{...income('i',200,'2026-11-20'),kind:'advance'}];assert.deepEqual(C.validate(JSON.parse(JSON.stringify(migrated))),migrated);
+});
+test('next due day handles month lengths, leap years and same-day vale',()=>{
+ assert.equal(C.nextDay(31,'2026-02-01'),'2026-02-28');assert.equal(C.nextDay(31,'2028-02-01'),'2028-02-29');assert.equal(C.nextDay(20,'2026-11-21'),'2026-12-20');assert.equal(C.plan(C.empty(),'2026-11-20').before.rows.length,0);
+});
+test('recording a credit invoice payment changes cash and invoice exactly once',()=>{
+ const s=C.empty();s.cashNow=100;s.cards=[{id:'c',name:'Cartao',kind:'credit',limit:500,invoice:30,dueDay:15,closingDay:8,invoiceInDebts:false}];const ui=controller(JSON.stringify(s));ui.click('pay-invoice','c');ui.click('pay-invoice','c');const saved=JSON.parse(ui.storage.get('oqpagar_v2'));assert.equal(saved.cashNow,70);assert.equal(saved.cards[0].invoice,0);assert.equal(saved.debts.length,1);assert.equal(saved.debts[0].paid,true);
+});
