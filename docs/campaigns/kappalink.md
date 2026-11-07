@@ -1,6 +1,6 @@
 # KappaLink — campanha da vitrine
 
-Oferta: criação + primeiro mês R$ 150; depois R$ 99/mês. Pequenos ajustes e manutenção, com escopo combinado antes da contratação. Sem promessa de vendas, tráfego ou resultados.
+Oferta: criação de página com vitrine e pré-atendimento por R$ 159,90 em pagamento único. Entrega dos arquivos prontos para publicar, guia curto e cartão digital com QR code para o endereço indicado pelo cliente. Publicação, hospedagem, domínio e manutenção não incluídos. Sem promessa de vendas, tráfego ou resultados.
 
 Mensagem: Seu cliente clica. Escolhe. Você já sabe como atender.
 

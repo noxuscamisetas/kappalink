@@ -14,7 +14,7 @@ A pessoa escolhe o motivo do contato e seu período de preferência. A equipe co
 
 Experimente a Ritmo, nossa academia fictícia de demonstração, na home pelo link da bio.
 
-KappaLink: R$150 para criação + primeiro mês. Depois, R$99/mês. Pequenos ajustes e condições combinados antes da contratação.
+KappaLink: criação de vitrine com pré-atendimento por R$ 159,90 em pagamento único. Hospedagem à parte.
 
 ## Stories — sequência de três
 
